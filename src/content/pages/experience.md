@@ -24,6 +24,13 @@ how far to take AI and agentic workflows.
 Advised fifty broadcaster and publisher accounts on deployment and activation,
 and built the data-backed growth narratives that went to their executives.
 
+**[Artsy](https://www.artsy.net)** — Account Executive.
+Carried a portfolio of ninety small and mid-sized galleries showing emerging
+and contemporary artists. Grew marketplace GMV and subscription revenue mostly
+by taking friction out of buying — moving listings onto Buy Now and Make Offer
+— and by making the return on a gallery's listing legible to the gallery.
+Finished at 140% net retention and 300% of the annual artwork supply target.
+
 **[David Zwirner](https://www.davidzwirner.com)** — Sales & Client Relations.
 Produced private client viewing materials, which meant collecting and
 analysing primary and secondary art market data. Prototyped upcoming artist
