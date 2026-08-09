@@ -6,8 +6,6 @@ description: Ryan Watt — post-sales at Revin, New York.
 
 <img src="/headshot.jpg" width="128" height="130" alt="Ryan Watt" />
 
-Email: [ryanbwatt@gmail.com](mailto:ryanbwatt@gmail.com)
-
 I live in New York and lead the post-sales motion at [Revin](https://revin.ai),
 an AI startup building revenue agents for home-services companies. I manage
 FDEs, CSMs, and TSEs, and I'm focused on designing and building the systems
