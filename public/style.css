@@ -1,0 +1,127 @@
+/* ryanbwatt.com
+   Written by hand. No variables, no preprocessor, no build step — this file
+   is served exactly as it appears here, at /style.css.
+
+   The layout is floats and fixed pixel widths on purpose. The page is not
+   centred and does not fill the window: the nav sits in a narrow column at
+   the top right, the text sits in a 500px column set in from the left, and
+   everything else is empty. */
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333;
+  background: #fff;
+  margin: 0;
+}
+
+/* Nav. Same on every page. */
+
+#menu {
+  float: right;
+  width: 150px;
+  margin-top: 30px;
+  margin-right: 20px;
+  text-align: right;
+}
+
+#menu .title {
+  color: #000;
+}
+
+#menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu a {
+  display: inline-block;
+  color: #0864c7;
+}
+
+/* An empty column holding the text away from the left edge. It has no
+   content and no height; it exists only to take up 200px. */
+
+#left {
+  float: left;
+  width: 200px;
+  height: 1px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Text. */
+
+#content {
+  float: left;
+  width: 500px;
+  margin-top: 15px;
+  margin-bottom: 60px;
+}
+
+#content a {
+  color: #0864c7;
+}
+
+/* Heading sizes are left at the browser default, which is the whole point:
+   they were never chosen. Only the spacing is set. */
+
+#content h1,
+#content h2,
+#content h3 {
+  margin: 0;
+}
+
+#content h2 {
+  margin-top: 2em;
+}
+
+#content h3 {
+  margin-top: 1.5em;
+}
+
+#content li {
+  margin-bottom: 0.7em;
+}
+
+#content blockquote {
+  margin-left: 0;
+  padding-left: 12px;
+  border-left: 1px solid #ddd;
+  color: #777;
+}
+
+#content pre {
+  overflow-x: auto;
+  font-size: 12px;
+}
+
+#content img {
+  max-width: 100%;
+}
+
+/* Phones. The fixed columns above are wider than a phone screen, so they
+   stack. This is the one rule here that answers to a device the rest of the
+   layout predates — without it the site is unreadable on a phone. */
+
+@media (max-width: 720px) {
+  #menu {
+    float: none;
+    width: auto;
+    margin: 20px 20px 0 20px;
+    text-align: left;
+  }
+
+  #left {
+    display: none;
+  }
+
+  #content {
+    float: none;
+    width: auto;
+    margin: 20px;
+  }
+}

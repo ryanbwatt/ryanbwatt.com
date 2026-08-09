@@ -1,78 +1,66 @@
 # ryanbwatt.com
 
-Personal site. Astro, static output, no JavaScript shipped to the browser.
+Personal site. Astro turns Markdown into static HTML and does nothing else.
 
-## The two rules
+## The three rules
 
-**1. Pages, not posts.** This is a commonplace book, not a blog. There are no
-dates, no feed, no tags, no pagination, and no drafts workflow — all removed on
-purpose. A page is a durable thing revised in place over years. Do not add
-blog machinery, even if it seems like an obvious improvement. If a page needs a
-"last revised" note, that's the optional `updated` frontmatter field.
+**1. Pages, not posts.** A commonplace book, not a blog. No dates, no feed, no
+tags, no pagination, no drafts workflow — all absent on purpose. A page is a
+durable thing revised in place. Do not add blog machinery.
 
-**2. Only `tokens.css` names a value.** Every colour, typeface, size, and
-spacing unit lives in `src/styles/tokens.css` as a custom property. No other
-file may contain a literal hex code, font name, or spacing number. This exists
-so the design can be rethemed by editing one file — that is the point of the
-whole build, and it degrades the moment a stray `#333` lands in a component.
+**2. The site must not look designed.** It is a deliberate reconstruction of
+patrickcollison.com: 13px Helvetica on white, blue underlined links, nav in a
+narrow column at the top right, text in a fixed 500px column set 200px in from
+the left, and most of the page empty. Nothing is centred. Nothing scales to
+fill the window. There are no rules, cards, shadows, gradients, or accents.
 
-Hairline borders (`1px`) and `0`/`100%` are the only literals allowed elsewhere.
+The things that make a page look template-built, all of which were removed and
+none of which should come back:
+
+- centred content, or `max-width` containers that fill the viewport
+- descriptions or blurbs beside nav links
+- hairline rules between list items
+- an intro paragraph on the homepage (its content div is empty, and stays so)
+- fluid `clamp()` typography, or any type scale
+- webfonts, CSS variables, dark mode, `text-wrap`, `color-mix`
+- an `<h1>` echoing the page title above the text
+
+**3. The stylesheet is hand-written and served raw.** `public/style.css` goes
+to the browser exactly as typed — no bundler, no hashing, no minification. It
+has literal values and no variables. Keep it short enough to read in one pass.
 
 ## Adding a page
 
-Create `src/content/pages/<slug>.md`. The filename becomes the URL, and the
-homepage link appears automatically. There is nothing else to register.
+Create `src/content/pages/<slug>.md`. The filename is the URL and the nav link
+appears automatically.
 
 ```markdown
 ---
 title: Fast
-blurb: Ambitious things, built quickly.
 ---
 
-Content here.
+Content here. No leading heading — the title is in <title> and the nav.
 ```
 
-Frontmatter: `title` (required), `blurb`, `nav` (set `false` to publish
-unlisted), `order` (lower sorts first; otherwise alphabetical), `updated`,
-`description` (defaults to `blurb` for meta tags).
-
-## Changing the design
-
-Edit `src/styles/tokens.css`. Accent colour, typeface, column width, and
-vertical rhythm are each a single line. Dark mode re-points the same tokens in
-one `@media` block; delete that block to drop dark mode entirely.
-
-After any colour change run `npm run contrast` — it parses the tokens and
-fails if anything drops below WCAG AA (4.5:1). `--ink-mute` is the one that
-regresses easily, since it's used at small sizes.
-
-**Do not add a webfont.** The site loads no font files and renders in the
-reader's OS sans — copied from patrickcollison.com, and the single biggest
-reason it doesn't look template-built. `--font-body` is a plain system stack.
-Adding `@fontsource-*` or a Google Fonts link back would defeat it.
-
-The homepage is also uniform in size: everything is `--text-base`, with
-hierarchy carried by weight and colour alone. Interior pages keep normal
-heading sizes.
+Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
+(lower sorts first; otherwise alphabetical), `description` (meta only).
 
 ## Commands
 
 | Command | Does |
 | --- | --- |
 | `npm run dev` | Dev server on :4321 |
-| `npm run verify` | Type check, contrast gate, production build |
-| `npm run contrast` | WCAG AA check on the colour tokens |
+| `npm run verify` | Type check, then production build |
 | `npm run build` | Static build to `dist/` |
 
 Run `npm run verify` before pushing.
 
+## Colour contrast
+
+There is no automated gate — the palette is three literals and rarely moves.
+Current: `#333` on `#fff` is 12.63:1, `#0864c7` on `#fff` is 5.74:1. Both clear
+WCAG AA. If you change a colour, check it stays above 4.5:1.
+
 ## Deployment
 
-Cloudflare Pages, building from `main`. Build command `npm run build`, output
-directory `dist`.
-
-## Documentation
-
-- [Content collections](https://docs.astro.build/en/guides/content-collections/)
-- [Routing](https://docs.astro.build/en/guides/routing/)
-- [Astro components](https://docs.astro.build/en/basics/astro-components/)
+Cloudflare Pages from `main`. Build `npm run build`, output `dist`.

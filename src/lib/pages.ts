@@ -3,14 +3,11 @@ import { getCollection, type CollectionEntry } from "astro:content";
 export type Page = CollectionEntry<"pages">;
 
 /**
- * Sort order for the homepage and nav: explicit `order` first (ascending),
- * then everything else alphabetically by title.
- *
- * Alphabetical is the honest default for a site with no chronology — it
- * makes no claim about importance or freshness, and "About" lands first
- * on its own without needing to be pinned.
+ * Explicit `order` first, then everything else alphabetically by title.
+ * Alphabetical is the honest default for a site with no chronology: it makes
+ * no claim about importance or freshness.
  */
-export function sortPages(pages: Page[]): Page[] {
+function sortPages(pages: Page[]): Page[] {
   return [...pages].sort((a, b) => {
     const ao = a.data.order ?? Infinity;
     const bo = b.data.order ?? Infinity;
@@ -19,12 +16,12 @@ export function sortPages(pages: Page[]): Page[] {
   });
 }
 
-/** Every page, sorted. Includes those hidden from the homepage. */
+/** Every page, including any hidden from the nav. */
 export async function allPages(): Promise<Page[]> {
   return sortPages(await getCollection("pages"));
 }
 
-/** Only the pages that should appear on the homepage, sorted. */
+/** Only the pages listed in the nav. */
 export async function listedPages(): Promise<Page[]> {
   return sortPages(await getCollection("pages", ({ data }) => data.nav));
 }

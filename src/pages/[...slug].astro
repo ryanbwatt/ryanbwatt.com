@@ -3,8 +3,7 @@ import { render } from "astro:content";
 import Base from "../layouts/Base.astro";
 import { allPages } from "../lib/pages";
 
-// One route serves every page in the collection. The filename is the URL:
-// src/content/pages/fast.md -> /fast
+// The filename is the URL: src/content/pages/fast.md -> /fast
 export async function getStaticPaths() {
   const pages = await allPages();
   return pages.map((page) => ({
@@ -15,42 +14,14 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { Content } = await render(page);
-
-const updated = page.data.updated?.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-});
 ---
 
-<Base
-  title={page.data.title}
-  description={page.data.description ?? page.data.blurb}
->
-  <article class="measure">
-    <h1>{page.data.title}</h1>
-    {updated && <p class="muted stamp">Last revised {updated}</p>}
-
-    <div class="prose">
-      <Content />
-    </div>
-  </article>
+{/*
+  No <h1>. The page name is in the <title> and in the nav, and repeating it
+  above the text is a habit from templates — Collison's /about just starts
+  with a paragraph. Write your own headings inside the Markdown if a page
+  needs them.
+*/}
+<Base title={page.data.title} description={page.data.description}>
+  <Content />
 </Base>
-
-<style>
-  article {
-    padding-block-start: var(--rhythm);
-  }
-
-  .stamp {
-    margin-block-start: calc(var(--rhythm) * 0.4);
-  }
-
-  .prose {
-    margin-block-start: calc(var(--rhythm) * 1.5);
-  }
-
-  /* First heading in a page shouldn't push away from the title. */
-  .prose :global(> :first-child) {
-    margin-block-start: 0;
-  }
-</style>

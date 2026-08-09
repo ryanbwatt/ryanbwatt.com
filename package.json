@@ -10,12 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "contrast": "node scripts/contrast.mjs",
-    "verify": "npm run check && npm run contrast && npm run build",
+    "verify": "npm run check && npm run build",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.2.0"
   },
   "devDependencies": {

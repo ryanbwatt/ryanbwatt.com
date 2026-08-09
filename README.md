@@ -2,29 +2,28 @@
 
 A personal site built as a set of standing pages rather than a blog.
 
-## Why it's built this way
+## What this is
 
-The structure follows [patrickcollison.com](https://patrickcollison.com): a
-flat list of pages, each one a topic rather than an occasion. No dates, no
-feed, no posting cadence to fall behind on. A page is something you revise for
-years.
+A deliberate reconstruction of [patrickcollison.com](https://patrickcollison.com)
+— not an homage to its restraint, but a copy of its actual construction.
 
-The visual language borrows from two galleries —
-[David Zwirner](https://www.davidzwirner.com) for the off-white ground and soft
-charcoal type (no pure black, no pure white), and
-[Sprüth Magers](https://spruethmagers.com) for running a single accent colour
-across an otherwise monochrome site.
+His site is not minimally designed. It is *undesigned*: a page from the mid
+2000s that was never revisited. 13px Helvetica on white. Default-blue
+underlined links. A nav floated into a narrow column at the top right. Text in
+a fixed 500px column, set 200px in from the left. Nothing centred, nothing
+responsive, and most of the window simply empty. His homepage's content div
+contains nothing at all.
 
-Underneath, one file — `src/styles/tokens.css` — holds every colour, typeface,
-and measurement as a CSS custom property. Nothing else in the codebase names a
-value. Changing the accent, the typeface, or the column width is a one-line
-edit, which is deliberate: the design is meant to be revisited, and revisiting
-it should never cost a refactor.
+That last part is the hardest thing to copy and the most important: the
+homepage here is a name and a list of links, and nothing else.
+
+The structure follows from it. Pages, not posts — no dates, no feed, no
+posting cadence to fall behind on.
 
 ## Adding a page
 
 Drop a Markdown file in `src/content/pages/`. The filename becomes the URL and
-the homepage link appears on the next build.
+the nav link appears on the next build.
 
 ```
 src/content/pages/fast.md   ->   /fast
@@ -33,52 +32,42 @@ src/content/pages/fast.md   ->   /fast
 ```markdown
 ---
 title: Fast
-blurb: Ambitious things, built quickly.
 ---
 
 Content goes here.
 ```
 
+Pages don't render an `<h1>` — the title lives in `<title>` and the nav, and
+repeating it above the text is a template habit. Add your own `##` headings
+inside the Markdown where a page needs them.
+
 | Field | |
 | --- | --- |
-| `title` | Required. Used as the `<h1>`, the nav label, and the page title. |
-| `blurb` | One line under the homepage link. Also the default meta description. |
-| `nav` | `false` publishes the page without listing it on the homepage. |
-| `order` | Lower sorts first. Omit and it sorts alphabetically. |
-| `updated` | Optional "last revised" stamp. Only worth setting where staleness would mislead. |
-| `description` | Overrides the meta description. |
+| `title` | Required. Nav label and page title. |
+| `nav` | `false` publishes the page without listing it. |
+| `order` | Lower sorts first. Omit for alphabetical. |
+| `description` | Optional meta description. |
 
 ## Changing the look
 
-Everything lives in `src/styles/tokens.css`:
+`public/style.css`. About a hundred lines, hand-written, literal values, no
+variables. It is served to the browser byte for byte as it appears in the
+repo — no bundler touches it.
 
-```css
---accent:    #c1440e;   /* links */
---font-body: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
---measure:   36rem;     /* prose column */
---rhythm:    1.6rem;    /* vertical spacing unit */
-```
+Before adding anything, read the list of removed things in `AGENTS.md`. Most
+visual "improvements" — centring the column, adding descriptions under the nav
+links, dividers between rows, a heading above each page — are precisely what
+makes a site look like it came out of a builder.
 
-Dark mode re-points those same tokens inside one `@media` block. Delete the
-block if you don't want it; nothing else has to change.
-
-Run `npm run contrast` after any colour change — it reads the tokens and fails
-if a foreground drops below WCAG AA against its background.
-
-The current palette is a **placeholder**, not a decision.
-
-**The absent webfont is not a placeholder.** The site downloads no font file;
-it renders in whatever sans the reader's OS provides. That's copied from
-patrickcollison.com, whose entire stylesheet is 1.5 KB, and it's the main
-reason neither site looks template-built — every builder ships a Google font.
-Adding one back would undo the effect.
+Contrast, if you change a colour: `#333` on white is 12.63:1 and `#0864c7` on
+white is 5.74:1. Stay above 4.5:1.
 
 ## Commands
 
 ```
 npm install
 npm run dev        # localhost:4321
-npm run verify     # type check + contrast gate + build
+npm run verify     # type check + build
 npm run build      # static output to dist/
 ```
 
@@ -92,5 +81,6 @@ Cloudflare Pages, connected to `main`.
 
 ## Stack
 
-Astro 7 · Markdown content collections · no webfonts, no JavaScript, no
-analytics, no cookies, no external requests.
+Astro, and nothing else. No integrations, no webfonts, no CSS framework, no
+JavaScript, no analytics, no cookies, no external requests. The homepage is
+420 bytes of HTML.

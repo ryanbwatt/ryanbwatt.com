@@ -5,37 +5,24 @@ import { z } from "astro/zod";
 /**
  * One collection: `pages`.
  *
- * This site is pages, not posts. There is no date, no draft workflow, no
- * tags, and no pagination — deliberately. A page is a durable thing you
- * revise in place over years, the way patrickcollison.com works. Adding
- * `src/content/pages/whatever.md` creates `/whatever` and, unless you opt
- * out, its link on the homepage. There is no second place to register it.
+ * Pages, not posts. No dates, no tags, no drafts, no pagination — a page is
+ * a durable thing revised in place, not an entry filed under a month.
+ * Adding src/content/pages/whatever.md creates /whatever and puts it in the
+ * nav. There is no second place to register it.
  */
 const pages = defineCollection({
   loader: glob({ base: "./src/content/pages", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
-    /** Shown as the page's <h1>, its nav label, and its <title>. */
+    /** Nav label and <title>. Not rendered as a heading on the page. */
     title: z.string(),
 
-    /** One line on the homepage, under the link. Optional. */
-    blurb: z.string().optional(),
-
-    /** Set false to publish a page that isn't listed on the homepage. */
+    /** Set false to publish a page that isn't listed in the nav. */
     nav: z.boolean().default(true),
 
-    /**
-     * Homepage ordering. Lower sorts first; pages without one fall to the
-     * bottom in alphabetical order. Leave it off unless you care.
-     */
+    /** Lower sorts first. Omit and it sorts alphabetically. */
     order: z.number().optional(),
 
-    /**
-     * Optional "last revised" note. Only worth setting on pages where
-     * staleness would actually mislead a reader.
-     */
-    updated: z.coerce.date().optional(),
-
-    /** Overrides the meta description, which defaults to `blurb`. */
+    /** Optional meta description. Nothing is generated if it's absent. */
     description: z.string().optional(),
   }),
 });
