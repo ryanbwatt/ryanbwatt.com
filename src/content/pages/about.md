@@ -1,25 +1,29 @@
 ---
 title: About
 order: 1
-description: Ryan Watt — Head of Customer Success at Revin, New York.
+description: Ryan Watt — post-sales at Revin, New York.
 ---
 
 <img src="/headshot.jpg" width="128" height="130" alt="Ryan Watt" />
 
-I live in New York and lead customer success at [Revin](https://revin.ai), an
-AI startup building revenue agents for home-services companies. Before that I
-spent five and a half years at [Kaltura](https://corp.kaltura.com), most of it
-running enterprise accounts in financial services and technology.
+I live in New York and lead the post-sales motion at [Revin](https://revin.ai),
+an AI startup building revenue agents for home-services companies. I manage
+FDEs, CSMs, and TSEs, and I'm focused on designing and building the systems
+that take us from $1M to $10M in revenue.
 
-I started somewhere else entirely. My first job out of school was in sales and
-client relations at [David Zwirner](https://www.davidzwirner.com), and I
-studied psychology and art history at Columbia, where I rowed lightweight for
-the varsity team.
+Before that, I spent six years at [Kaltura](https://corp.kaltura.com), most of
+it growing enterprise accounts across financial services and technology.
 
-That background is not incidental to the work. Art history is training in
-looking at something carefully until you notice what's actually there, which
-is most of what reading an account well consists of. Rowing is training in
+I started somewhere else entirely. My first job out of school was selling art
+at [David Zwirner](https://www.davidzwirner.com). I studied psychology and art
+history at Columbia, and rowed lightweight for the Division 1 varsity.
+
+My background isn't incidental to the work. Psychology and art history are
+both training in looking at something until you see what's actually there —
+which is most of what it takes to read an account well. Rowing is training in
 finishing.
 
 I still run. Four of the marathon majors so far, the fastest at Chicago in
-2:41.
+2:41. I'm happiest in nature — running up mountains, exploring them on skis,
+swimming in cold water — but food, art, fashion, and friends keep me in the
+city (for now).
