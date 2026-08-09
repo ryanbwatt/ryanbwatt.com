@@ -1,6 +1,6 @@
 ---
 title: Contact
-order: 5
+order: 4
 description: How to reach Ryan Watt.
 ---
 

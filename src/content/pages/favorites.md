@@ -1,6 +1,6 @@
 ---
 title: Favorites
-order: 4
+order: 3
 description: Things Ryan Watt has read or watched and kept.
 ---
 
