@@ -1,17 +1,16 @@
 ---
 title: About
-blurb: Who I am and what I work on.
 order: 1
+description: Ryan Watt — customer success.
 ---
 
 <!--
-  DRAFT — this is scaffolding, not biography. I've left the facts for you to
-  fill in rather than guess at them. Replace everything below, delete this
-  comment, and the page is yours.
+  DRAFT — scaffolding, not biography. The facts are left for you to fill in
+  rather than guessed at. Replace everything below and delete this comment.
 
-  A note on voice: the sites you picked all under-claim. Zwirner doesn't tell
-  you it's one of the most important galleries alive; it just shows the work.
-  Worth resisting the urge to make this page sell.
+  Collison's /about is three short paragraphs, his email, and a list of things
+  he's interested in. No heading, no photo caption, no pitch. Worth copying
+  the restraint as well as the layout: the sites you picked all under-claim.
 -->
 
 I'm Ryan Watt. I work in customer success — [what you actually do, in one
@@ -20,11 +19,13 @@ sentence a stranger would understand].
 [A paragraph on the thread running through your work. What problem you keep
 returning to, and why it holds your attention.]
 
-[A paragraph on what you're doing now. Current role, current preoccupation,
-anything you'd want someone to know before emailing you.]
+Email: [ryanbwatt@gmail.com](mailto:ryanbwatt@gmail.com).
 
-## Elsewhere
+Things I'm interested in:
 
-- [LinkedIn](https://www.linkedin.com/in/PLACEHOLDER)
-- [GitHub](https://github.com/ryanbwatt)
-- Email: [ryanbwatt@gmail.com](mailto:ryanbwatt@gmail.com)
+- **[Topic].** [Why it holds your attention.]
+- **[Topic].** [Why it holds your attention.]
+- **[Topic].** [Why it holds your attention.]
+
+Elsewhere: [LinkedIn](https://www.linkedin.com/in/PLACEHOLDER) ·
+[GitHub](https://github.com/ryanbwatt).
