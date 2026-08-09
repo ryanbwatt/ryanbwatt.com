@@ -34,8 +34,18 @@ const pages = await listedPages();
 </Base>
 
 <style>
+  /* Everything on this page is one size: var(--text-base). Hierarchy comes
+     from weight and colour only, never scale. That's the Collison move — his
+     homepage has no hero heading, just a page of evenly-sized text — and it's
+     what stops an index of two entries from looking like a landing page. */
   .masthead {
     padding-block-start: calc(var(--rhythm) * 2);
+  }
+
+  .masthead h1 {
+    font-size: var(--text-base);
+    font-weight: var(--weight-demi);
+    letter-spacing: normal;
   }
 
   .intro {
@@ -43,9 +53,8 @@ const pages = await listedPages();
     color: var(--ink);
   }
 
-  /* Rules run the full width of the page frame so they line up with the
-     footer hairline. The text inside stays left, which is what keeps the
-     list feeling like a gallery index rather than a table. */
+  /* Rules run the full width of the page frame while the text stays left,
+     which keeps the list reading as an index rather than a table. */
   .index {
     margin-block-start: calc(var(--rhythm) * 2.5);
     max-width: var(--measure-wide);
@@ -78,6 +87,5 @@ const pages = await listedPages();
 
   .blurb {
     color: var(--ink-mute);
-    font-size: var(--text-sm);
   }
 </style>

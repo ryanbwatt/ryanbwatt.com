@@ -54,7 +54,7 @@ Everything lives in `src/styles/tokens.css`:
 
 ```css
 --accent:    #c1440e;   /* links */
---font-body: "Figtree Variable", …;
+--font-body: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 --measure:   36rem;     /* prose column */
 --rhythm:    1.6rem;    /* vertical spacing unit */
 ```
@@ -65,8 +65,13 @@ block if you don't want it; nothing else has to change.
 Run `npm run contrast` after any colour change — it reads the tokens and fails
 if a foreground drops below WCAG AA against its background.
 
-The current palette and typeface are a **placeholder**, not a decision. Figtree
-stands in for Avenir Next, which Zwirner licenses commercially.
+The current palette is a **placeholder**, not a decision.
+
+**The absent webfont is not a placeholder.** The site downloads no font file;
+it renders in whatever sans the reader's OS provides. That's copied from
+patrickcollison.com, whose entire stylesheet is 1.5 KB, and it's the main
+reason neither site looks template-built — every builder ships a Google font.
+Adding one back would undo the effect.
 
 ## Commands
 
@@ -87,6 +92,5 @@ Cloudflare Pages, connected to `main`.
 
 ## Stack
 
-Astro 7 · Markdown content collections · self-hosted
-[Figtree](https://fonts.google.com/specimen/Figtree) · no JavaScript, no
-analytics, no cookies.
+Astro 7 · Markdown content collections · no webfonts, no JavaScript, no
+analytics, no cookies, no external requests.

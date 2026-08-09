@@ -57,10 +57,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <p class="muted">© {new Date().getFullYear()} Ryan Watt</p>
-    </footer>
-
     <style>
       .skip {
         position: absolute;
@@ -99,20 +95,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         color: var(--accent);
       }
 
+      /* No footer. A copyright line on a personal site tells the reader
+         nothing they didn't assume, so the page simply ends. */
       main {
         max-width: var(--measure-wide);
         margin-inline: auto;
         inline-size: 100%;
-        padding-block: calc(var(--rhythm) * 2.5);
+        padding-block: calc(var(--rhythm) * 2.5) calc(var(--rhythm) * 4);
         flex: 1;
-      }
-
-      .site-footer {
-        max-width: var(--measure-wide);
-        margin-inline: auto;
-        inline-size: 100%;
-        padding-block: calc(var(--rhythm) * 2) calc(var(--rhythm) * 2.5);
-        border-block-start: 1px solid var(--rule);
       }
     </style>
   </body>

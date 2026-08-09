@@ -46,9 +46,14 @@ After any colour change run `npm run contrast` — it parses the tokens and
 fails if anything drops below WCAG AA (4.5:1). `--ink-mute` is the one that
 regresses easily, since it's used at small sizes.
 
-To change the typeface: install a new `@fontsource-variable/*` package, swap
-the two `@import`s at the top of `src/styles/base.css`, and update
-`--font-body`.
+**Do not add a webfont.** The site loads no font files and renders in the
+reader's OS sans — copied from patrickcollison.com, and the single biggest
+reason it doesn't look template-built. `--font-body` is a plain system stack.
+Adding `@fontsource-*` or a Google Fonts link back would defeat it.
+
+The homepage is also uniform in size: everything is `--text-base`, with
+hierarchy carried by weight and colour alone. Interior pages keep normal
+heading sizes.
 
 ## Commands
 

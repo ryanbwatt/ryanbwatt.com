@@ -6,10 +6,8 @@
    tokens.css instead.
    ========================================================================= */
 
-/* Real italics, not browser-synthesized obliques. Both files are variable,
-   so this is two woff2s for the entire weight range. */
-@import "@fontsource-variable/figtree/index.css";
-@import "@fontsource-variable/figtree/wght-italic.css";
+/* No @font-face imports on purpose — see the type notes in tokens.css.
+   The site downloads zero font files. */
 @import "./tokens.css";
 
 /* --- Reset (the useful parts only) --------------------------------------- */

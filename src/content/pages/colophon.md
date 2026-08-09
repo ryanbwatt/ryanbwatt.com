@@ -25,7 +25,11 @@ single file of CSS variables. Nothing else names a value. Changing the accent,
 the typeface, or the width of the column edits one line — which is the point,
 since I expect to change my mind.
 
-Built with [Astro](https://astro.build). Text is Markdown in a Git
-repository. Type is [Figtree](https://fonts.google.com/specimen/Figtree),
-self-hosted. Hosted on Cloudflare Pages. No analytics, no cookies, no
-tracking, no JavaScript on most pages.
+There is no webfont. The page renders in whatever sans-serif your computer
+already has — Helvetica, most likely. This is the least fashionable choice
+available and the reason the site doesn't look like it came out of a builder:
+every template downloads a typeface, and this one downloads nothing.
+
+Built with [Astro](https://astro.build). Text is Markdown in a Git repository.
+Hosted on Cloudflare Pages. No analytics, no cookies, no tracking, and no
+JavaScript at all.
