@@ -34,13 +34,19 @@
   --accent: #c1440e; /* links only. one colour, used sparingly */
 
   /* --- Type --------------------------------------------------------------
-     Figtree is a stand-in with geometry close to Avenir Next (the face
-     davidzwirner.com licenses). It is self-hosted from node_modules, so
-     there is no request to Google and nothing to break offline.
-     To change it: swap the import in base.css and edit --font-body. */
+     No webfont. This is patrickcollison.com's exact stack, and the absence
+     is the point: his entire stylesheet is 1.5 KB and downloads no font at
+     all, which is most of why the site doesn't read as template-built.
+     Every site builder ships a Google font; not shipping one is the tell.
 
-  --font-body: "Figtree Variable", ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", sans-serif;
+     The page renders in whatever the reader's OS already has — Helvetica on
+     a Mac, Arial on Windows. Nothing to download, no flash of fallback text.
+
+     Deliberately no `system-ui`: that resolves to SF Pro on macOS and makes
+     a page look like an app rather than a document. Helvetica reads older
+     and more neutral, which is the whole effect being borrowed here. */
+
+  --font-body: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
 
   /* Fluid scale. Each step interpolates between a phone and a desktop

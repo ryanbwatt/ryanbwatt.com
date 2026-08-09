@@ -27,4 +27,4 @@ anything you'd want someone to know before emailing you.]
 
 - [LinkedIn](https://www.linkedin.com/in/PLACEHOLDER)
 - [GitHub](https://github.com/ryanbwatt)
-- Email: [ryan@ryanbwatt.com](mailto:ryan@ryanbwatt.com)
+- Email: [ryanbwatt@gmail.com](mailto:ryanbwatt@gmail.com)
