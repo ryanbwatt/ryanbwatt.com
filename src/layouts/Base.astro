@@ -12,6 +12,18 @@ const { title, description } = Astro.props;
 const pageTitle = `${title ?? "Home"} · Ryan Watt`;
 
 const pages = await listedPages();
+
+// Which nav link is the page you're on.
+//
+// Normalising matters here: because build.format is "file", at build time
+// this is "/about.html" even though the browser will show "/about". Compare
+// the raw values and the highlight silently never appears in production
+// while looking correct in dev.
+const current =
+  Astro.url.pathname
+    .replace(/\.html$/, "")
+    .replace(/\/index$/, "/")
+    .replace(/(.)\/+$/, "$1") || "/";
 ---
 
 <html lang="en">
@@ -27,7 +39,14 @@ const pages = await listedPages();
       <span class="title">Ryan Watt</span>
       <ul>
         {pages.map((page) => (
-          <li><a href={`/${page.id}`}>{page.data.title}</a></li>
+          <li>
+            <a
+              href={`/${page.id}`}
+              aria-current={current === `/${page.id}` ? "page" : undefined}
+            >
+              {page.data.title}
+            </a>
+          </li>
         ))}
       </ul>
     </div>
