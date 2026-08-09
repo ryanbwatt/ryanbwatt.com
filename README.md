@@ -82,5 +82,4 @@ Cloudflare Pages, connected to `main`.
 ## Stack
 
 Astro, and nothing else. No integrations, no webfonts, no CSS framework, no
-JavaScript, no analytics, no cookies, no external requests. The homepage is
-420 bytes of HTML.
+JavaScript, no analytics, no cookies, no external requests. 547 bytes of HTML.
