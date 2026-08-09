@@ -13,9 +13,8 @@ Live at **[ryanbwatt.com](https://ryanbwatt.com)**.
 | Runtime dependencies | 1 |
 | Requests per page | 2 |
 
-The reasoning behind all of this — including the parts that reversed earlier
-decisions, and the list of things deliberately not built — is in
-[DECISIONS.md](DECISIONS.md).
+The reasoning behind all of this, including the parts that reversed earlier
+decisions, is in [DECISIONS.md](DECISIONS.md).
 
 ## What this is
 

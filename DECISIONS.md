@@ -1,8 +1,8 @@
 # Decisions
 
-Why this site is built the way it is, including the things I chose not to
-build. Written down because the reasoning is the part that doesn't survive in
-the code, and because two of these decisions reversed earlier ones.
+Why this site is built the way it is. Written down because the reasoning is
+the part that doesn't survive in the code, and because two of these decisions
+reversed earlier ones.
 
 ## At a glance
 
@@ -147,22 +147,6 @@ instead of dumping everyone on the homepage. Verified across apex, `www`, plain
 `http`, and query strings.
 
 ---
-
-## Deliberately not built
-
-Each of these was considered and rejected as not earning its keep:
-
-| | Why not |
-| --- | --- |
-| CI workflow running the build | Cloudflare Pages already builds every push. A second runner would duplicate it and tell me the same thing later. |
-| Tests | Seven static pages with no logic. `astro check` plus a build is the real gate; a test asserting that Markdown renders would be theatre. |
-| A CMS | Content is Markdown in Git, edited where I already work. A CMS would add a service, an auth surface, and a second source of truth. |
-| Analytics | I don't have a decision I'd make differently based on the traffic. It's also a third-party script on a site whose point is that it loads nothing. |
-| Sitemap / robots.txt | Seven pages, all linked from the homepage. Crawlers manage. |
-| Dark mode | Doesn't exist in the reference and is a visible tell for anyone browsing in it. |
-| Image pipeline | One image. `sips` resizes it before commit; a build-time optimiser for a single file is a dependency I'd have to maintain. |
-| Badges, issue templates, contributing guide | It's a personal site with one contributor. |
-| A favicon | The scaffold shipped Astro's own logo, which is the most literal "built with a tool" tell there is. Rather than replace it with a monogram, there's no icon file at all — `/favicon.ico` 404s and the tab stays blank. |
 
 ## Known trade-offs
 
