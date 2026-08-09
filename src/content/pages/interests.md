@@ -37,7 +37,5 @@ Things I'm interested in:
   well requires, and I've never seen it taught anywhere in business.
 
 - **Running.** Four marathon majors so far — Chicago 2:41, Boston 2:46, New
-  York 2:53, Berlin 2:53 — and a lot of miles with the New York running and
-  cycling communities. I lead Art Runs and I'm an ambassador for Literary
-  Sport. The endurance question I keep circling: how much of a ceiling is
-  physiological and how much is a belief you haven't tested?
+  York 2:53, Berlin 2:53. The endurance question I keep circling: how much of
+  a ceiling is physiological and how much is a belief you haven't tested?
