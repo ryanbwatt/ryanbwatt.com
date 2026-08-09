@@ -1,0 +1,83 @@
+---
+import Base from "../layouts/Base.astro";
+import { listedPages } from "../lib/pages";
+
+// The index is derived from the content collection. Drop a markdown file in
+// src/content/pages/ and its link appears here on the next build. There is
+// nothing to update by hand.
+const pages = await listedPages();
+---
+
+<Base showHeader={false}>
+  <div class="masthead measure">
+    <h1>Ryan Watt</h1>
+    <p class="intro">
+      I work in customer success. This is where I keep the things I think
+      about for long enough to write down.
+    </p>
+  </div>
+
+  {
+    pages.length > 0 && (
+      <nav class="index" aria-label="Pages">
+        <ul role="list">
+          {pages.map((page) => (
+            <li>
+              <a href={`/${page.id}`}>{page.data.title}</a>
+              {page.data.blurb && <span class="blurb">{page.data.blurb}</span>}
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )
+  }
+</Base>
+
+<style>
+  .masthead {
+    padding-block-start: calc(var(--rhythm) * 2);
+  }
+
+  .intro {
+    margin-block-start: calc(var(--rhythm) * 0.75);
+    color: var(--ink);
+  }
+
+  /* Rules run the full width of the page frame so they line up with the
+     footer hairline. The text inside stays left, which is what keeps the
+     list feeling like a gallery index rather than a table. */
+  .index {
+    margin-block-start: calc(var(--rhythm) * 2.5);
+    max-width: var(--measure-wide);
+  }
+
+  .index ul {
+    padding: 0;
+    border-block-start: 1px solid var(--rule);
+  }
+
+  .index li {
+    margin: 0;
+    padding-block: calc(var(--rhythm) * 0.7);
+    border-block-end: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75em;
+    align-items: baseline;
+  }
+
+  .index a {
+    color: var(--ink-strong);
+    text-decoration: none;
+    font-weight: var(--weight-medium);
+  }
+
+  .index a:hover {
+    color: var(--accent);
+  }
+
+  .blurb {
+    color: var(--ink-mute);
+    font-size: var(--text-sm);
+  }
+</style>

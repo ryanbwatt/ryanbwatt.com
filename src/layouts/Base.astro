@@ -1,0 +1,119 @@
+---
+import "../styles/base.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** The homepage renders its own masthead, so it suppresses the header. */
+  showHeader?: boolean;
+}
+
+const {
+  title,
+  description = "Ryan Watt — writing and notes.",
+  showHeader = true,
+} = Astro.props;
+
+const SITE_NAME = "Ryan Watt";
+const pageTitle = title ? `${title} — ${SITE_NAME}` : SITE_NAME;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    {
+      showHeader && (
+        <header class="site-header">
+          <a class="site-name" href="/">
+            {SITE_NAME}
+          </a>
+        </header>
+      )
+    }
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p class="muted">© {new Date().getFullYear()} Ryan Watt</p>
+    </footer>
+
+    <style>
+      .skip {
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+      .skip:focus-visible {
+        position: static;
+        inline-size: auto;
+        block-size: auto;
+        clip-path: none;
+        display: inline-block;
+        margin-block-start: var(--rhythm);
+      }
+
+      .site-header {
+        max-width: var(--measure-wide);
+        margin-inline: auto;
+        inline-size: 100%;
+        padding-block: calc(var(--rhythm) * 2.5) 0;
+      }
+
+      .site-name {
+        color: var(--ink-strong);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        font-weight: var(--weight-demi);
+        letter-spacing: var(--tracking-wide);
+        text-transform: uppercase;
+      }
+
+      .site-name:hover {
+        color: var(--accent);
+      }
+
+      main {
+        max-width: var(--measure-wide);
+        margin-inline: auto;
+        inline-size: 100%;
+        padding-block: calc(var(--rhythm) * 2.5);
+        flex: 1;
+      }
+
+      .site-footer {
+        max-width: var(--measure-wide);
+        margin-inline: auto;
+        inline-size: 100%;
+        padding-block: calc(var(--rhythm) * 2) calc(var(--rhythm) * 2.5);
+        border-block-start: 1px solid var(--rule);
+      }
+    </style>
+  </body>
+</html>
