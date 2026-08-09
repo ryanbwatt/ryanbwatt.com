@@ -99,8 +99,12 @@ body {
   font-size: 12px;
 }
 
+/* Markdown emits a bare <img> as a raw HTML block, so it gets no paragraph
+   margin of its own. */
+
 #content img {
   max-width: 100%;
+  margin-bottom: 13px;
 }
 
 /* Phones. The fixed columns above are wider than a phone screen, so they
