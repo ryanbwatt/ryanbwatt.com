@@ -16,7 +16,7 @@ it growing enterprise accounts across financial services and technology.
 
 I started somewhere else entirely. My first job out of school was selling art
 at [David Zwirner](https://www.davidzwirner.com). I studied psychology and art
-history at Columbia, and rowed lightweight for the Division 1 varsity.
+history at Columbia, and rowed on the varsity lightweight team.
 
 My background isn't incidental to the work. Psychology and art history are
 both training in looking at something until you see what's actually there —
