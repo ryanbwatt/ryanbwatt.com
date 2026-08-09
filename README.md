@@ -1,6 +1,21 @@
 # ryanbwatt.com
 
 A personal site built as a set of standing pages rather than a blog.
+Live at **[ryanbwatt.com](https://ryanbwatt.com)**.
+
+| | |
+| --- | --- |
+| Homepage HTML | 547 bytes |
+| Stylesheet | 2,523 bytes, hand-written, served unbundled |
+| Whole site | 68 KB, 7 pages |
+| JavaScript | none |
+| Web fonts | none |
+| Runtime dependencies | 1 |
+| Requests per page | 2 |
+
+The reasoning behind all of this — including the parts that reversed earlier
+decisions, and the list of things deliberately not built — is in
+[DECISIONS.md](DECISIONS.md).
 
 ## What this is
 
@@ -82,4 +97,16 @@ Cloudflare Pages, connected to `main`.
 ## Stack
 
 Astro, and nothing else. No integrations, no webfonts, no CSS framework, no
-JavaScript, no analytics, no cookies, no external requests. 547 bytes of HTML.
+JavaScript, no analytics, no cookies, no external requests, no favicon.
+
+## Repository
+
+| | |
+| --- | --- |
+| `src/content/pages/` | The site's content. One Markdown file per page. |
+| `public/style.css` | The entire stylesheet. Served exactly as written. |
+| `src/layouts/Base.astro` | The only layout. Head, nav, and the content column. |
+| `src/pages/[...slug].astro` | Renders every content page. |
+| `src/lib/pages.ts` | Nav ordering. |
+| `AGENTS.md` | Working rules — read before changing the design. |
+| `DECISIONS.md` | Why it's built this way, and what wasn't built. |
