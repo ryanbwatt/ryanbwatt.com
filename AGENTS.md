@@ -45,6 +45,27 @@ Content here. No leading heading — the title is in <title> and the nav.
 Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 (lower sorts first; otherwise alphabetical), `description` (meta only).
 
+Current nav order is explicit, not alphabetical: About (1), Goals (2),
+Experience (3), Interests (4), Contact (5), Colophon (99).
+
+## Images
+
+Put them in `public/` and reference them with a raw `<img>` in the Markdown,
+with explicit `width` and `height` so nothing shifts as the page loads:
+
+```html
+<img src="/headshot.jpg" width="128" height="130" alt="Ryan Watt" />
+```
+
+Resize before committing — source photos are megabytes and this site's
+homepage is 420 bytes. Roughly 2× the display size is right for retina:
+
+```
+sips -Z 260 -s format jpeg -s formatOptions 82 in.jpg --out public/out.jpg
+```
+
+Re-encoding also drops EXIF, which matters: phone photos can carry GPS.
+
 ## Commands
 
 | Command | Does |
