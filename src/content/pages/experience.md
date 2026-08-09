@@ -58,13 +58,6 @@ viewing materials, which meant collecting and analysing primary and secondary
 art market data, and prototyped upcoming artist exhibitions in 3-D for
 curators, clients, and directors.
 
-**Columbia University, Center for Career Education** — Customer Service
-Manager.
-Managed a high-volume frontline service team and directed the LionSHARE
-approval process for over 67,000 jobs and 16,000 employers a year. Ran the
-analysis and distribution of $375,000 in summer grant funding for students
-taking unpaid internships.
-
 **Education.** Columbia University, BA in psychology and art history, magna
 cum laude. Varsity lightweight rowing: U.S. National Champion and Eastern
 Sprints Champion. Credential of Readiness (CORe) from Harvard Business School
