@@ -41,6 +41,13 @@ body {
   color: #0864c7;
 }
 
+/* The page you're currently on goes black, keeping the underline. The only
+   state in the nav, and the only thing marking where you are. */
+
+#menu a[aria-current="page"] {
+  color: #000;
+}
+
 /* An empty column holding the text away from the left edge. It has no
    content and no height; it exists only to take up 200px. */
 
