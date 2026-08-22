@@ -4,9 +4,10 @@ import { listedPages } from "../lib/pages";
 interface Props {
   title?: string;
   description?: string;
+  photo?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, photo } = Astro.props;
 
 // "About · Ryan Watt", "Home · Ryan Watt".
 const pageTitle = `${title ?? "Home"} · Ryan Watt`;
@@ -34,7 +35,7 @@ const current =
     <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
   </head>
-  <body>
+  <body class={photo ? "full-bleed" : undefined}>
     <div id="menu">
       <span class="title">Ryan Watt</span>
       <ul>
@@ -50,9 +51,29 @@ const current =
         ))}
       </ul>
     </div>
-    <div id="left">&nbsp;</div>
-    <div id="content">
-      <slot />
-    </div>
+    {photo ? (
+      <div id="photo-frame" style={`background-image: url(${photo})`} />
+    ) : (
+      <>
+        <div id="left">&nbsp;</div>
+        <div id="content">
+          <slot />
+        </div>
+      </>
+    )}
+    <a
+      id="colophon-link"
+      href="/colophon"
+      aria-current={current === "/colophon" ? "page" : undefined}
+    >
+      Colophon
+    </a>
+    <a
+      id="contact-link"
+      href="/contact"
+      aria-current={current === "/contact" ? "page" : undefined}
+    >
+      Contact
+    </a>
   </body>
 </html>

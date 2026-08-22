@@ -114,6 +114,46 @@ body {
   margin-bottom: 13px;
 }
 
+/* Colophon and Contact. Not in the nav list — standing links in the bottom
+   corners, on every page. */
+
+#colophon-link {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  color: #0864c7;
+}
+
+#contact-link {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  color: #0864c7;
+}
+
+#colophon-link[aria-current="page"],
+#contact-link[aria-current="page"] {
+  color: #000;
+}
+
+/* Photos page. A single image, edge to edge, inset by a border the width of
+   the nav column on every side. No text column, no left gutter. */
+
+body.full-bleed {
+  margin: 0;
+}
+
+#photo-frame {
+  position: fixed;
+  top: 150px;
+  right: 150px;
+  bottom: 150px;
+  left: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* Phones. The fixed columns above are wider than a phone screen, so they
    stack. This is the one rule here that answers to a device the rest of the
    layout predates — without it the site is unreadable on a phone. */
@@ -134,5 +174,12 @@ body {
     float: none;
     width: auto;
     margin: 20px;
+  }
+
+  #photo-frame {
+    top: 160px;
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
   }
 }

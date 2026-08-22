@@ -24,6 +24,12 @@ const pages = defineCollection({
 
     /** Optional meta description. Nothing is generated if it's absent. */
     description: z.string().optional(),
+
+    /**
+     * Path to an image under public/. When set, the page renders as a
+     * full-bleed photo instead of the standard text column.
+     */
+    photo: z.string().optional(),
   }),
 });
 

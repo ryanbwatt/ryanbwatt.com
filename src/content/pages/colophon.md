@@ -1,6 +1,6 @@
 ---
 title: Colophon
-order: 99
+nav: false
 description: How this site is built.
 ---
 

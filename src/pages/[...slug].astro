@@ -22,6 +22,10 @@ const { Content } = await render(page);
   with a paragraph. Write your own headings inside the Markdown if a page
   needs them.
 */}
-<Base title={page.data.title} description={page.data.description}>
+<Base
+  title={page.data.title}
+  description={page.data.description}
+  photo={page.data.photo}
+>
   <Content />
 </Base>
