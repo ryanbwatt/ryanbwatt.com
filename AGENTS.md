@@ -45,9 +45,10 @@ Content here. No leading heading — the title is in <title> and the nav.
 Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 (lower sorts first; otherwise alphabetical), `description` (meta only).
 
-Current nav order is explicit, not alphabetical: About (1), Experience (2),
-Favorites (3), Contact (4), Colophon (99). Interests was folded into About;
-Goals was removed.
+Current nav order is explicit, not alphabetical: About (1), Projects (2),
+Experience (3), Favorites (4), Photos (5). Contact and Colophon are published
+`nav: false` and stand as fixed links in the bottom corners instead. Interests
+was folded into About; Goals was removed.
 
 ## Images
 

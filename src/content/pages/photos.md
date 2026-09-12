@@ -1,5 +1,5 @@
 ---
 title: Photos
-order: 6
+order: 5
 photo: /photo.jpg
 ---

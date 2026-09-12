@@ -183,3 +183,63 @@ body.full-bleed {
     left: 20px;
   }
 }
+
+/* Intro gate. Homepage only. A full-screen looping water video with the word
+   ENTER; a click or tap dismisses it and it does not come back — the site
+   remembers you've entered. This is the one page that departs from the
+   no-video, no-JavaScript rule, and it does so on purpose. */
+
+/* Hidden by default: with no JavaScript, or for a visitor who has already
+   entered, the gate never shows and the homepage is what you get. The head
+   script adds `intro` to <html> before the body paints — only for a first
+   visit — which is the single thing that reveals it. */
+#splash {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background: #6d8ea8; /* water blue, shown until the poster paints */
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+html.intro #splash {
+  display: block;
+}
+
+#splash.leaving {
+  opacity: 0;
+}
+
+#splash-video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the screen, cropping rather than letterboxing */
+  object-position: center;
+}
+
+#splash-word {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* the site font */
+  font-size: 24px;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em; /* offset the trailing letter-space so it reads centred */
+  text-shadow: 0 1px 20px rgba(0, 0, 0, 0.35);
+  pointer-events: none; /* clicks fall through to the gate beneath */
+}

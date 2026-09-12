@@ -5,6 +5,10 @@ import Base from "../layouts/Base.astro";
 // page — name, then the list of pages, and nothing else. Collison's
 // <div id="content"> is empty on his homepage too; that emptiness is the
 // design, so there is deliberately nothing to add here.
+//
+// The one thing layered in front of it is the intro gate (`splash`): on a
+// first visit the empty homepage sits behind a full-screen water video and
+// the word ENTER, and a click reveals it. Dismissed once, it stays dismissed.
 ---
 
-<Base />
+<Base splash />

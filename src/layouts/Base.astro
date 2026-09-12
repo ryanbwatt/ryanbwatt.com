@@ -5,9 +5,15 @@ interface Props {
   title?: string;
   description?: string;
   photo?: string;
+  /**
+   * Render the intro gate: a full-screen looping video with the word ENTER,
+   * dismissed by a click or tap. Only the homepage sets this. Every other
+   * page renders with no video and no script, exactly as before.
+   */
+  splash?: boolean;
 }
 
-const { title, description, photo } = Astro.props;
+const { title, description, photo, splash } = Astro.props;
 
 // "About · Ryan Watt", "Home · Ryan Watt".
 const pageTitle = `${title ?? "Home"} · Ryan Watt`;
@@ -25,6 +31,33 @@ const current =
     .replace(/\.html$/, "")
     .replace(/\/index$/, "/")
     .replace(/(.)\/+$/, "$1") || "/";
+
+// The intro gate's two scripts, kept as raw strings and injected verbatim with
+// set:html so nothing bundles or rewrites them. #splash is hidden by default
+// in the stylesheet; the head script adds `intro` to <html> before the body
+// paints, but only for a first-time visitor (or `?enter` in the URL, to
+// preview it again). So: no JavaScript, or already entered — the gate never
+// shows and the homepage is what you get, with no flash either way.
+const introReveal =
+  "try{if(location.search.indexOf('enter')>-1||!localStorage.getItem('rbw-entered'))" +
+  "document.documentElement.className+=' intro';}" +
+  "catch(e){document.documentElement.className+=' intro';}";
+
+// Runs at the end of the body. Bails unless the gate is actually showing, so a
+// returning visitor never downloads the video. Otherwise it attaches the video
+// (skipped when the visitor prefers reduced motion) and wires up the dismiss.
+const introDismiss =
+  "(function(){var d=document;if(!d.documentElement.classList.contains('intro'))return;" +
+  "var s=d.getElementById('splash');if(!s)return;" +
+  "var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}" +
+  "var v=d.getElementById('splash-video');" +
+  "if(v&&!reduce){var src=d.createElement('source');src.src='/enter.mp4';src.type='video/mp4';" +
+  "v.appendChild(src);v.load();var p=v.play();if(p&&p.catch)p.catch(function(){});}" +
+  "function enter(){try{localStorage.setItem('rbw-entered','1');}catch(e){}" +
+  "s.classList.add('leaving');" +
+  "setTimeout(function(){if(v){try{v.pause();}catch(e){}}if(s.parentNode)s.remove();},650);}" +
+  "s.addEventListener('click',enter);" +
+  "s.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();enter();}});})();";
 ---
 
 <html lang="en">
@@ -34,10 +67,30 @@ const current =
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
+    {splash && <script is:inline set:html={introReveal} />}
   </head>
   <body class={photo ? "full-bleed" : undefined}>
+    {splash && (
+      <div id="splash" role="button" tabindex="0" aria-label="Enter">
+        {/*
+          No <source> in the markup on purpose: the 4.5 MB video is attached by
+          the script below only for a first-time visitor with motion allowed.
+          Everyone else sees the poster frame — and returning visitors never
+          fetch the video at all.
+        */}
+        <video
+          id="splash-video"
+          poster="/enter-poster.jpg"
+          muted
+          loop
+          playsinline
+          preload="none"
+        ></video>
+        <p id="splash-word">ENTER</p>
+      </div>
+    )}
     <div id="menu">
-      <span class="title">Ryan Watt</span>
+      <a class="title" href="/">Ryan Watt</a>
       <ul>
         {pages.map((page) => (
           <li>
@@ -75,5 +128,6 @@ const current =
     >
       Contact
     </a>
+    {splash && <script is:inline set:html={introDismiss} />}
   </body>
 </html>
