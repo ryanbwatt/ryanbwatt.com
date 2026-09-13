@@ -133,8 +133,9 @@ body.full-bleed {
 }
 
 /* Photos. A grid of thumbnails, four across, evenly spaced, filling left to
-   right and then down. No captions in this view. The grid is capped and
-   centred so the thumbnails stay small and the page keeps wide side margins.
+   right and then down. No captions in this view. Capped in width and inset
+   200px from the left so its left edge lines up with the text column on the
+   other pages, keeping the thumbnails small and the right margin wide.
    `clear: both` drops it below the floated nav so nothing sits under it. */
 
 #gallery {
@@ -143,7 +144,7 @@ body.full-bleed {
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   max-width: 860px;
-  margin: 30px auto 60px;
+  margin: 30px auto 60px 200px;
 }
 
 #gallery figure {
