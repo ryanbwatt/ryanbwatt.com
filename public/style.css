@@ -134,17 +134,16 @@ body.full-bleed {
 
 /* Photos. A grid of thumbnails, four across, evenly spaced, filling left to
    right and then down. No captions in this view. Capped in width and inset
-   200px from the left so its left edge lines up with the text column on the
-   other pages, keeping the thumbnails small and the right margin wide.
-   `clear: both` drops it below the floated nav so nothing sits under it. */
+   200px from the left so its top-left corner lines up with the text column on
+   the other pages (same 200px left, same 15px top). It's narrow enough to sit
+   clear of the nav on the right, so it doesn't need to clear the float. */
 
 #gallery {
-  clear: both;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   max-width: 860px;
-  margin: 30px auto 60px 200px;
+  margin: 15px auto 60px 200px;
 }
 
 #gallery figure {
@@ -216,15 +215,18 @@ body.full-bleed {
   color: #333;
 }
 
+/* Close and the arrows: solid black, and kept at the body text size so their
+   stroke weight matches the text rather than reading as heavy glyphs. */
 .lb-close,
 .lb-prev,
 .lb-next {
   position: fixed;
   background: none;
   border: 0;
-  padding: 10px;
-  color: #333;
+  padding: 12px;
+  color: #000;
   font-family: inherit;
+  font-size: 16px;
   line-height: 1;
   cursor: pointer;
 }
@@ -232,14 +234,12 @@ body.full-bleed {
 .lb-close {
   top: 16px;
   left: 20px;
-  font-size: 30px;
 }
 
 .lb-prev,
 .lb-next {
   top: 50%;
   transform: translateY(-50%);
-  font-size: 40px;
 }
 
 .lb-prev {

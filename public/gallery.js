@@ -33,12 +33,12 @@
   lb.hidden = true;
   lb.innerHTML =
     '<button class="lb-close" type="button" aria-label="Close">×</button>' +
-    '<button class="lb-prev" type="button" aria-label="Previous photo">‹</button>' +
+    '<button class="lb-prev" type="button" aria-label="Previous photo">←</button>' +
     '<figure class="lb-figure">' +
     '<img class="lb-img" alt="">' +
     '<figcaption class="lb-cap"></figcaption>' +
     "</figure>" +
-    '<button class="lb-next" type="button" aria-label="Next photo">›</button>';
+    '<button class="lb-next" type="button" aria-label="Next photo">→</button>';
   document.body.appendChild(lb);
 
   var lbImg = lb.querySelector(".lb-img");
