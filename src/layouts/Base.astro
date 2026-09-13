@@ -11,9 +11,14 @@ interface Props {
    * page renders with no video and no script, exactly as before.
    */
   splash?: boolean;
+  /**
+   * Render the body as a scrolling column of captioned photos rather than the
+   * text column. The page's Markdown supplies the <figure> elements.
+   */
+  gallery?: boolean;
 }
 
-const { title, description, photo, splash } = Astro.props;
+const { title, description, photo, splash, gallery } = Astro.props;
 
 // "About · Ryan Watt", "Home · Ryan Watt".
 const pageTitle = `${title ?? "Home"} · Ryan Watt`;
@@ -58,6 +63,19 @@ const introDismiss =
   "setTimeout(function(){if(v){try{v.pause();}catch(e){}}if(s.parentNode)s.remove();},650);}" +
   "s.addEventListener('click',enter);" +
   "s.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();enter();}});})();";
+
+// Homepage only. The blank homepage is a doorway you pass through once: the
+// name isn't a link and there's no Home item, so nothing points back to it.
+// This makes the browser's Back button honour that too — a nav click from the
+// homepage replaces it in history rather than stacking on top, so once you're
+// in a section there's no returning to the blank page. Modifier- and
+// middle-clicks are left alone so "open in new tab" still works.
+const homeNavReplace =
+  "document.addEventListener('click',function(e){" +
+  "var a=e.target.closest?e.target.closest('a[href]'):null;if(!a)return;" +
+  "if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0)return;" +
+  "var h=a.getAttribute('href');if(!h||h.charAt(0)==='#')return;" +
+  "e.preventDefault();location.replace(a.href);});";
 ---
 
 <html lang="en">
@@ -70,6 +88,8 @@ const introDismiss =
     {splash && <script is:inline set:html={introReveal} />}
   </head>
   <body class={photo ? "full-bleed" : undefined}>
+    {/* photo → single full-bleed image; gallery → scrolling captioned column;
+        otherwise the standard text column. */}
     {splash && (
       <div id="splash" role="button" tabindex="0" aria-label="Enter">
         {/*
@@ -90,7 +110,7 @@ const introDismiss =
       </div>
     )}
     <div id="menu">
-      <a class="title" href="/">Ryan Watt</a>
+      <span class="title">Ryan Watt</span>
       <ul>
         {pages.map((page) => (
           <li>
@@ -106,6 +126,10 @@ const introDismiss =
     </div>
     {photo ? (
       <div id="photo-frame" style={`background-image: url(${photo})`} />
+    ) : gallery ? (
+      <div id="gallery">
+        <slot />
+      </div>
     ) : (
       <>
         <div id="left">&nbsp;</div>
@@ -114,20 +138,8 @@ const introDismiss =
         </div>
       </>
     )}
-    <a
-      id="colophon-link"
-      href="/colophon"
-      aria-current={current === "/colophon" ? "page" : undefined}
-    >
-      Colophon
-    </a>
-    <a
-      id="contact-link"
-      href="/contact"
-      aria-current={current === "/contact" ? "page" : undefined}
-    >
-      Contact
-    </a>
     {splash && <script is:inline set:html={introDismiss} />}
+    {current === "/" && <script is:inline set:html={homeNavReplace} />}
+    {gallery && <script is:inline src="/gallery.js" defer></script>}
   </body>
 </html>

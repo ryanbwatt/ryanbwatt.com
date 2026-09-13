@@ -45,10 +45,12 @@ Content here. No leading heading — the title is in <title> and the nav.
 Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 (lower sorts first; otherwise alphabetical), `description` (meta only).
 
-Current nav order is explicit, not alphabetical: About (1), Projects (2),
-Experience (3), Favorites (4), Photos (5). Contact and Colophon are published
-`nav: false` and stand as fixed links in the bottom corners instead. Interests
-was folded into About; Goals was removed.
+Current nav order is explicit, not alphabetical: About (1), Experience (2),
+Favorites (3), Photos (4), Contact (5). Projects is published `nav: false`
+(hidden for now, to be brought back later). The "Ryan Watt" title is plain
+text, not a link — the blank homepage is a doorway you pass through once, and
+nothing links back to it. Colophon was removed. Interests was folded into
+About; Goals was removed.
 
 ## Images
 
@@ -67,6 +69,30 @@ sips -Z 260 -s format jpeg -s formatOptions 82 in.jpg --out public/out.jpg
 ```
 
 Re-encoding also drops EXIF, which matters: phone photos can carry GPS.
+
+## Photos gallery
+
+The Photos page sets `gallery: true` and is a grid of thumbnails, six across,
+newest first. Each photo is a `<figure>` in the Markdown:
+
+```html
+<figure>
+  <a href="/photos/p18.jpg"><img src="/photos/thumbs/p18.jpg" width="500" height="333" loading="lazy" alt="Vancouver" /></a>
+  <figcaption>Vancouver, July 2026</figcaption>
+</figure>
+```
+
+The full-size image lives at `public/photos/`, the grid thumbnail at
+`public/photos/thumbs/` (≈500px wide). Caption format is `Location, Month Year`
+and is hidden in the grid — `public/gallery.js` (served raw, like the
+stylesheet) reads the figures to build the lightbox, where the caption shows
+under the enlarged photo. To add a photo: resize the original to both sizes,
+drop a `<figure>` at the top of the list, done.
+
+```
+sips -Z 1440 -s format jpeg -s formatOptions 80 in.jpg --out public/photos/pNN.jpg
+sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumbs/pNN.jpg
+```
 
 ## Commands
 

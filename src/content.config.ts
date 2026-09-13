@@ -30,6 +30,12 @@ const pages = defineCollection({
      * full-bleed photo instead of the standard text column.
      */
     photo: z.string().optional(),
+
+    /**
+     * Render the page as a scrolling column of captioned photos (a <figure>
+     * per image in the Markdown) instead of the standard text column.
+     */
+    gallery: z.boolean().default(false),
   }),
 });
 

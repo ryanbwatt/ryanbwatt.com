@@ -114,28 +114,6 @@ body {
   margin-bottom: 13px;
 }
 
-/* Colophon and Contact. Not in the nav list — standing links in the bottom
-   corners, on every page. */
-
-#colophon-link {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  color: #0864c7;
-}
-
-#contact-link {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  color: #0864c7;
-}
-
-#colophon-link[aria-current="page"],
-#contact-link[aria-current="page"] {
-  color: #000;
-}
-
 /* Photos page. A single image, edge to edge, inset by a border the width of
    the nav column on every side. No text column, no left gutter. */
 
@@ -152,6 +130,123 @@ body.full-bleed {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+/* Photos. A grid of thumbnails, four across, evenly spaced, filling left to
+   right and then down. No captions in this view. The grid is capped and
+   centred so the thumbnails stay small and the page keeps wide side margins.
+   `clear: both` drops it below the floated nav so nothing sits under it. */
+
+#gallery {
+  clear: both;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 860px;
+  margin: 30px auto 60px;
+}
+
+#gallery figure {
+  margin: 0;
+}
+
+#gallery figure a {
+  display: block;
+}
+
+/* All the photos are 3:2; width 100% with height auto keeps each thumbnail's
+   own aspect ratio, so a future portrait shot would keep its shape too. */
+#gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#gallery figcaption {
+  display: none; /* captions belong to the enlarged view, not the grid */
+}
+
+/* Lightbox. Click a thumbnail and the photo takes over the screen on white:
+   arrow keys or the on-screen arrows move between photos, clicking the photo
+   advances, and ×, Escape, or a click off the photo closes it. The caption
+   sits tight under the image and left-aligned to it. Built by /gallery.js;
+   with no JavaScript a thumbnail is just a link to the full image. */
+
+#lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* The id selector's display:flex outranks the browser's [hidden] rule, so the
+   hidden state has to be stated at the same specificity or the box never
+   closes. */
+#lightbox[hidden] {
+  display: none;
+}
+
+.lb-figure {
+  margin: 0;
+  max-width: 90vw;
+}
+
+.lb-img {
+  display: block;
+  max-width: 90vw;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+.lb-cap {
+  margin-top: 8px; /* tight under the image */
+  text-align: left; /* left-justified to the image */
+  color: #333;
+}
+
+.lb-close,
+.lb-prev,
+.lb-next {
+  position: fixed;
+  background: none;
+  border: 0;
+  padding: 10px;
+  color: #333;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lb-close {
+  top: 16px;
+  left: 20px;
+  font-size: 30px;
+}
+
+.lb-prev,
+.lb-next {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+}
+
+.lb-prev {
+  left: 16px;
+}
+
+.lb-next {
+  right: 16px;
 }
 
 /* Phones. The fixed columns above are wider than a phone screen, so they
@@ -173,6 +268,13 @@ body.full-bleed {
   #content {
     float: none;
     width: auto;
+    margin: 20px;
+  }
+
+  /* Six across is unusably small on a phone; drop to three. */
+  #gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
     margin: 20px;
   }
 
