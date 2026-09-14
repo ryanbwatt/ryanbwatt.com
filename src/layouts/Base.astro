@@ -56,8 +56,10 @@ const introDismiss =
   "var s=d.getElementById('splash');if(!s)return;" +
   "var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}" +
   "var v=d.getElementById('splash-video');" +
-  "if(v&&!reduce){var src=d.createElement('source');src.src='/enter.mp4';src.type='video/mp4';" +
-  "v.appendChild(src);v.load();var p=v.play();if(p&&p.catch)p.catch(function(){});}" +
+  "if(v&&!reduce){var src=d.createElement('source');src.src='/enter-whistler.mp4';src.type='video/mp4';" +
+  "v.appendChild(src);v.load();" +
+  "var tryplay=function(){var p=v.play();if(p&&p.catch)p.catch(function(){});};" +
+  "tryplay();v.addEventListener('canplay',tryplay);v.addEventListener('loadeddata',tryplay);}" +
   "function enter(){try{localStorage.setItem('rbw-entered','1');}catch(e){}" +
   "s.classList.add('leaving');" +
   "setTimeout(function(){if(v){try{v.pause();}catch(e){}}if(s.parentNode)s.remove();},650);}" +
@@ -93,20 +95,28 @@ const homeNavReplace =
     {splash && (
       <div id="splash" role="button" tabindex="0" aria-label="Enter">
         {/*
-          No <source> in the markup on purpose: the 4.5 MB video is attached by
-          the script below only for a first-time visitor with motion allowed.
-          Everyone else sees the poster frame — and returning visitors never
-          fetch the video at all.
+          No <source> in the markup on purpose: the video is attached by the
+          script below only for a first-time visitor with motion allowed.
+          Everyone else sees the poster still — and returning visitors never
+          fetch the video at all. The orbit clip is /enter-whistler.mp4: a ~6s
+          boomerang aerial of Whistler Peak (rendered in Google Earth Studio),
+          sweeping out and easing back so the loop is seamless.
         */}
         <video
           id="splash-video"
-          poster="/enter-poster.jpg"
+          poster="/enter-whistler.jpg"
+          autoplay
           muted
           loop
           playsinline
           preload="none"
         ></video>
-        <p id="splash-word">ENTER</p>
+        <svg id="splash-target" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="1"></circle>
+          <circle cx="32" cy="32" r="17" fill="none" stroke="#fff" stroke-opacity="1" stroke-width="1"></circle>
+          <circle cx="32" cy="32" r="8" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="1"></circle>
+          <circle cx="32" cy="32" r="1.2" fill="#fff" fill-opacity="0.9"></circle>
+        </svg>
       </div>
     )}
     <div id="menu">

@@ -1,11 +1,16 @@
 /* Photos lightbox. Served raw, no bundler — like style.css.
 
-   Progressive enhancement: without this script each thumbnail is a plain link
-   to its full-size image. With it, a click opens the photo full-screen on
-   white, with the caption tight beneath and left-aligned. Arrow keys or the
-   on-screen arrows move between photos, clicking the photo advances, and ×,
-   Escape, or a click off the photo closes it. The photo list and captions are
-   read from the grid, so adding a <figure> to the page is all it takes. */
+   Click a thumbnail and the photo takes over the screen on white, with the
+   caption tight beneath and left-aligned. Arrow keys or the on-screen arrows
+   move between photos, clicking the photo advances, and ×, Escape, or a click
+   off the photo closes it. The photo list and captions are read from the grid,
+   so adding a <figure> to the page is all it takes.
+
+   The full-size image lives in each thumbnail's data-full attribute rather than
+   a wrapping <a href>, so there's no plain link to right-click and save; the
+   handlers below also swallow context-menu and drag on the images. None of this
+   stops a determined visitor (the files are still served, and a screenshot
+   always works) — it only turns off the one-click save. */
 
 (function () {
   var gallery = document.getElementById("gallery");
@@ -13,14 +18,13 @@
 
   var figures = Array.prototype.slice.call(gallery.querySelectorAll("figure"));
   var items = figures.map(function (fig) {
-    var link = fig.querySelector("a");
     var img = fig.querySelector("img");
     var cap = fig.querySelector("figcaption");
     return {
-      full: link ? link.getAttribute("href") : img ? img.src : "",
+      full: img ? img.getAttribute("data-full") || img.src : "",
       alt: img ? img.getAttribute("alt") || "" : "",
       caption: cap ? cap.textContent.trim() : "",
-      trigger: link || fig,
+      trigger: img || fig,
     };
   });
   if (!items.length) return;
@@ -112,4 +116,14 @@
     else if (e.key === "ArrowRight") next();
     else if (e.key === "ArrowLeft") prev();
   });
+
+  // Turn off the one-click save on the photos: no context menu, no drag, on
+  // either the grid or the enlarged view.
+  function swallow(e) {
+    e.preventDefault();
+  }
+  gallery.addEventListener("contextmenu", swallow);
+  gallery.addEventListener("dragstart", swallow);
+  lb.addEventListener("contextmenu", swallow);
+  lb.addEventListener("dragstart", swallow);
 })();

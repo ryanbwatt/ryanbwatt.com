@@ -52,6 +52,21 @@ text, not a link — the blank homepage is a doorway you pass through once, and
 nothing links back to it. Colophon was removed. Interests was folded into
 About; Goals was removed.
 
+## Layout grid
+
+Every page hangs off the same two numbers. The left edge is **200px** — the
+text column, the About headshot, and the photo grid all begin there. Content
+starts **150px down** from the top, level with where the nav column ends, not at
+the very edge (`#content` and `#gallery`). On the gallery the drop is
+`padding-top`, not `margin-top`: the grid is the first in-flow child there, and
+a top margin would collapse through `<body>` and pull the floated nav down with
+it.
+
+Anything laid across the page follows an odd-column model (7 / 5 / 3 / 1):
+divide the width from the 200px edge into an odd number of equal columns with a
+fixed **20px gutter**, and place nothing off a column's left edge. The photo
+grid is the worked example — 3 columns, 20px gutter.
+
 ## Images
 
 Put them in `public/` and reference them with a raw `<img>` in the Markdown,
@@ -72,22 +87,26 @@ Re-encoding also drops EXIF, which matters: phone photos can carry GPS.
 
 ## Photos gallery
 
-The Photos page sets `gallery: true` and is a grid of thumbnails, six across,
-newest first. Each photo is a `<figure>` in the Markdown:
+The Photos page sets `gallery: true` and is a grid of thumbnails, **three
+across**, newest first, on the layout grid above. Each photo is a `<figure>`:
 
 ```html
 <figure>
-  <a href="/photos/p18.jpg"><img src="/photos/thumbs/p18.jpg" width="500" height="333" loading="lazy" alt="Vancouver" /></a>
+  <img src="/photos/thumbs/p18.jpg" data-full="/photos/p18.jpg" width="500" height="333" loading="lazy" alt="Vancouver" />
   <figcaption>Vancouver, July 2026</figcaption>
 </figure>
 ```
 
-The full-size image lives at `public/photos/`, the grid thumbnail at
-`public/photos/thumbs/` (≈500px wide). Caption format is `Location, Month Year`
-and is hidden in the grid — `public/gallery.js` (served raw, like the
-stylesheet) reads the figures to build the lightbox, where the caption shows
-under the enlarged photo. To add a photo: resize the original to both sizes,
-drop a `<figure>` at the top of the list, done.
+The full-size image lives at `public/photos/` and the grid thumbnail at
+`public/photos/thumbs/` (≈500px wide). The full URL sits in `data-full`, not a
+wrapping `<a href>`: `public/gallery.js` (served raw, like the stylesheet) reads
+it to build the lightbox, where the caption — `Location, Month Year`, hidden in
+the grid — shows tight under the enlarged photo. There's no plain link to the
+full image, and gallery.js also swallows right-click and drag on the photos, so
+the one-click save is off. That only deters casual saving: the files are still
+served and a screenshot always works — real protection isn't possible on a
+static host. To add a photo: resize the original to both sizes, drop a
+`<figure>` at the top of the list, done.
 
 ```
 sips -Z 1440 -s format jpeg -s formatOptions 80 in.jpg --out public/photos/pNN.jpg
