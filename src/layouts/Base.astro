@@ -48,21 +48,15 @@ const introReveal =
   "document.documentElement.className+=' intro';}" +
   "catch(e){document.documentElement.className+=' intro';}";
 
-// Runs at the end of the body. Bails unless the gate is actually showing, so a
-// returning visitor never downloads the video. Otherwise it attaches the video
-// (skipped when the visitor prefers reduced motion) and wires up the dismiss.
+// Runs at the end of the body. Bails unless the gate is actually showing, then
+// wires up the dismiss: a click or Enter/Space fades the gate out, removes it,
+// and remembers you've entered so it never shows again.
 const introDismiss =
   "(function(){var d=document;if(!d.documentElement.classList.contains('intro'))return;" +
   "var s=d.getElementById('splash');if(!s)return;" +
-  "var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}" +
-  "var v=d.getElementById('splash-video');" +
-  "if(v&&!reduce){var src=d.createElement('source');src.src='/enter-whistler.mp4';src.type='video/mp4';" +
-  "v.appendChild(src);v.load();" +
-  "var tryplay=function(){var p=v.play();if(p&&p.catch)p.catch(function(){});};" +
-  "tryplay();v.addEventListener('canplay',tryplay);v.addEventListener('loadeddata',tryplay);}" +
   "function enter(){try{localStorage.setItem('rbw-entered','1');}catch(e){}" +
   "s.classList.add('leaving');" +
-  "setTimeout(function(){if(v){try{v.pause();}catch(e){}}if(s.parentNode)s.remove();},650);}" +
+  "setTimeout(function(){if(s.parentNode)s.remove();},650);}" +
   "s.addEventListener('click',enter);" +
   "s.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();enter();}});})();";
 
@@ -95,28 +89,18 @@ const homeNavReplace =
     {splash && (
       <div id="splash" role="button" tabindex="0" aria-label="Enter">
         {/*
-          No <source> in the markup on purpose: the video is attached by the
-          script below only for a first-time visitor with motion allowed.
-          Everyone else sees the poster still — and returning visitors never
-          fetch the video at all. The orbit clip is /enter-whistler.mp4: a ~6s
-          boomerang aerial of Whistler Peak (rendered in Google Earth Studio),
-          sweeping out and easing back so the loop is seamless.
+          A still photo fills the gate (object-fit: cover). #splash-stage holds
+          the photo's 3:2 box while covering the viewport, so the "Enter" label
+          — positioned as a percentage of the stage — stays pinned to the sun no
+          matter the window shape. The label is the site's own 13px text in
+          black, sitting over the blown-out sun where black reads cleanly. The
+          arrow is the same → the photo lightbox uses. Move it by nudging the
+          two percentages on #splash-enter in the stylesheet.
         */}
-        <video
-          id="splash-video"
-          poster="/enter-whistler.jpg"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="none"
-        ></video>
-        <svg id="splash-target" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true">
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="1"></circle>
-          <circle cx="32" cy="32" r="17" fill="none" stroke="#fff" stroke-opacity="1" stroke-width="1"></circle>
-          <circle cx="32" cy="32" r="8" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="1"></circle>
-          <circle cx="32" cy="32" r="1.2" fill="#fff" fill-opacity="0.9"></circle>
-        </svg>
+        <div id="splash-stage">
+          <img id="splash-photo" src="/enter.jpg" alt="" />
+          <span id="splash-enter">Enter&nbsp;→</span>
+        </div>
       </div>
     )}
     <div id="menu">
