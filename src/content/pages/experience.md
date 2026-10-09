@@ -4,59 +4,60 @@ order: 2
 description: Where Ryan Watt has worked.
 ---
 
-**[Revin](https://revin.ai)** — Head of Customer Success.
-Revin builds AI revenue agents for home-services companies. I lead the
-post-sales motion and am scaling the forward-deployed and customer success
-teams behind it. I own retention and expansion across a concentrated portfolio
-of enterprise accounts against an $800k annual expansion quota, and I'm
-building the onboarding, adoption, and executive-relationship programs that
-tie product usage to revenue.
+**[Kaltura](https://corp.kaltura.com)** — Senior Account Manager, Emerging
+Markets.
+Own renewal and expansion for a portfolio of enterprise accounts across
+automotive, insurance, aerospace, professional services, and the public sector,
+including General Motors, State Farm, and Raytheon. Part of Kaltura's AI
+Business Development team, bringing Kaltura's agentic products into existing
+accounts.
 
-**[Kaltura](https://corp.kaltura.com)** — Principal Customer Success Manager,
-Enterprise.
-Owned the implementation of Kaltura's AI-native, open-source API products —
-Genie, Content Lab, Agents, and Avatars — for Fortune 100 enterprises
-including J.P. Morgan Chase, Vanguard, NVIDIA, ADP, and Liberty Mutual. Ran
-renewals and upsells across a $9.6m financial services and technology
-portfolio, where most of the work was executive-facing analysis: product
-usage, cohort trends, and ROI projections for companies deciding how far to
-take AI and agentic workflows. Also led a pricing and packaging initiative
-that improved margins 43% and produced $840k in incremental operating profit
-inside nine months.
+**[Revin](https://revin.ai)** — Head of Customer Success.
+Built Revin's customer success function as an AI-native operation from day
+one, including agentic workflows, AI-powered support automation, and the
+playbooks and SOPs behind them. Stood up and led the Forward Deployed
+Engineering team, growing it to six people.
+
+**Kaltura** — Senior Customer Success Manager, Enterprise.
+Owned AI product implementation and expansion for global enterprises,
+including J.P. Morgan Chase & Co., Vanguard, NVIDIA, ADP, and Liberty Mutual.
+Generated $2.5M+ in new ARR from 2023 to the first half of 2025.
 
 Top Net Booking Award worldwide in 2025, and top performer three times:
-worldwide in 2025 at 120% of growth quota and $555k of new ARR in the first
-half, North America in 2024 at 161% and $1.33m, and North America in 2023 at
-199% and $674k.
+worldwide in the first half of 2025 at 120% of growth quota and $555k of new
+ARR, North America in the first half of 2024 at 161% and $1.33m, and North
+America in 2023 at 199% and $674k.
 
 **Kaltura** — Senior Customer Success Manager, Media & Telecom.
-Promoted to a portfolio of large strategic broadcaster and publisher
-accounts — OTTera, Canela Media, Middle East Broadcasting Networks, O'Reilly
-Media, Atmosphere TV. Led the cross-organisational margin analysis and
-improvement work that followed the company's 2021 IPO.
+Promoted to manage a portfolio of large strategic broadcaster and publisher
+accounts concentrated in the US, including OTTera, Canela Media, Middle East
+Broadcasting Networks, O'Reilly Media, and Atmosphere TV. Led the
+cross-organizational margin analysis and improvement initiative following the
+company's July 2021 IPO.
 
 **Kaltura** — Customer Success Manager, Media & Telecom.
-Ran adoption, retention, and expansion across forty-plus global broadcaster
-and publisher accounts on the Cloud TV stack, including ESPN, CBS, PBS,
-WarnerMedia, The Weather Channel, and MotorTrend. Built the data-backed growth
-narratives that went to their executives.
+Oversaw adoption, retention, and expansion across a portfolio of 50+ global
+broadcaster and publisher accounts on the Cloud TV product stack, including
+ESPN, CBS, PBS, WarnerMedia, The Weather Channel, and MotorTrend.
 
 **[Artsy](https://www.artsy.net)** — Account Executive.
-Artsy is the largest online marketplace for buying and selling fine art,
-working with more than four thousand galleries, fairs, and auction houses. On
-the partner team, reporting to the VP of global sales and partnerships, I ran
-the full cycle for small and mid-sized galleries — prospecting and business
-development through onboarding and ongoing success. The work was mostly making
-the return on a gallery's presence legible to the gallery, and taking friction
-out of buying by moving listings onto Buy Now and Make Offer. Finished at 300%
-of the artwork supply acquisition target and 140% net retention.
+Full-cycle sales and account management for small and mid-sized galleries on
+the world's largest online art marketplace, from prospecting and business
+development through onboarding and customer success. Reported to the VP of
+Global Sales & Partnerships. Achieved 300% of artwork supply targets and 140%
+net retention.
 
-**[David Zwirner](https://www.davidzwirner.com)** — Sales Assistant.
-Supported major blue-chip exhibitions of secondary-market work and facilitated
-private viewings for high-net-worth collectors. Produced the private client
-viewing materials, which meant collecting and analysing primary and secondary
-art market data, and prototyped upcoming artist exhibitions in 3-D for
-curators, clients, and directors.
+**[David Zwirner](https://www.davidzwirner.com)** — Sales & Client Relations.
+Supported directors and the sales team at one of the world's leading
+contemporary art galleries, preparing private client viewing materials and art
+market research for collectors.
+
+**Columbia University Center for Career Education** — Customer Service Team
+Lead.
+Managed a high-volume frontline service team and ran employer and job-posting
+approvals on LionSHARE, Columbia's career platform, covering 67,000+ jobs and
+16,000+ employers a year. Analyzed and allocated $375K in summer grant funding
+for students in unpaid internships.
 
 **Education.** Columbia University, BA in psychology and art history, magna
 cum laude. Varsity lightweight rowing: U.S. National Champion and Eastern
