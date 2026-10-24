@@ -1,0 +1,41 @@
+---
+// Extras: a front page of reputable reporting on the things I follow, for the
+// spare five minutes that would otherwise go to a feed. The one page that is
+// deliberately designed — a newspaper front, not the commonplace-book column —
+// so it stands alone with its own stylesheet and doesn't use Base or style.css.
+//
+// The page is a shell. public/extras.js fills it from /api/extras
+// (functions/api/extras.js), which merges the publishers' RSS feeds.
+const sections = ["All", "Track & Field", "Cycling", "Endurance", "Tennis", "Business", "AI", "Architecture", "Art"];
+---
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/extras.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Extras · Ryan Watt</title>
+    <meta name="description" content="Reputable reporting on track, cycling, endurance, tennis, business, AI, architecture and art." />
+  </head>
+  <body>
+    <header id="masthead">
+      <a class="home" href="/about">Ryan Watt</a>
+      <button id="refresh" type="button" aria-label="Refresh stories" title="Refresh">↻</button>
+      <h1>Extras</h1>
+      <p id="dateline"></p>
+      <nav id="sections">
+        {sections.map((s, i) => (
+          <button type="button" data-section={s} aria-pressed={i === 0 ? "true" : "false"}>{s}</button>
+        ))}
+      </nav>
+    </header>
+    <main id="front" aria-live="polite">
+      <p class="status">Loading…</p>
+    </main>
+    <footer id="colophon">
+      Headlines and summaries from BBC Sport, The Guardian, The New York Times, Cyclingnews, LetsRun,
+      Triathlete, Dezeen and ArchDaily. Every story opens at its publisher.
+    </footer>
+    <script is:inline src="/extras.js" defer></script>
+  </body>
+</html>

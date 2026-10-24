@@ -46,11 +46,21 @@ Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 (lower sorts first; otherwise alphabetical), `description` (meta only).
 
 Current nav order is explicit, not alphabetical: About (1), Experience (2),
-Favorites (3), Photos (4), Contact (5). Projects is published `nav: false`
+Favorites (3), Photos (4), Contact (5). Extras sits last, added by hand in `Base.astro`. Projects is published `nav: false`
 (hidden for now, to be brought back later). The "Ryan Watt" title is plain
 text, not a link — the blank homepage is a doorway you pass through once, and
 nothing links back to it. Colophon was removed. Interests was folded into
 About; Goals was removed.
+
+## Extras (the one exception)
+
+`/extras` is a newspaper-style front page of headlines from reputable RSS
+feeds, and the only page allowed to look designed. It stands alone:
+`src/pages/extras.astro` with its own `public/extras.css` and `public/extras.js`,
+no Base layout, no `style.css`. Stories come from a Cloudflare Pages Function,
+`functions/api/extras.js`; edit its `FEEDS` list to change sources or sections.
+`node functions/api/extras.test.mjs live` checks the parser and every feed.
+Rule 2 still governs every other page.
 
 ## Layout grid
 

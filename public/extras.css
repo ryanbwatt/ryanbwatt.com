@@ -1,0 +1,281 @@
+/* Extras. Served raw, like style.css — but this page is the one exception to
+   "must not look designed": a newspaper front. Serif headlines, sans for
+   everything around them, thin rules, black on warm white. No webfonts. */
+
+body {
+  margin: 0;
+  background: #fbfaf7;
+  color: #111;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Masthead */
+
+#masthead {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 0;
+  text-align: center;
+}
+
+#masthead .home {
+  position: absolute;
+  left: 20px;
+  top: 24px;
+  color: #111;
+}
+
+#refresh {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  font-size: 22px;
+  line-height: 28px;
+}
+
+#refresh.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#masthead h1 {
+  margin: 28px 0 6px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: 56px;
+  line-height: 60px;
+  letter-spacing: -0.5px;
+}
+
+#dateline {
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #ccc;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#sections {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  padding: 10px 0;
+  border-bottom: 3px double #111;
+}
+
+#sections button {
+  font-size: 12px;
+  color: #555;
+}
+
+#sections button[aria-pressed="true"] {
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Front page: a lead story across the top, then a three-column grid. */
+
+#front {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 20px;
+}
+
+.story {
+  cursor: pointer;
+}
+
+.story img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #eee;
+  margin-bottom: 10px;
+}
+
+.kicker {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.story h2 {
+  margin: 4px 0 6px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: 19px;
+  line-height: 24px;
+}
+
+.story:hover h2 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.story p {
+  margin: 0;
+  color: #444;
+}
+
+.story.lead {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #ccc;
+}
+
+.story.lead img {
+  margin: 0;
+}
+
+.story.lead h2 {
+  font-size: 34px;
+  line-height: 40px;
+  margin: 8px 0 12px;
+}
+
+.story.lead p {
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.status {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #666;
+}
+
+#colophon {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 16px 20px 40px;
+  border-top: 1px solid #ccc;
+  font-size: 11px;
+  color: #666;
+}
+
+/* Reader: one story fills the screen, paged with arrows like a portfolio. */
+
+#reader {
+  position: fixed;
+  inset: 0;
+  background: #fbfaf7;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  align-items: center;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+#reader[hidden] {
+  display: none;
+}
+
+#reader > button {
+  font-size: 24px;
+  height: 100%;
+}
+
+#reader .r-close {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  height: auto;
+}
+
+#reader article {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 32px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+#reader img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
+#reader h2 {
+  margin: 8px 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+#reader p {
+  font-size: 15px;
+  line-height: 22px;
+  color: #333;
+}
+
+#reader a {
+  color: #0864c7;
+}
+
+#reader .r-count {
+  margin-top: 24px;
+  font-size: 11px;
+  color: #888;
+}
+
+/* Phone */
+
+@media (max-width: 760px) {
+  #masthead h1 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+  #sections {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  #sections button {
+    white-space: nowrap;
+  }
+  #front,
+  .story.lead,
+  #reader article {
+    grid-template-columns: 1fr;
+  }
+  .story.lead h2 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  #reader {
+    grid-template-columns: 36px 1fr 36px;
+  }
+}
