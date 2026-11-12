@@ -93,6 +93,10 @@ Cloudflare Pages, connected to `main`.
 - Build command: `npm run build`
 - Output directory: `dist`
 
+If a merge to `main` doesn't deploy, check that the Cloudflare Workers and Pages
+GitHub app still has access to this repository (GitHub → Settings →
+Applications → Configure → Repository access).
+
 ## Stack
 
 Astro, and nothing else. No integrations, no webfonts, no CSS framework, no
