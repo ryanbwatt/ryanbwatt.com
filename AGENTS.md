@@ -77,7 +77,7 @@ with explicit `width` and `height` so nothing shifts as the page loads:
 ```
 
 Resize before committing — source photos are megabytes and this site's
-homepage is 420 bytes. Roughly 2× the display size is right for retina:
+homepage is under 2 KB. Roughly 2× the display size is right for retina:
 
 ```
 sips -Z 260 -s format jpeg -s formatOptions 82 in.jpg --out public/out.jpg
