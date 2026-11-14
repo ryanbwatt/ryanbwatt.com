@@ -126,9 +126,9 @@ them.
 
 ## 8. Pin the Node version
 
-**Context.** Astro 7 requires Node ≥ 22.12. Cloudflare Pages defaults lower.
+**Context.** Astro 7.4 requires Node ≥ 22.23.4. Cloudflare Pages defaults lower.
 
-**Decision.** `.node-version` pinning 22.16.0.
+**Decision.** `.node-version` pinning 22.23.5.
 
 **Consequence.** Caught before the first deploy rather than after. Without it
 the build fails at install with an error that doesn't name the cause.
