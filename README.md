@@ -5,13 +5,14 @@ Live at **[ryanbwatt.com](https://ryanbwatt.com)**.
 
 | | |
 | --- | --- |
-| Homepage HTML | 547 bytes |
-| Stylesheet | 2,523 bytes, hand-written, served unbundled |
-| Whole site | 68 KB, 7 pages |
-| JavaScript | none |
+| Homepage HTML | 1,688 bytes |
+| Stylesheet | 9,063 bytes, hand-written, served unbundled |
+| Markup, styles and script | 30 KB across 7 pages |
+| Photographs | 7 MB, lazy-loaded on the Photos page |
+| JavaScript | No framework, no bundle. Two hand-written scripts: the homepage intro gate and the Photos lightbox |
 | Web fonts | none |
 | Runtime dependencies | 1 |
-| Requests per page | 2 |
+| Requests per text page | 2 |
 
 The reasoning behind all of this, including the parts that reversed earlier
 decisions, is in [DECISIONS.md](DECISIONS.md).
@@ -64,7 +65,7 @@ inside the Markdown where a page needs them.
 
 ## Changing the look
 
-`public/style.css`. About a hundred lines, hand-written, literal values, no
+`public/style.css`. 379 lines, hand-written, literal values, no
 variables. It is served to the browser byte for byte as it appears in the
 repo — no bundler touches it.
 
@@ -100,7 +101,12 @@ Applications → Configure → Repository access).
 ## Stack
 
 Astro, and nothing else. No integrations, no webfonts, no CSS framework, no
-JavaScript, no analytics, no cookies, no external requests, no favicon.
+JavaScript framework or bundle, no cookies, no favicon.
+
+The repository ships no analytics and requests nothing from a third party.
+Cloudflare, which hosts the site, adds two things at the edge that are not in
+this repo: its Web Analytics beacon, and an email-obfuscation script on pages
+with a `mailto:` link.
 
 ## Repository
 
@@ -108,6 +114,7 @@ JavaScript, no analytics, no cookies, no external requests, no favicon.
 | --- | --- |
 | `src/content/pages/` | The site's content. One Markdown file per page. |
 | `public/style.css` | The entire stylesheet. Served exactly as written. |
+| `public/gallery.js` | The Photos lightbox. Served exactly as written. |
 | `src/layouts/Base.astro` | The only layout. Head, nav, and the content column. |
 | `src/pages/[...slug].astro` | Renders every content page. |
 | `src/lib/pages.ts` | Nav ordering. |

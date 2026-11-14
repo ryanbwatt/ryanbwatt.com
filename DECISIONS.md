@@ -8,14 +8,15 @@ reversed earlier ones.
 
 | | |
 | --- | --- |
-| Homepage HTML | 547 bytes |
-| Stylesheet | 2,523 bytes (138 lines, hand-written) |
-| Whole site | 68 KB, 7 pages |
-| JavaScript shipped | none |
+| Homepage HTML | 1,688 bytes |
+| Stylesheet | 9,063 bytes (379 lines, hand-written) |
+| Markup, styles and script | 30 KB across 7 pages |
+| Photographs | 7 MB, lazy-loaded on the Photos page |
+| JavaScript shipped | No framework, no bundle. Two hand-written scripts (see 10) |
 | Web fonts | none |
 | Runtime dependencies | 1 (Astro) |
-| Requests to render a page | 2 — the HTML and the stylesheet |
-| Third-party services in the page | none |
+| Requests to render a text page | 2 — the HTML and the stylesheet |
+| Third-party services in the repo | none. Cloudflare adds its Web Analytics beacon and email obfuscation at the edge |
 
 ---
 
@@ -86,7 +87,7 @@ macOS and makes a page look like an app rather than a document.
 that everything else referenced — so the whole look could be re-themed from one
 file. It worked, and I deleted it.
 
-**Decision.** One 138-line stylesheet with literal values, at
+**Decision.** One 379-line stylesheet with literal values, at
 `public/style.css`, served byte for byte as typed. No bundler, no hashing, no
 minification, no variables, no dark mode.
 
@@ -145,6 +146,22 @@ the IPv6 discard prefix, so nothing is ever actually sent there. The redirect is
 dynamic rather than static, so `ryanwatt.ca/about` lands on `ryanbwatt.com/about`
 instead of dumping everyone on the homepage. Verified across apex, `www`, plain
 `http`, and query strings.
+
+## 10. Two scripts, both hand-written
+
+**Context.** The site began with no JavaScript at all. Two features needed
+some: the intro gate on the homepage, and a lightbox on Photos.
+
+**Decision.** Write both by hand and serve them as typed. The gate is a few
+inline lines in the layout, on the homepage only. The lightbox is
+`public/gallery.js`, loaded on the Photos page only. No framework, no bundler,
+no dependency.
+
+**Consequence.** The text pages still ship no script. With JavaScript off the
+gate never shows and the homepage is what you get; the photo grid still
+renders, without the enlarged view. The cost is that "no JavaScript" is no
+longer a claim this site can make, and the numbers at the top of this file say
+so.
 
 ---
 
