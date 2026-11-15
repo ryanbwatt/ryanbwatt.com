@@ -143,6 +143,9 @@ with tests (`npm test`). Rules:
 - Never store the IP address. Everything rendered on `/admin` is escaped.
 - A new image or asset path at the top level of `public/` should be added to
   the `exclude` list in `public/_routes.json`.
+- `analytics/log.js` is shared with the `ryanbwatt/art-moves` repository, which
+  writes to the same database under its own `site` label. Keep the two copies
+  identical. Schema changes may only add columns.
 - `/admin` is not a site page: it has its own inline styles and is not in the
   nav.
 
