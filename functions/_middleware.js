@@ -7,11 +7,13 @@
 
 import { logVisit, shouldLog } from "../analytics/log.js";
 
+const SITE = "ryanbwatt.com";
+
 export async function onRequest(context) {
   const response = await context.next();
   try {
     if (context.env.DB && shouldLog(context.request, response)) {
-      context.waitUntil(logVisit(context.env.DB, context.request).catch(() => {}));
+      context.waitUntil(logVisit(context.env.DB, context.request, SITE).catch(() => {}));
     }
   } catch {
     // Never let logging affect the response.

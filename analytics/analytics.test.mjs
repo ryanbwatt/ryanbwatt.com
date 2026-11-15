@@ -62,8 +62,10 @@ test("days are New York days", () => {
 
 test("report output is escaped and options are bounded", () => {
   assert.equal(esc(`<img src=x onerror="a">`), "&lt;img src=x onerror=&quot;a&quot;&gt;");
-  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=7&bots=1")), { days: 7, bots: true });
-  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=9999")), { days: 30, bots: false });
+  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=7&bots=1")), { days: 7, bots: true, site: "" });
+  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=9999")), { days: 30, bots: false, site: "" });
+  assert.equal(parseOptions(new URL("https://x.test/admin?site=art-moves")).site, "art-moves");
+  assert.equal(parseOptions(new URL("https://x.test/admin?site=a'%20OR%201=1")).site, "");
 });
 
 // --- Access token verification, against a key pair made for the test.

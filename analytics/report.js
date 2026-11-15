@@ -33,77 +33,87 @@ function place(row) {
 
 export function parseOptions(url) {
   const asked = Number(url.searchParams.get("days"));
+  const site = url.searchParams.get("site") || "";
   return {
     days: RANGES.includes(asked) ? asked : 30,
     bots: url.searchParams.get("bots") === "1",
+    // "" means every site. Anything else is matched against the table, so an
+    // unknown name just shows an empty report.
+    site: /^[\w.-]{1,64}$/.test(site) ? site : "",
   };
 }
 
-export async function loadReport(db, { days, bots }, now = Date.now()) {
+export async function loadReport(db, { days, bots, site = "" }, now = Date.now()) {
   await ensureSchema(db);
 
   const today = dayOf(now);
   const since = dayOf(now - (days - 1) * 86_400_000);
-  const who = bots ? "" : "AND bot = 0";
-  const all = (sql, ...args) =>
-    db.prepare(sql).bind(...args).all().then((r) => r.results || []);
+  // ?1 is always the first day of the range and ?2 the site ("" for all).
+  const who = `${bots ? "" : "AND bot = 0"} AND (?2 = '' OR site = ?2)`;
+  const all = (sql) =>
+    db.prepare(sql).bind(since, site).all().then((r) => r.results || []);
 
-  const [totals, daily, pages, referrers, networks, places, tags, recent] = await Promise.all([
+  const [totals, sites, daily, pages, referrers, networks, places, tags, recent] = await Promise.all([
     db
       .prepare(
         `SELECT
            SUM(CASE WHEN bot = 0 THEN 1 ELSE 0 END) AS views,
            COUNT(DISTINCT CASE WHEN bot = 0 THEN visitor END) AS visitors,
-           SUM(CASE WHEN bot = 0 AND day = ?2 THEN 1 ELSE 0 END) AS views_today,
-           COUNT(DISTINCT CASE WHEN bot = 0 AND day = ?2 THEN visitor END) AS visitors_today,
+           SUM(CASE WHEN bot = 0 AND day = ?3 THEN 1 ELSE 0 END) AS views_today,
+           COUNT(DISTINCT CASE WHEN bot = 0 AND day = ?3 THEN visitor END) AS visitors_today,
            SUM(bot) AS bot_views
-         FROM visits WHERE day >= ?1`,
+         FROM visits WHERE day >= ?1 AND (?2 = '' OR site = ?2)`,
       )
-      .bind(since, today)
+      .bind(since, site, today)
       .first(),
+    // Every site in the range, whatever the filter, so the links at the top
+    // of the page don't disappear when one is selected.
+    db
+      .prepare(
+        `SELECT site,
+                SUM(CASE WHEN bot = 0 THEN 1 ELSE 0 END) AS views,
+                COUNT(DISTINCT CASE WHEN bot = 0 THEN visitor END) AS visitors
+         FROM visits WHERE day >= ?1 GROUP BY site ORDER BY views DESC`,
+      )
+      .bind(since)
+      .all()
+      .then((r) => r.results || []),
     all(
       `SELECT day, COUNT(*) AS views, COUNT(DISTINCT visitor) AS visitors
-       FROM visits WHERE day >= ? ${who} GROUP BY day ORDER BY day DESC`,
-      since,
+       FROM visits WHERE day >= ?1 ${who} GROUP BY day ORDER BY day DESC`,
     ),
     all(
-      `SELECT path, COUNT(*) AS views, COUNT(DISTINCT visitor) AS visitors
-       FROM visits WHERE day >= ? ${who} GROUP BY path ORDER BY views DESC LIMIT 20`,
-      since,
+      `SELECT site, path, COUNT(*) AS views, COUNT(DISTINCT visitor) AS visitors
+       FROM visits WHERE day >= ?1 ${who} GROUP BY site, path ORDER BY views DESC LIMIT 30`,
     ),
     all(
       `SELECT referrer, COUNT(*) AS views, COUNT(DISTINCT visitor) AS visitors
-       FROM visits WHERE day >= ? ${who} AND referrer IS NOT NULL
+       FROM visits WHERE day >= ?1 ${who} AND referrer IS NOT NULL
        GROUP BY referrer ORDER BY views DESC LIMIT 20`,
-      since,
     ),
     all(
       `SELECT network, COUNT(*) AS views, COUNT(DISTINCT visitor) AS visitors, MAX(ts) AS last
-       FROM visits WHERE day >= ? ${who} AND network IS NOT NULL
+       FROM visits WHERE day >= ?1 ${who} AND network IS NOT NULL
        GROUP BY network ORDER BY visitors DESC, views DESC LIMIT 40`,
-      since,
     ),
     all(
       `SELECT city, region, country, COUNT(*) AS views, COUNT(DISTINCT visitor) AS visitors
-       FROM visits WHERE day >= ? ${who}
+       FROM visits WHERE day >= ?1 ${who}
        GROUP BY city, region, country ORDER BY visitors DESC, views DESC LIMIT 25`,
-      since,
     ),
     all(
       `SELECT via, COUNT(*) AS views, COUNT(DISTINCT visitor) AS visitors,
               MIN(ts) AS first, MAX(ts) AS last
-       FROM visits WHERE day >= ? ${who} AND via IS NOT NULL
+       FROM visits WHERE day >= ?1 ${who} AND via IS NOT NULL
        GROUP BY via ORDER BY last DESC LIMIT 40`,
-      since,
     ),
     all(
-      `SELECT ts, path, via, referrer, city, region, country, network, device, bot
-       FROM visits WHERE day >= ? ${who} ORDER BY ts DESC LIMIT 60`,
-      since,
+      `SELECT site, ts, path, via, referrer, city, region, country, network, device, bot
+       FROM visits WHERE day >= ?1 ${who} ORDER BY ts DESC LIMIT 60`,
     ),
   ]);
 
-  return { days, bots, since, today, totals: totals || {}, daily, pages, referrers, networks, places, tags, recent };
+  return { days, bots, site, sites, since, today, totals: totals || {}, daily, pages, referrers, networks, places, tags, recent };
 }
 
 function table(head, rows, empty) {
@@ -121,8 +131,16 @@ const td = (value) => `<td>${esc(value)}</td>`;
 const num = (value) => `<td class="num">${n(value)}</td>`;
 
 export function renderReport(report, email) {
-  const { days, bots, totals, daily, pages, referrers, networks, places, tags, recent } = report;
-  const link = (d, b) => `/admin?days=${d}${b ? "&bots=1" : ""}`;
+  const { days, bots, site, sites, totals, daily, pages, referrers, networks, places, tags, recent } = report;
+  const link = (d, b, s = site) =>
+    `/admin?days=${d}${b ? "&bots=1" : ""}${s ? `&site=${encodeURIComponent(s)}` : ""}`;
+  // With every site shown together, a path needs its site in front of it.
+  const where = (r) => (site ? r.path : `${r.site}${r.path}`);
+  const siteLinks = [["", "All sites"], ...sites.map((s) => [s.site, s.site])]
+    .map(([value, label]) =>
+      value === site ? `<b>${esc(label)}</b>` : `<a href="${link(days, bots, value)}">${esc(label)}</a>`,
+    )
+    .join(" · ");
   const rangeLabel = (d) => (d === 1 ? "Today" : d === 365 ? "1 year" : `${d} days`);
   const peak = Math.max(1, ...daily.map((d) => d.views));
 
@@ -134,7 +152,8 @@ export function renderReport(report, email) {
 
   const body = `
 <p class="top">
-  <b>Visits to ryanbwatt.com</b><br>
+  <b>Visits</b><br>
+  ${siteLinks}<br>
   ${ranges}<br>
   ${bots ? `Bots included. <a href="${link(days, false)}">Hide bots</a>` : `People only. <a href="${link(days, true)}">Include bots</a>`}
 </p>
@@ -146,6 +165,17 @@ export function renderReport(report, email) {
   <tr><td>Visitors today</td><td class="num">${n(totals.visitors_today)}</td></tr>
   <tr><td>Bot requests, not counted above</td><td class="num">${n(totals.bot_views)}</td></tr>
 </tbody></table>
+
+${
+  site
+    ? ""
+    : `<h2>Sites</h2>
+${table(
+  [["Site"], ["Visitors", "num"], ["Views", "num"]],
+  sites.map((s) => [td(s.site), num(s.visitors), num(s.views)]),
+  "Nothing yet.",
+)}`
+}
 
 <h2>By day</h2>
 ${table(
@@ -176,7 +206,7 @@ ${table(
 <h2>Pages</h2>
 ${table(
   [["Page"], ["Visitors", "num"], ["Views", "num"]],
-  pages.map((r) => [td(r.path), num(r.visitors), num(r.views)]),
+  pages.map((r) => [td(where(r)), num(r.visitors), num(r.views)]),
   "Nothing yet.",
 )}
 
@@ -199,7 +229,7 @@ ${table(
   [["When"], ["Page"], ["Network"], ["Place"], ["From"], ["Tag"], ["Device"]],
   recent.map((r) => [
     td(when(r.ts)),
-    td(r.path),
+    td(where(r)),
     td((r.network || "") + (r.bot ? " (bot)" : "")),
     td(place(r)),
     td(r.referrer || ""),

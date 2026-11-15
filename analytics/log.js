@@ -1,5 +1,9 @@
 // Visit logging. Called from functions/_middleware.js after a page has been
-// served; writes one row to D1 per page view. Nothing here runs in the
+// served; writes one row to D1 per page view.
+//
+// This file is shared: the Art Moves repository (ryanbwatt/art-moves) carries
+// an identical copy and writes to the same database, with its own `site`
+// value. Change one, change the other. The tests live in ryanbwatt.com. Nothing here runs in the
 // visitor's browser, sets a cookie, or changes the response.
 //
 // What a row holds: when, which page, where the visitor came from, roughly
@@ -12,6 +16,7 @@ const TZ = "America/New_York";
 const SCHEMA = [
   `CREATE TABLE IF NOT EXISTS visits (
      id INTEGER PRIMARY KEY AUTOINCREMENT,
+     site TEXT NOT NULL DEFAULT 'ryanbwatt.com',
      ts INTEGER NOT NULL,
      day TEXT NOT NULL,
      path TEXT NOT NULL,
@@ -36,6 +41,20 @@ let saltCache = null; // { day, salt }
 export async function ensureSchema(db) {
   if (schemaReady) return;
   await db.batch(SCHEMA.map((sql) => db.prepare(sql)));
+  // The table predates the `site` column. Add it where it is missing; rows
+  // written before then all came from ryanbwatt.com, which is the default.
+  const has = await db
+    .prepare("SELECT 1 AS yes FROM pragma_table_info('visits') WHERE name = 'site'")
+    .first();
+  if (!has) {
+    try {
+      await db
+        .prepare("ALTER TABLE visits ADD COLUMN site TEXT NOT NULL DEFAULT 'ryanbwatt.com'")
+        .run();
+    } catch {
+      // Another request added it first.
+    }
+  }
   schemaReady = true;
 }
 
@@ -127,7 +146,9 @@ async function sha256Hex(text) {
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-export async function logVisit(db, request, now = Date.now()) {
+// `site` is a short fixed label for the site doing the logging, set in that
+// site's functions/_middleware.js.
+export async function logVisit(db, request, site, now = Date.now()) {
   await ensureSchema(db);
 
   const url = new URL(request.url);
@@ -142,10 +163,11 @@ export async function logVisit(db, request, now = Date.now()) {
   await db
     .prepare(
       `INSERT INTO visits
-         (ts, day, path, via, referrer, country, region, city, asn, network, device, bot, visitor)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         (site, ts, day, path, via, referrer, country, region, city, asn, network, device, bot, visitor)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     )
     .bind(
+      site,
       now,
       day,
       pathOf(url),

@@ -116,6 +116,11 @@ visitor is on. No script, no cookie, and no IP address is stored. The report
 is at `/admin`, behind Cloudflare Access. Reasoning in
 [DECISIONS.md](DECISIONS.md), decision 11.
 
+The same database also takes visits from [Art Moves](https://art-moves.pages.dev),
+which carries an identical copy of `analytics/log.js` in its own repository
+(`ryanbwatt/art-moves`). Each row is labelled with its site, and `/admin` shows
+both together or one at a time. Change `log.js` in both places.
+
 To tell whether a particular person opened a link, label it before sending:
 `ryanbwatt.com/about?via=joe` shows up under "Tagged links".
 
