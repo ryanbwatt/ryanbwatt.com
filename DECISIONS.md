@@ -136,19 +136,28 @@ them.
 **Consequence.** Caught before the first deploy rather than after. Without it
 the build fails at install with an error that doesn't name the cause.
 
-## 9. Redirect the second domain at the edge
+## 9. One address, and the old one redirects in the middleware
 
-**Context.** `ryanwatt.ca` should reach the same site without duplicating it.
+**Context.** The site launched at `ryanbwatt.com`, with `ryanwatt.ca` redirecting
+to it through a Redirect Rule on the `.ca` zone and two placeholder AAAA
+records. In November 2026 the two swapped: `ryanwatt.ca` is the address and
+`ryanbwatt.com` is the one that redirects.
 
-**Decision.** A 301 Redirect Rule on the `.ca` zone, plus two **proxied AAAA
-records pointing at `100::`**.
+**Decision.** All three names (`ryanwatt.ca`, `www.ryanwatt.ca`,
+`ryanbwatt.com`) are custom domains on the same Pages project. A few lines at
+the top of `functions/_middleware.js` send any request that is not on
+`ryanwatt.ca` to the same path there with a 301. The Redirect Rule and the
+placeholder records on the `.ca` zone are gone.
 
-**Consequence.** The placeholder records look pointless and are load-bearing: a
-redirect rule can't fire if DNS never reaches Cloudflare's edge, and `100::` is
-the IPv6 discard prefix, so nothing is ever actually sent there. The redirect is
-dynamic rather than static, so `ryanwatt.ca/about` lands on `ryanbwatt.com/about`
-instead of dumping everyone on the homepage. Verified across apex, `www`, plain
-`http`, and query strings.
+**Consequence.** The redirect now lives in the repository instead of in a
+dashboard, so it is versioned and tested with everything else. Paths and query
+strings carry over, so `ryanbwatt.com/about?via=joe` lands on
+`ryanwatt.ca/about?via=joe`. Static assets listed in `public/_routes.json`
+never reach the middleware and still answer on the old name, which is harmless.
+Rows already in the visit log keep the `ryanbwatt.com` label they were written
+with; new rows are labelled `ryanwatt.ca`. The GitHub repository and the Pages
+project keep their original names (`ryanbwatt.com`, `ryanbwatt-com`): renaming
+them changes nothing a visitor sees and risks the deploy hook.
 
 ## 10. Two scripts, both hand-written
 

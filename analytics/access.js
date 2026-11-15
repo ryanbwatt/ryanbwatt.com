@@ -1,6 +1,6 @@
 // Checks that a request to /admin really came through Cloudflare Access.
 //
-// Access sits in front of ryanbwatt.com/admin and attaches a signed token to
+// Access sits in front of ryanwatt.ca/admin and attaches a signed token to
 // every request it lets through. Verifying that token here, rather than
 // trusting that Access is in the way, matters because the same deployment is
 // also reachable at its *.pages.dev address, where Access may not be.
