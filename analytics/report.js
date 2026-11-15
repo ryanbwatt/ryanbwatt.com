@@ -1,5 +1,6 @@
 // The /admin page: reads the visits table and renders one plain HTML page.
-// No client-side script, no chart library — tables, and bars made of divs.
+// No chart library — tables, and bars made of divs. The only script is one
+// inline handler that submits the site picker when it changes.
 
 import { dayOf, ensureSchema } from "./log.js";
 
@@ -53,7 +54,7 @@ export async function loadReport(db, { days, bots, site = "" }, now = Date.now()
   const all = (sql) =>
     db.prepare(sql).bind(since, site).all().then((r) => r.results || []);
 
-  const [totals, sites, daily, pages, referrers, networks, places, tags, recent] = await Promise.all([
+  const [totals, known, sites, daily, pages, referrers, networks, places, tags, recent] = await Promise.all([
     db
       .prepare(
         `SELECT
@@ -66,8 +67,13 @@ export async function loadReport(db, { days, bots, site = "" }, now = Date.now()
       )
       .bind(since, site, today)
       .first(),
-    // Every site in the range, whatever the filter, so the links at the top
-    // of the page don't disappear when one is selected.
+    // Every site that has ever logged a visit, for the picker. A site with
+    // nothing in the current range still has to be selectable.
+    db
+      .prepare(`SELECT DISTINCT site FROM visits ORDER BY site`)
+      .all()
+      .then((r) => (r.results || []).map((row) => row.site)),
+    // Per-site totals for the range, whatever the filter.
     db
       .prepare(
         `SELECT site,
@@ -113,7 +119,7 @@ export async function loadReport(db, { days, bots, site = "" }, now = Date.now()
     ),
   ]);
 
-  return { days, bots, site, sites, since, today, totals: totals || {}, daily, pages, referrers, networks, places, tags, recent };
+  return { days, bots, site, known, sites, since, today, totals: totals || {}, daily, pages, referrers, networks, places, tags, recent };
 }
 
 function table(head, rows, empty) {
@@ -131,16 +137,27 @@ const td = (value) => `<td>${esc(value)}</td>`;
 const num = (value) => `<td class="num">${n(value)}</td>`;
 
 export function renderReport(report, email) {
-  const { days, bots, site, sites, totals, daily, pages, referrers, networks, places, tags, recent } = report;
+  const { days, bots, site, known, sites, totals, daily, pages, referrers, networks, places, tags, recent } = report;
   const link = (d, b, s = site) =>
     `/admin?days=${d}${b ? "&bots=1" : ""}${s ? `&site=${encodeURIComponent(s)}` : ""}`;
   // With every site shown together, a path needs its site in front of it.
   const where = (r) => (site ? r.path : `${r.site}${r.path}`);
-  const siteLinks = [["", "All sites"], ...sites.map((s) => [s.site, s.site])]
-    .map(([value, label]) =>
-      value === site ? `<b>${esc(label)}</b>` : `<a href="${link(days, bots, value)}">${esc(label)}</a>`,
-    )
-    .join(" · ");
+  // The picker is a plain GET form, so it works as a link would. Choosing a
+  // site submits it; the button is only there for a browser with scripts off.
+  // A site asked for in the address but not in the table is still listed, so
+  // the control always shows what the page is filtered to.
+  const options = [...new Set([...known, ...(site ? [site] : [])])].sort();
+  const picker =
+    `<form method="get" action="/admin">` +
+    `<input type="hidden" name="days" value="${days}">` +
+    (bots ? `<input type="hidden" name="bots" value="1">` : "") +
+    `<label for="site">Site</label> ` +
+    `<select id="site" name="site" onchange="this.form.submit()">` +
+    `<option value=""${site ? "" : " selected"}>All sites</option>` +
+    options
+      .map((s) => `<option value="${esc(s)}"${s === site ? " selected" : ""}>${esc(s)}</option>`)
+      .join("") +
+    `</select> <noscript><button type="submit">Show</button></noscript></form>`;
   const rangeLabel = (d) => (d === 1 ? "Today" : d === 365 ? "1 year" : `${d} days`);
   const peak = Math.max(1, ...daily.map((d) => d.views));
 
@@ -151,9 +168,9 @@ export function renderReport(report, email) {
     .join(" · ");
 
   const body = `
+<p class="title"><b>Visits</b></p>
+${picker}
 <p class="top">
-  <b>Visits</b><br>
-  ${siteLinks}<br>
   ${ranges}<br>
   ${bots ? `Bots included. <a href="${link(days, false)}">Hide bots</a>` : `People only. <a href="${link(days, true)}">Include bots</a>`}
 </p>
@@ -265,6 +282,9 @@ a { color: #0864c7; }
 b, h2, th { color: #000; }
 h2 { font-size: 13px; line-height: 18px; margin: 36px 0 6px; }
 p { margin: 0 0 18px; }
+.title { margin-bottom: 6px; }
+form { margin: 0 0 8px; }
+select, button { font: inherit; color: #000; }
 table { border-collapse: collapse; }
 th, td { text-align: left; vertical-align: top; padding: 0 24px 0 0; font-weight: normal; white-space: nowrap; }
 th { font-weight: bold; }
