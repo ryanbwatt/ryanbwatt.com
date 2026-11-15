@@ -1,4 +1,4 @@
-# ryanbwatt.com
+# ryanwatt.ca
 
 Personal site. Astro turns Markdown into static HTML and does nothing else.
 

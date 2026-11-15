@@ -2,7 +2,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://ryanbwatt.com",
+  site: "https://ryanwatt.ca",
 
   // No integrations. Astro's only job here is turning Markdown into HTML.
 

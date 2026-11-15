@@ -1,7 +1,8 @@
-# ryanbwatt.com
+# ryanwatt.ca
 
 A personal site built as a set of standing pages rather than a blog.
-Live at **[ryanbwatt.com](https://ryanbwatt.com)**.
+Live at **[ryanwatt.ca](https://ryanwatt.ca)**. The earlier address, ryanbwatt.com,
+redirects to it.
 
 | | |
 | --- | --- |
@@ -122,7 +123,7 @@ which carries an identical copy of `analytics/log.js` in its own repository
 both together or one at a time. Change `log.js` in both places.
 
 To tell whether a particular person opened a link, label it before sending:
-`ryanbwatt.com/about?via=joe` shows up under "Tagged links".
+`ryanwatt.ca/about?via=joe` shows up under "Tagged links".
 
 One-time setup in the Cloudflare dashboard. Until it is done the site behaves
 exactly as before and `/admin` refuses every request:
@@ -133,7 +134,7 @@ exactly as before and `/admin` refuses every request:
    database.** Variable name `DB`, Production environment only, so preview
    deployments don't write to it.
 3. **Zero Trust → Access → Applications → Add → Self-hosted.** Domain
-   `ryanbwatt.com`, path `admin`. One Allow policy: emails, your own address.
+   `ryanwatt.ca`, path `admin`. One Allow policy: emails, your own address.
    Copy the **Application Audience (AUD) tag** from the application's page.
 4. **Project → Settings → Variables and Secrets** (Production):
    `ACCESS_TEAM_DOMAIN` (e.g. `yourteam.cloudflareaccess.com`), `ACCESS_AUD`

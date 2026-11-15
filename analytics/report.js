@@ -193,7 +193,7 @@ ${table(
 ${table(
   [["Tag"], ["Visitors", "num"], ["Views", "num"], ["First opened"], ["Last opened"]],
   tags.map((t) => [td(t.via), num(t.visitors), num(t.views), td(when(t.first)), td(when(t.last))]),
-  "None yet. Add ?via=name to a link you send, e.g. ryanbwatt.com/about?via=joe, and it shows up here when it is opened.",
+  "None yet. Add ?via=name to a link you send, e.g. ryanwatt.ca/about?via=joe, and it shows up here when it is opened.",
 )}
 
 <h2>Networks</h2>

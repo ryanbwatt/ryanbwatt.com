@@ -6,6 +6,7 @@ import { webcrypto } from "node:crypto";
 import { dayOf, deviceOf, isBot, pathOf, referrerOf, shouldLog, viaOf } from "./log.js";
 import { teamHost, verifyAccess } from "./access.js";
 import { esc, parseOptions } from "./report.js";
+import { canonicalRedirect } from "../functions/_middleware.js";
 
 const CHROME =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36";
@@ -139,4 +140,13 @@ test("team domain accepts the short or full form", () => {
   assert.equal(teamHost("ryanbwatt"), "ryanbwatt.cloudflareaccess.com");
   assert.equal(teamHost("https://ryanbwatt.cloudflareaccess.com/"), "ryanbwatt.cloudflareaccess.com");
   assert.equal(teamHost(""), "");
+});
+
+test("every name but ryanwatt.ca redirects there, keeping path and query", () => {
+  assert.equal(canonicalRedirect("https://ryanwatt.ca/about"), null);
+  assert.equal(canonicalRedirect("https://ryanbwatt.com/about?via=joe"), "https://ryanwatt.ca/about?via=joe");
+  assert.equal(canonicalRedirect("http://www.ryanwatt.ca/"), "https://ryanwatt.ca/");
+  assert.equal(canonicalRedirect("https://www.ryanbwatt.com/photos"), "https://ryanwatt.ca/photos");
+  assert.equal(canonicalRedirect("https://abc123.ryanbwatt-com.pages.dev/about"), null);
+  assert.equal(canonicalRedirect("http://localhost:4321/about"), null);
 });
