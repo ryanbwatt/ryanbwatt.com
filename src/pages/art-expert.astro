@@ -1,0 +1,36 @@
+---
+// Art Expert: a video conversation with an AI version of Ryan, linked from
+// Projects. The whole window is Kaltura's hosted conversational-agent app in
+// an iframe, so this site ships no script for it and its stylesheet can't
+// leak in. The widget id is public by design: it can only start a
+// conversation with this one agent, never manage the account. The agent
+// itself (prompt, face, voice) lives in Kaltura, not in this repo. See
+// DECISIONS.md, decision 12.
+//
+// Not wrapped in Base: there is no nav here, just the way back.
+const agent =
+  "https://unisphere.nvp1.ovp.kaltura.com/apps/embeds/conversational-agents/" +
+  "?partnerId=6565762&widgetId=1_gqfewl07";
+---
+
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/style.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Art Expert · Ryan Watt</title>
+    <meta
+      name="description"
+      content="A video conversation with an AI version of Ryan Watt about the New York School and Abstract Expressionism."
+    />
+  </head>
+  <body class="agent">
+    <a id="back" href="/projects" aria-label="Back to Projects">←</a>
+    <iframe
+      id="agent"
+      src={agent}
+      title="Art Expert: a video conversation with an AI version of Ryan Watt"
+      allow="microphone; camera; autoplay; fullscreen; display-capture"
+    ></iframe>
+  </body>
+</html>
