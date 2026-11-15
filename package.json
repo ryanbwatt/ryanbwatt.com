@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "verify": "npm run check && npm run build",
+    "test": "node --test analytics/analytics.test.mjs",
+    "verify": "npm run check && npm run test && npm run build",
     "astro": "astro"
   },
   "dependencies": {

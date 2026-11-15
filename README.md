@@ -82,7 +82,7 @@ white is 5.74:1. Stay above 4.5:1.
 ```
 npm install
 npm run dev        # localhost:4321
-npm run verify     # type check + build
+npm run verify     # type check + tests + build
 npm run build      # static output to dist/
 ```
 
@@ -103,10 +103,42 @@ Applications → Configure → Repository access).
 Astro, and nothing else. No integrations, no webfonts, no CSS framework, no
 JavaScript framework or bundle, no cookies, no favicon.
 
-The repository ships no analytics and requests nothing from a third party.
-Cloudflare, which hosts the site, adds two things at the edge that are not in
-this repo: its Web Analytics beacon, and an email-obfuscation script on pages
-with a `mailto:` link.
+The pages request nothing from a third party. Cloudflare, which hosts the
+site, adds one thing at the edge that is not in this repo: an
+email-obfuscation script on pages with a `mailto:` link.
+
+## Visit logging
+
+Visits are counted on the server, not in the page. A Pages Function serves
+each page untouched and then writes one row to a Cloudflare D1 database: the
+page, the referring site, city and country, device type, and the network the
+visitor is on. No script, no cookie, and no IP address is stored. The report
+is at `/admin`, behind Cloudflare Access. Reasoning in
+[DECISIONS.md](DECISIONS.md), decision 11.
+
+To tell whether a particular person opened a link, label it before sending:
+`ryanbwatt.com/about?via=joe` shows up under "Tagged links".
+
+One-time setup in the Cloudflare dashboard. Until it is done the site behaves
+exactly as before and `/admin` refuses every request:
+
+1. **Storage & Databases → D1 → Create.** Name it `ryanbwatt-visits`. The
+   tables are created on the first visit; there is no SQL to run.
+2. **Workers & Pages → this project → Settings → Bindings → Add → D1
+   database.** Variable name `DB`, Production environment only, so preview
+   deployments don't write to it.
+3. **Zero Trust → Access → Applications → Add → Self-hosted.** Domain
+   `ryanbwatt.com`, path `admin`. One Allow policy: emails, your own address.
+   Copy the **Application Audience (AUD) tag** from the application's page.
+4. **Project → Settings → Variables and Secrets** (Production):
+   `ACCESS_TEAM_DOMAIN` (e.g. `yourteam.cloudflareaccess.com`), `ACCESS_AUD`
+   (the tag from step 3), and optionally `ADMIN_EMAIL`.
+5. **Deployments → Retry deployment**, so the binding and variables take
+   effect.
+
+`/admin` checks the Access token itself rather than trusting that Access is in
+front of it, because the same deployment also answers on its `*.pages.dev`
+address.
 
 ## Repository
 
@@ -118,5 +150,9 @@ with a `mailto:` link.
 | `src/layouts/Base.astro` | The only layout. Head, nav, and the content column. |
 | `src/pages/[...slug].astro` | Renders every content page. |
 | `src/lib/pages.ts` | Nav ordering. |
+| `functions/_middleware.js` | Logs a visit after each page is served. |
+| `functions/admin.js` | The private visit report at `/admin`. |
+| `analytics/` | What the two functions call: logging, the Access check, the report, tests. |
+| `public/_routes.json` | Keeps images and the stylesheet from invoking the function. |
 | `AGENTS.md` | Working rules — read before changing the design. |
 | `DECISIONS.md` | Why it's built this way, and what wasn't built. |

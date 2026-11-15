@@ -118,7 +118,8 @@ sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumb
 | Command | Does |
 | --- | --- |
 | `npm run dev` | Dev server on :4321 |
-| `npm run verify` | Type check, then production build |
+| `npm run verify` | Type check, tests, then production build |
+| `npm test` | Tests for the visit logging in `analytics/` |
 | `npm run build` | Static build to `dist/` |
 
 Run `npm run verify` before pushing.
@@ -128,6 +129,22 @@ Run `npm run verify` before pushing.
 There is no automated gate — the palette is three literals and rarely moves.
 Current: `#333` on `#fff` is 12.63:1, `#0864c7` on `#fff` is 5.74:1. Both clear
 WCAG AA. If you change a colour, check it stays above 4.5:1.
+
+## Visit logging
+
+`functions/_middleware.js` logs each page view to D1 after the page is served;
+`functions/admin.js` is the private report. The logic lives in `analytics/`
+with tests (`npm test`). Rules:
+
+- Nothing analytics-related goes into the pages, `Base.astro`, or `public/`
+  (other than `_routes.json`). No beacon, no cookie, no client script.
+- The middleware must return the built response untouched and must never
+  throw; a failed write is swallowed.
+- Never store the IP address. Everything rendered on `/admin` is escaped.
+- A new image or asset path at the top level of `public/` should be added to
+  the `exclude` list in `public/_routes.json`.
+- `/admin` is not a site page: it has its own inline styles and is not in the
+  nav.
 
 ## Deployment
 

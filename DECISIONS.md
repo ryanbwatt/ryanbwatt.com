@@ -16,7 +16,8 @@ reversed earlier ones.
 | Web fonts | none |
 | Runtime dependencies | 1 (Astro) |
 | Requests to render a text page | 2 — the HTML and the stylesheet |
-| Third-party services in the repo | none. Cloudflare adds its Web Analytics beacon and email obfuscation at the edge |
+| Third-party services in the repo | none. Cloudflare adds email obfuscation at the edge |
+| Visit logging | Server-side, at the edge. Nothing added to the pages (see 11) |
 
 ---
 
@@ -39,7 +40,9 @@ and its nav link with no second place to register it.
 **Context.** The site is static text. Almost any framework would work.
 
 **Decision.** Astro with zero integrations. No CMS, no database, no analytics,
-no CSS framework, no component library.
+no CSS framework, no component library. (The "no database, no analytics" part
+was later reversed for visit logging — see 11. The pages themselves are
+unchanged by it.)
 
 **Consequence.** One runtime dependency. Astro's only job is turning Markdown
 into HTML; if it were removed tomorrow the content is still plain Markdown in
@@ -162,6 +165,41 @@ gate never shows and the homepage is what you get; the photo grid still
 renders, without the enlarged view. The cost is that "no JavaScript" is no
 longer a claim this site can make, and the numbers at the top of this file say
 so.
+
+## 11. Count visits at the edge, not in the page
+
+**Context.** Decision 2 said no analytics and no database. Then I wanted to
+know whether anyone reads the site, and specifically whether a link I sent
+someone was opened. The usual answer is a tracking script, which would put a
+third-party request and a cookie banner's worth of questions on a site whose
+text pages ship no script at all.
+
+**Decision.** Log visits on the server. A Pages Function
+(`functions/_middleware.js`) serves each page exactly as built, then writes one
+row to a Cloudflare D1 database in the background. `/admin` reads that table
+back as plain HTML tables and is locked behind Cloudflare Access.
+
+**Consequence.** The pages are byte for byte what they were: no script, no
+cookie, no extra request, nothing for an ad blocker to block. The numbers at
+the top of this file still hold. What it costs:
+
+- "No database, no analytics" is no longer true, and this file says so.
+- There is now code in the repo that isn't the site: `analytics/` and
+  `functions/`, plus a small test file.
+- It records more than a page counter would. Each row has the page, the
+  referring site's hostname, city and country, device type, and the name of the
+  network the visitor is on — a company name from an office, an internet
+  provider from a home or phone. That is as close to "who" as a website can
+  honestly get; it never names a person.
+- IP addresses are not stored. Unique visitors are counted with a hash of
+  IP and user agent, salted with a random value that is replaced every day and
+  then deleted, so yesterday's ids can't be tied back to an address even with
+  the database in hand. The cost is that a returning visitor looks new each
+  day.
+- A link with `?via=name` on the end records the name. That is how a visit
+  gets tied to a person: by me labelling the link before I send it.
+- Bots are separated by user agent only. One pretending to be Chrome counts as
+  a person.
 
 ---
 
