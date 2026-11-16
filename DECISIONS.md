@@ -16,7 +16,7 @@ reversed earlier ones.
 | Web fonts | none |
 | Runtime dependencies | 1 (Astro) |
 | Requests to render a text page | 2 — the HTML and the stylesheet |
-| Third-party services in the repo | none. Cloudflare adds email obfuscation at the edge |
+| Third-party services in the repo | one iframe, on `/art-expert` only (see 12). Cloudflare adds email obfuscation at the edge |
 | Visit logging | Server-side, at the edge. Nothing added to the pages (see 11) |
 
 ---
@@ -209,6 +209,28 @@ the top of this file still hold. What it costs:
   gets tied to a person: by me labelling the link before I send it.
 - Bots are separated by user agent only. One pretending to be Chrome counts as
   a person.
+
+## 12. Art Expert is Kaltura's app in a frame
+
+**Context.** Projects needed to show the conversational avatar I built at
+Kaltura: an AI version of me that talks about art history, can look at a
+shared screen, and makes flashcards and other visuals on request. It needs
+live video, a microphone, and a server-side agent, none of which this site can
+or should do.
+
+**Decision.** `/art-expert` is a page with a ← back to Projects and Kaltura's
+hosted conversational-agent app in a full-window iframe, pointed at the
+agent's public widget id. No script from Kaltura runs on this site, and the
+site's stylesheet can't reach into the app.
+
+**Consequence.** That page looks like Kaltura's app, not like this site, and
+works only while Kaltura serves it. The agent's prompt, face, voice and knowledge
+base are edited in Kaltura, not here; the scripts and knowledge file that set
+them up live in `~/kaltura_cc/demos/art-expert/`. It runs on a Kaltura demo account (partner
+6565762): every conversation counts against that account's usage, and if the
+account hits its limit or is retired, the page shows Kaltura's error. The
+widget id is public by design and can't do anything but start a conversation
+with this one agent.
 
 ---
 
