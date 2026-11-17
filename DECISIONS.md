@@ -232,6 +232,42 @@ account hits its limit or is retired, the page shows Kaltura's error. The
 widget id is public by design and can't do anything but start a conversation
 with this one agent.
 
+## 13. One portrait, one identity record
+
+**Context.** When people search my name, Google and AI search pick a photo
+and a summary from whatever they can find. I want them to pick my preferred
+headshot and an accurate description, and to see running and writing next to
+work rather than only the Columbia rowing roster.
+
+**Decision.** Every page now carries a canonical URL, Open Graph tags pointing
+at `/ryan-watt.jpg`, and a schema.org `Person` block with the profiles I
+claim (`sameAs`). About declares itself the `ProfilePage` for that Person.
+`robots.txt` and a hand-rolled `/sitemap.xml` let crawlers find every page.
+`/headshot.jpg` stays published so old links and previews keep working.
+
+**Consequence.** This raises the odds, it doesn't decide anything: Google
+chooses images and snippets itself. The portrait is only 260px; replacing
+`public/ryan-watt.jpg` with the original (at least 1200px on the long side,
+same filename) is the single best improvement left. The `sameAs` list is a
+claim of identity, so only add profiles that are verifiably mine.
+
+## 14. Athletics and Writing are pages, not feeds
+
+**Context.** I wanted an athletic resume with filterable results, and a place
+to list essays as I publish them on LinkedIn.
+
+**Decision.** `/athletics` is a hand-written HTML table in Markdown, one
+`<tr>` per result, each linked to the official record. `public/athletics.js`
+(served raw, like gallery.js) builds Sport / Distance / Year dropdowns from
+the rows' `data-` attributes; without JavaScript the dropdowns stay hidden
+and every row shows. `/writing` is a list of titles with one sentence each,
+marked Forthcoming until the post exists, then linked. Writing is last in the
+nav. Only results verified against an official source go in: there is another
+Ryan Watt in UTMB and UltraRunning databases, and those are not mine.
+
+**Consequence.** Adding a result is adding a row; adding a piece is adding a
+paragraph. No dates on the Writing page, no feed: rule 1 still holds.
+
 ---
 
 ## Known trade-offs

@@ -304,6 +304,47 @@ body.agent {
    stack. This is the one rule here that answers to a device the rest of the
    layout predates — without it the site is unreadable on a phone. */
 
+/* Tables (Athletics). Left-aligned, no borders, no stripes: a column of
+   text that happens to line up. */
+
+#content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 13px;
+}
+
+#content th,
+#content td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0 12px 4px 0;
+}
+
+#content th {
+  font-weight: normal;
+  color: #000;
+}
+
+#content h2 + table,
+#content h2 + p {
+  margin-top: 6px;
+}
+
+#races td:nth-child(1),
+#races td:nth-child(4),
+#races td:nth-child(5) {
+  white-space: nowrap;
+}
+
+#content tr[hidden] {
+  display: none;
+}
+
+#content select {
+  font: inherit;
+  margin-right: 8px;
+}
+
 @media (max-width: 720px) {
   #menu {
     float: none;
@@ -329,6 +370,10 @@ body.agent {
     gap: 8px;
     margin: 20px;
     padding-top: 0;
+  }
+
+  #races td:nth-child(5) {
+    white-space: normal;
   }
 
   #photo-frame {

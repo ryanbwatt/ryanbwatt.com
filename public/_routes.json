@@ -1,5 +1,18 @@
 {
   "version": 1,
-  "include": ["/*"],
-  "exclude": ["/photos/p*", "/photos/thumbs/*", "/style.css", "/gallery.js", "/headshot.jpg", "/enter.jpg"]
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/photos/p*",
+    "/photos/thumbs/*",
+    "/style.css",
+    "/gallery.js",
+    "/headshot.jpg",
+    "/enter.jpg",
+    "/ryan-watt.jpg",
+    "/athletics.js",
+    "/athletics/*",
+    "/robots.txt"
+  ]
 }
