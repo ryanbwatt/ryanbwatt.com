@@ -252,12 +252,13 @@ at 128px. To change the portrait, replace that file and keep the filename.
 The `sameAs` list is a
 claim of identity, so only add profiles that are verifiably mine.
 
-## 14. Athletics and Writing are pages, not feeds
+## 14. Athletic Resume and Writing are pages, not feeds
 
 **Context.** I wanted an athletic resume with filterable results, and a place
 to list essays as I publish them on LinkedIn.
 
-**Decision.** `/athletics` is a hand-written HTML table in Markdown, one
+**Decision.** `/athletics` (nav label "Athletic Resume"; the URL stays
+`/athletics` so the submitted sitemap and any links keep working) is a hand-written HTML table in Markdown, one
 `<tr>` per result, each linked to the official record. `public/athletics.js`
 (served raw, like gallery.js) builds Sport / Distance / Year dropdowns from
 the rows' `data-` attributes; without JavaScript the dropdowns stay hidden
