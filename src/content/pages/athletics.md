@@ -123,9 +123,9 @@ row2k, 2016.
 [Columbia Lightweight Rowing](https://gocolumbialions.com/sports/lightweight-rowing/roster/ryan-watt/11068)
 
 <!--
-  Race photos: resize to public/athletics/ (see AGENTS.md "Images"), then add
+  Race photos: resize to public/race-photos/ (see AGENTS.md "Images"), then add
   a "## Photos" heading here with one <img> per photo, newest first:
-  <img src="/athletics/2021-nyc-marathon.jpg" width="500" height="333" loading="lazy" alt="Ryan Watt at the 2021 New York City Marathon" />
+  <img src="/race-photos/2021-nyc-marathon.jpg" width="500" height="333" loading="lazy" alt="Ryan Watt at the 2021 New York City Marathon" />
 -->
 
 <script src="/athletics.js" defer></script>
