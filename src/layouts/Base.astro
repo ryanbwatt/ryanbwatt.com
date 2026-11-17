@@ -122,6 +122,11 @@ const homeNavReplace =
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonical} />
+    {/* Google Search Console ownership for https://ryanwatt.ca/. Keep it:
+        removing it un-verifies the property. Homepage only is enough. */}
+    {current === "/" && (
+      <meta name="google-site-verification" content="__Vq7hWX2Wd2Vi5eMeNJJJlKsIX-zo9BS3SYBUGgL-Q" />
+    )}
     <meta property="og:type" content={current === "/about" ? "profile" : "website"} />
     <meta property="og:site_name" content="Ryan Watt" />
     <meta property="og:title" content={pageTitle} />
