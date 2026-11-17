@@ -246,9 +246,10 @@ claim (`sameAs`). About declares itself the `ProfilePage` for that Person.
 `/headshot.jpg` stays published so old links and previews keep working.
 
 **Consequence.** This raises the odds, it doesn't decide anything: Google
-chooses images and snippets itself. The portrait is only 260px; replacing
-`public/ryan-watt.jpg` with the original (at least 1200px on the long side,
-same filename) is the single best improvement left. The `sameAs` list is a
+chooses images and snippets itself. `public/ryan-watt.jpg` is the original
+2025 headshot at full size (822×830, EXIF stripped); About still displays it
+at 128px. To change the portrait, replace that file and keep the filename.
+The `sameAs` list is a
 claim of identity, so only add profiles that are verifiably mine.
 
 ## 14. Athletics and Writing are pages, not feeds
