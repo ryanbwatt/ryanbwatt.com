@@ -46,7 +46,8 @@ Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 (lower sorts first; otherwise alphabetical), `description` (meta only).
 
 Current nav order is explicit, not alphabetical: About (1), Experience (2),
-Favorites (3), Photos (4), Contact (5), Projects (6). About also carries the
+Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Athletics (7),
+Writing (8). Writing stays last. About also carries the
 contact details, below the intro. The "Ryan Watt" title is plain
 text, not a link — the blank homepage is a doorway you pass through once, and
 nothing links back to it. Colophon was removed. Interests was folded into

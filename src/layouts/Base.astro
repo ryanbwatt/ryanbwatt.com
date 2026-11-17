@@ -25,6 +25,32 @@ const pageTitle = `${title ?? "Home"} · Ryan Watt`;
 
 const pages = await listedPages();
 
+// Identity metadata. One preferred portrait, one description and one list of
+// profiles, so search engines and link previews all pick the same photo and
+// the same person. The Person block is on every page; About also declares
+// itself the ProfilePage for that Person, which is what Google reads for
+// name-search profile results.
+const siteUrl = "https://ryanwatt.ca";
+const portrait = `${siteUrl}/ryan-watt.jpg`;
+const person = {
+  "@type": "Person",
+  "@id": `${siteUrl}/#ryan-watt`,
+  name: "Ryan Watt",
+  url: `${siteUrl}/about`,
+  image: portrait,
+  jobTitle: "Senior Account Manager",
+  worksFor: { "@type": "Organization", name: "Kaltura", url: "https://corp.kaltura.com" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Columbia University" },
+  homeLocation: { "@type": "Place", name: "Brooklyn, New York" },
+  sameAs: [
+    "https://www.linkedin.com/in/ryanwattny/",
+    "https://www.instagram.com/ryanwatt.ca/",
+    "https://github.com/ryanbwatt",
+    "https://results.nyrr.org/runner/34525309/races",
+    "https://gocolumbialions.com/sports/lightweight-rowing/roster/ryan-watt/11068",
+  ],
+};
+
 // Which nav link is the page you're on.
 //
 // Normalising matters here: because build.format is "file", at build time
@@ -36,6 +62,20 @@ const current =
     .replace(/\.html$/, "")
     .replace(/\/index$/, "/")
     .replace(/(.)\/+$/, "$1") || "/";
+
+const canonical = `${siteUrl}${current === "/" ? "/" : current}`;
+const metaDescription =
+  description ?? "Ryan Watt lives in Brooklyn and works on enterprise accounts at Kaltura.";
+const jsonLd = JSON.stringify(
+  current === "/about"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        url: canonical,
+        mainEntity: person,
+      }
+    : { "@context": "https://schema.org", ...person },
+);
 
 // The intro gate's two scripts, kept as raw strings and injected verbatim with
 // set:html so nothing bundles or rewrites them. #splash is hidden by default
@@ -80,7 +120,17 @@ const homeNavReplace =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content={current === "/about" ? "profile" : "website"} />
+    <meta property="og:site_name" content="Ryan Watt" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={portrait} />
+    <meta property="og:image:alt" content="Ryan Watt" />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" is:inline set:html={jsonLd} />
     {splash && <script is:inline set:html={introReveal} />}
   </head>
   <body class={photo ? "full-bleed" : undefined}>
