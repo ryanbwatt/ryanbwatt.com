@@ -6,22 +6,22 @@ interface Props {
   description?: string;
   photo?: string;
   /**
-   * Render the intro gate: a full-screen still photo with the word Enter,
-   * dismissed by a click or tap. Only the homepage sets this. Every other
-   * page renders with no gate and none of its script.
-   */
-  splash?: boolean;
-  /**
    * Render the body as a scrolling column of captioned photos rather than the
    * text column. The page's Markdown supplies the <figure> elements.
    */
   gallery?: boolean;
+  /**
+   * Render this page as if it were another path, for the nav highlight only.
+   * The homepage shows About, so it passes "/about" and the About link is
+   * marked current. Canonical URL and Search Console tag still use the real path.
+   */
+  as?: string;
 }
 
-const { title, description, photo, splash, gallery } = Astro.props;
+const { title, description, photo, gallery, as } = Astro.props;
 
-// "About · Ryan Watt", "Home · Ryan Watt".
-const pageTitle = `${title ?? "Home"} · Ryan Watt`;
+// "About · Ryan Watt"; the homepage is just "Ryan Watt".
+const pageTitle = !title || title === "Ryan Watt" ? "Ryan Watt" : `${title} · Ryan Watt`;
 
 const pages = await listedPages();
 
@@ -77,41 +77,6 @@ const jsonLd = JSON.stringify(
     : { "@context": "https://schema.org", ...person },
 );
 
-// The intro gate's two scripts, kept as raw strings and injected verbatim with
-// set:html so nothing bundles or rewrites them. #splash is hidden by default
-// in the stylesheet; the head script adds `intro` to <html> before the body
-// paints, but only for a first-time visitor (or `?enter` in the URL, to
-// preview it again). So: no JavaScript, or already entered — the gate never
-// shows and the homepage is what you get, with no flash either way.
-const introReveal =
-  "try{if(location.search.indexOf('enter')>-1||!localStorage.getItem('rbw-entered'))" +
-  "document.documentElement.className+=' intro';}" +
-  "catch(e){document.documentElement.className+=' intro';}";
-
-// Runs at the end of the body. Bails unless the gate is actually showing, then
-// wires up the dismiss: a click or Enter/Space fades the gate out, removes it,
-// and remembers you've entered so it never shows again.
-const introDismiss =
-  "(function(){var d=document;if(!d.documentElement.classList.contains('intro'))return;" +
-  "var s=d.getElementById('splash');if(!s)return;" +
-  "function enter(){try{localStorage.setItem('rbw-entered','1');}catch(e){}" +
-  "s.classList.add('leaving');" +
-  "setTimeout(function(){if(s.parentNode)s.remove();},650);}" +
-  "s.addEventListener('click',enter);" +
-  "s.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();enter();}});})();";
-
-// Homepage only. The blank homepage is a doorway you pass through once: the
-// name isn't a link and there's no Home item, so nothing points back to it.
-// This makes the browser's Back button honour that too — a nav click from the
-// homepage replaces it in history rather than stacking on top, so once you're
-// in a section there's no returning to the blank page. Modifier- and
-// middle-clicks are left alone so "open in new tab" still works.
-const homeNavReplace =
-  "document.addEventListener('click',function(e){" +
-  "var a=e.target.closest?e.target.closest('a[href]'):null;if(!a)return;" +
-  "if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0)return;" +
-  "var h=a.getAttribute('href');if(!h||h.charAt(0)==='#')return;" +
-  "e.preventDefault();location.replace(a.href);});";
 ---
 
 <html lang="en">
@@ -136,28 +101,10 @@ const homeNavReplace =
     <meta property="og:image:alt" content="Ryan Watt" />
     <meta name="twitter:card" content="summary" />
     <script type="application/ld+json" is:inline set:html={jsonLd} />
-    {splash && <script is:inline set:html={introReveal} />}
   </head>
   <body class={photo ? "full-bleed" : undefined}>
     {/* photo → single full-bleed image; gallery → scrolling captioned column;
         otherwise the standard text column. */}
-    {splash && (
-      <div id="splash" role="button" tabindex="0" aria-label="Enter">
-        {/*
-          A still photo fills the gate (object-fit: cover). #splash-stage holds
-          the photo's 3:2 box while covering the viewport, so the "Enter" label
-          — positioned as a percentage of the stage — stays pinned to the sun no
-          matter the window shape. The label is the site's own 13px text in
-          black, sitting over the blown-out sun where black reads cleanly. The
-          arrow is the same → the photo lightbox uses. Move it by nudging the
-          two percentages on #splash-enter in the stylesheet.
-        */}
-        <div id="splash-stage">
-          <img id="splash-photo" src="/enter.jpg" alt="" />
-          <span id="splash-enter">Enter&nbsp;→</span>
-        </div>
-      </div>
-    )}
     <div id="menu">
       <span class="title">Ryan Watt</span>
       <ul>
@@ -165,7 +112,7 @@ const homeNavReplace =
           <li>
             <a
               href={`/${page.id}`}
-              aria-current={current === `/${page.id}` ? "page" : undefined}
+              aria-current={(as ?? current) === `/${page.id}` ? "page" : undefined}
             >
               {page.data.title}
             </a>
@@ -187,8 +134,6 @@ const homeNavReplace =
         </div>
       </>
     )}
-    {splash && <script is:inline set:html={introDismiss} />}
-    {current === "/" && <script is:inline set:html={homeNavReplace} />}
     {gallery && <script is:inline src="/gallery.js" defer></script>}
   </body>
 </html>

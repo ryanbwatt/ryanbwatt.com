@@ -1,6 +1,7 @@
 ---
 title: Writing
 order: 8
+nav: false
 description: Essays by Ryan Watt on enterprise AI adoption, technology and attention.
 ---
 
