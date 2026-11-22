@@ -60,7 +60,7 @@ Race results and personal bests, each linked to the official record.
     <tr data-sport="Running" data-year="2022">
       <td>26 Feb 2022</td>
       <td><a href="https://results.nyrr.org/event/22ALG/result/3305">NYRR Al Gordon 4M</a></td>
-      <td>4 miles</td><td>23:05</td><td>3rd of 100, M20–24</td>
+      <td>4 miles</td><td>23:05</td><td>1st Canadian of 36</td>
     </tr>
     <tr data-sport="Running" data-year="2021">
       <td>7 Nov 2021</td>
