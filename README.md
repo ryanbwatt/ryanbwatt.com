@@ -6,11 +6,11 @@ redirects to it.
 
 | | |
 | --- | --- |
-| Homepage HTML | 1,688 bytes |
+| Homepage HTML | 2,652 bytes |
 | Stylesheet | 9,063 bytes, hand-written, served unbundled |
 | Markup, styles and script | 30 KB across 7 pages |
 | Photographs | 7 MB, lazy-loaded on the Photos page |
-| JavaScript | No framework, no bundle. Two hand-written scripts: the homepage intro gate and the Photos lightbox |
+| JavaScript | No framework, no bundle. One hand-written script: the Photos lightbox |
 | Web fonts | none |
 | Runtime dependencies | 1 |
 | Requests per text page | 2 |

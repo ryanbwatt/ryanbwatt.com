@@ -1,14 +1,16 @@
 ---
+import { getEntry, render } from "astro:content";
 import Base from "../layouts/Base.astro";
 
-// The homepage has no content of its own. The nav in the layout is the whole
-// page — name, then the list of pages, and nothing else. Collison's
-// <div id="content"> is empty on his homepage too; that emptiness is the
-// design, so there is deliberately nothing to add here.
-//
-// The one thing layered in front of it is the intro gate (`splash`): on a
-// first visit the empty homepage sits behind a full-screen still photo and
-// the word Enter, and a click reveals it. Dismissed once, it stays dismissed.
+// The homepage is the About page: photo, one line, contact details. A first
+// visitor lands on who Ryan is, with no gate or blank page in front of it.
+// /about still exists and is the canonical About URL; the nav marks About as
+// the current page here too.
+const about = await getEntry("pages", "about");
+if (!about) throw new Error("src/content/pages/about.md is missing");
+const { Content } = await render(about);
 ---
 
-<Base splash />
+<Base title="Ryan Watt" description={about.data.description} as="/about">
+  <Content />
+</Base>

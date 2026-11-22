@@ -8,11 +8,11 @@ reversed earlier ones.
 
 | | |
 | --- | --- |
-| Homepage HTML | 1,688 bytes |
+| Homepage HTML | 2,652 bytes |
 | Stylesheet | 9,063 bytes (379 lines, hand-written) |
 | Markup, styles and script | 30 KB across 7 pages |
 | Photographs | 7 MB, lazy-loaded on the Photos page |
-| JavaScript shipped | No framework, no bundle. Two hand-written scripts (see 10) |
+| JavaScript shipped | No framework, no bundle. One hand-written script, the Photos lightbox (see 10 and 13) |
 | Web fonts | none |
 | Runtime dependencies | 1 (Astro) |
 | Requests to render a text page | 2 — the HTML and the stylesheet |
@@ -286,3 +286,18 @@ Things I know are worse this way, kept on purpose:
   the construction isn't honest to its period.
 - **Verification is local.** `npm run verify` before pushing is a convention,
   not something enforced. With one contributor that's a reasonable bet.
+
+## 13. The homepage is About
+
+**Context.** First-time visitors met a full-screen photo with the word Enter,
+then a blank page with a list of links. The photo was washed out by the sun, so
+"Enter" was hard to see, and someone opening the site from a link had to click
+twice before learning anything.
+
+**Decision.** Remove the intro gate, its script, its styles and `enter.jpg`.
+The homepage now renders the About page: photo, one line, contact details.
+`/about` stays as the canonical About URL. Writing is hidden from the nav until
+an essay is published.
+
+**Consequence.** The text pages and the homepage ship no script again; the
+Photos lightbox is the only JavaScript. Decision 10's gate no longer exists.

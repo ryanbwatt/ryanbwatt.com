@@ -20,7 +20,7 @@ none of which should come back:
 - centred content, or `max-width` containers that fill the viewport
 - descriptions or blurbs beside nav links
 - hairline rules between list items
-- an intro paragraph on the homepage (its content div is empty, and stays so)
+- an intro paragraph or hero on the homepage (it shows the About page as is)
 - fluid `clamp()` typography, or any type scale
 - webfonts, CSS variables, dark mode, `text-wrap`, `color-mix`
 - an `<h1>` echoing the page title above the text
@@ -47,11 +47,11 @@ Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 
 Current nav order is explicit, not alphabetical: About (1), Experience (2),
 Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Athletic Resume (7,
-at `/athletics`), Writing (8). Writing stays last. About also carries the
-contact details, below the intro. The "Ryan Watt" title is plain
-text, not a link — the blank homepage is a doorway you pass through once, and
-nothing links back to it. Colophon was removed. Interests was folded into
-About; Goals was removed.
+at `/athletics`), Writing (8, hidden until an essay is published; it stays last
+when shown). About also carries the contact details, below the intro. The
+homepage renders the About page (no intro gate since Nov 2026), with About
+marked current in the nav. The "Ryan Watt" title is plain text, not a link.
+Colophon was removed. Interests was folded into About; Goals was removed.
 
 ## Layout grid
 

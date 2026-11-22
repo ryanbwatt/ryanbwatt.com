@@ -4,13 +4,11 @@ order: 2
 description: Where Ryan Watt has worked.
 ---
 
-**[Kaltura](https://corp.kaltura.com)** — Senior Account Manager, Emerging
+**[Kaltura](https://corp.kaltura.com)** — Lead Account Manager, Emerging
 Markets.
-Own renewal and expansion for a portfolio of enterprise accounts across
-automotive, insurance, aerospace, professional services, and the public sector,
-including General Motors, State Farm, and Raytheon. Part of Kaltura's AI
-Business Development team, bringing Kaltura's agentic products into existing
-accounts.
+Own renewal and expansion for a portfolio of enterprise accounts. Part of
+Kaltura's AI Business Development team, bringing Kaltura's agentic products
+into existing accounts.
 
 **[Revin](https://revin.ai)** — Head of Customer Success.
 Built Revin's customer success function as an AI-native operation from day
@@ -36,7 +34,7 @@ cross-organizational margin analysis and improvement initiative following the
 company's July 2021 IPO.
 
 **Kaltura** — Customer Success Manager, Media & Telecom.
-Oversaw adoption, retention, and expansion across a portfolio of 50+ global
+Oversaw adoption, retention, and expansion across a portfolio of 40+ global
 broadcaster and publisher accounts on the Cloud TV product stack, including
 ESPN, CBS, PBS, WarnerMedia, The Weather Channel, and MotorTrend.
 
