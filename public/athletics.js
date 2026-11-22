@@ -1,6 +1,6 @@
 /* Athletics results filter. Served raw, no bundler — like gallery.js.
 
-   Builds the three dropdowns from the rows' data- attributes, so adding a
+   Builds the two dropdowns from the rows' data- attributes, so adding a
    <tr> to the table is all it takes. With no JavaScript the dropdowns stay
    hidden and every row shows. */
 
@@ -10,7 +10,7 @@
   if (!table || !bar) return;
 
   var rows = Array.prototype.slice.call(table.tBodies[0].rows);
-  var keys = ["sport", "distance", "year"];
+  var keys = ["sport", "year"];
   var selects = {};
 
   keys.forEach(function (key) {

@@ -260,11 +260,14 @@ to list essays as I publish them on LinkedIn.
 **Decision.** `/athletics` (nav label "Athletic Resume"; the URL stays
 `/athletics` so the submitted sitemap and any links keep working) is a hand-written HTML table in Markdown, one
 `<tr>` per result, each linked to the official record. `public/athletics.js`
-(served raw, like gallery.js) builds Sport / Distance / Year dropdowns from
+(served raw, like gallery.js) builds Sport / Year dropdowns from
 the rows' `data-` attributes; without JavaScript the dropdowns stay hidden
 and every row shows. `/writing` is a list of titles with one sentence each,
 marked Forthcoming until the post exists, then linked. Writing is last in the
-nav. Only results verified against an official source go in: there is another
+nav. Places show the best category placing (age group, usually) rather than
+overall. Rowing lists team titles (IRA nationals, Jope Cup) linked to the
+Columbia announcement, not individual 3V/4V results. Only results verified
+against an official source go in: there is another
 Ryan Watt in UTMB and UltraRunning databases, and those are not mine.
 
 **Consequence.** Adding a result is adding a row; adding a piece is adding a
