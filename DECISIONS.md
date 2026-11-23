@@ -257,7 +257,7 @@ claim of identity, so only add profiles that are verifiably mine.
 **Context.** I wanted an athletic resume with filterable results, and a place
 to list essays as I publish them on LinkedIn.
 
-**Decision.** `/athletics` (nav label "Athletic Resume"; the URL stays
+**Decision.** `/athletics` (nav label "Athletics", formerly "Athletic Resume"; the URL stays
 `/athletics` so the submitted sitemap and any links keep working) is a hand-written HTML table in Markdown, one
 `<tr>` per result, each linked to the official record. `public/athletics.js`
 (served raw, like gallery.js) builds Sport / Year dropdowns from
