@@ -167,6 +167,10 @@ with tests (`npm test`). Rules:
   identical. Schema changes may only add columns.
 - `/admin` is not a site page: it has its own inline styles and is not in the
   nav.
+- `/admin?likely=1` is the "likely people" view: it also drops cloud and
+  hosting networks (`CLOUD_ASNS` in `analytics/report.js`) and one-hit homepage
+  visits with no referrer or tag. It is computed at read time, so changing the
+  list re-counts history and `log.js` is untouched.
 
 ## Deployment
 

@@ -5,7 +5,8 @@ import { webcrypto } from "node:crypto";
 
 import { dayOf, deviceOf, isBot, pathOf, referrerOf, shouldLog, viaOf } from "./log.js";
 import { teamHost, verifyAccess } from "./access.js";
-import { esc, parseOptions } from "./report.js";
+import { esc, loadReport, parseOptions, renderReport } from "./report.js";
+import { DatabaseSync } from "node:sqlite";
 import { canonicalRedirect } from "../functions/_middleware.js";
 
 const CHROME =
@@ -63,8 +64,9 @@ test("days are New York days", () => {
 
 test("report output is escaped and options are bounded", () => {
   assert.equal(esc(`<img src=x onerror="a">`), "&lt;img src=x onerror=&quot;a&quot;&gt;");
-  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=7&bots=1")), { days: 7, bots: true, site: "" });
-  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=9999")), { days: 30, bots: false, site: "" });
+  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=7&bots=1")), { days: 7, bots: true, likely: false, site: "" });
+  assert.deepEqual(parseOptions(new URL("https://x.test/admin?days=9999")), { days: 30, bots: false, likely: false, site: "" });
+  assert.equal(parseOptions(new URL("https://x.test/admin?likely=1")).likely, true);
   assert.equal(parseOptions(new URL("https://x.test/admin?site=art-moves")).site, "art-moves");
   assert.equal(parseOptions(new URL("https://x.test/admin?site=a'%20OR%201=1")).site, "");
 });
@@ -149,4 +151,61 @@ test("every name but ryanwatt.ca redirects there, keeping path and query", () =>
   assert.equal(canonicalRedirect("https://www.ryanbwatt.com/photos"), "https://ryanwatt.ca/photos");
   assert.equal(canonicalRedirect("https://abc123.ryanbwatt-com.pages.dev/about"), null);
   assert.equal(canonicalRedirect("http://localhost:4321/about"), null);
+});
+
+// --- The likely-people view, run against a real SQLite database through a
+// minimal stand-in for the D1 API.
+
+function fakeD1() {
+  const sql = new DatabaseSync(":memory:");
+  const stmt = (text, args = []) => ({
+    bind: (...a) => stmt(text, a),
+    all: async () => ({ results: sql.prepare(text).all(...args) }),
+    first: async () => sql.prepare(text).get(...args) ?? null,
+    run: async () => sql.prepare(text).run(...args),
+  });
+  return {
+    sql,
+    prepare: (text) => stmt(text),
+    batch: async (list) => Promise.all(list.map((s) => s.run())),
+  };
+}
+
+test("likely people drops cloud networks and one-hit homepage visits", async () => {
+  const db = fakeD1();
+  const now = Date.UTC(2026, 10, 23, 17, 0);
+  await loadReport(db, { days: 1, bots: false }, now); // creates the schema
+  const day = dayOf(now);
+  const add = (visitor, path, extra = {}) =>
+    db.sql
+      .prepare(
+        `INSERT INTO visits (site, ts, day, path, referrer, via, asn, network, bot, visitor)
+         VALUES ('ryanwatt.ca', ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .run(now, day, path, extra.referrer ?? null, extra.via ?? null, extra.asn ?? 7922,
+        extra.network ?? "Comcast Cable", extra.bot ?? 0, visitor);
+
+  add("reader", "/");               // homepage, then a second page: a person
+  add("reader", "/experience");
+  add("aws", "/experience", { asn: 16509, network: "Amazon.com, Inc." });
+  add("smallhost", "/", { asn: 99999, network: "Some VPS Hosting Ltd" });
+  add("onehit", "/");               // one homepage view, nothing else
+  add("linked", "/", { referrer: "linkedin.com" }); // one view, but came from somewhere
+  add("tagged", "/", { via: "joe" });
+  add("relay", "/photos", { asn: 13335, network: "Cloudflare, Inc." }); // Private Relay stays
+  add("crawler", "/", { bot: 1 });
+
+  const people = await loadReport(db, { days: 1, bots: false }, now);
+  assert.equal(people.totals.visitors, 7);
+  assert.equal(people.totals.likely_visitors, 4); // reader, linked, tagged, relay
+  assert.equal(people.totals.cloud_visitors, 2);
+  assert.equal(people.totals.one_hit_visitors, 1);
+
+  const likely = await loadReport(db, { days: 1, bots: false, likely: true }, now);
+  assert.equal(likely.daily[0].visitors, 4);
+  assert.ok(!likely.recent.some((r) => r.network === "Amazon.com, Inc."));
+  assert.equal(likely.sites[0].likely, 4);
+
+  const html = renderReport(likely, "me@example.com");
+  assert.match(html, /<b>Likely people<\/b> · <a href="\/admin\?days=1">People<\/a>/);
 });
