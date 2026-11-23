@@ -8,10 +8,11 @@ Race results and personal bests, each linked to the official record.
 
 ## Personal bests
 
-| Distance | Time | Race | Place |
-| --- | --- | --- | --- |
-| Marathon | 2:41:17 | [Bank of America Chicago Marathon, 2022](https://chicago-history.r.mikatiming.com/2025/?content=detail&idp=9TGG963826E8F1&event=MAR_9TGG9638119&lang=EN_CAP) | 35th, M20–24 |
-| Half marathon | 1:20:29 | [NYRR Staten Island Half, 2019](https://results.nyrr.org/event/19SIH/result/4872) | 11th of 199, M20–24 |
+<table id="pbs">
+<tr><th>Distance</th><th>Time</th><th>Race</th><th>Place</th></tr>
+<tr><td>Marathon</td><td>2:41:17</td><td><a href="https://chicago-history.r.mikatiming.com/2025/?content=detail&amp;idp=9TGG963826E8F1&amp;event=MAR_9TGG9638119&amp;lang=EN_CAP">Bank of America Chicago Marathon, 2022</a></td><td>35th, M20–24</td></tr>
+<tr><td>Half marathon</td><td>1:20:29</td><td><a href="https://results.nyrr.org/event/19SIH/result/4872">NYRR Staten Island Half, 2019</a></td><td>11th of 199, M20–24</td></tr>
+</table>
 
 ## Results
 
