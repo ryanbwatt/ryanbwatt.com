@@ -4,7 +4,7 @@ order: 2
 description: Where Ryan Watt has worked.
 ---
 
-**[Kaltura](https://corp.kaltura.com)** — Lead Account Manager, Emerging
+**[Kaltura](https://corp.kaltura.com)** — Senior Account Manager, Emerging
 Markets.
 Own renewal and expansion for a portfolio of enterprise accounts. Part of
 Kaltura's AI Business Development team, bringing Kaltura's agentic products

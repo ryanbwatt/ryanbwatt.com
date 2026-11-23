@@ -330,9 +330,14 @@ body.agent {
   margin-top: 6px;
 }
 
-#races td:nth-child(1),
-#races td:nth-child(4),
-#races td:nth-child(5) {
+/* The results table runs past the 500px text column, at least to the
+   gallery's right edge (200 + 760), and no cell wraps: one race, one line. */
+
+#content #races {
+  width: 760px;
+}
+
+#races td {
   white-space: nowrap;
 }
 
@@ -372,6 +377,12 @@ body.agent {
     padding-top: 0;
   }
 
+  #content #races {
+    width: 100%;
+  }
+
+  #races td:nth-child(2),
+  #races td:nth-child(3),
   #races td:nth-child(5) {
     white-space: normal;
   }
