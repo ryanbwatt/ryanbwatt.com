@@ -33,17 +33,17 @@ Broadcasting Networks, O'Reilly Media, and Atmosphere TV. Led the
 cross-organizational margin analysis and improvement initiative following the
 company's July 2021 IPO.
 
-<span data-from="2020" data-to="2021"></span>**Kaltura** — Customer Success Manager, Media & Telecom.
-Oversaw adoption, retention, and expansion across a portfolio of 40+ global
-broadcaster and publisher accounts on the Cloud TV product stack, including
-ESPN, CBS, PBS, WarnerMedia, The Weather Channel, and MotorTrend.
-
-<span data-from="2021" data-to="2022"></span>**[Artsy](https://www.artsy.net)** — Account Executive.
+<span data-from="2021" data-to="2021"></span>**[Artsy](https://www.artsy.net)** — Account Executive.
 Full-cycle sales and account management for small and mid-sized galleries on
 the world's largest online art marketplace, from prospecting and business
 development through onboarding and customer success. Reported to the VP of
 Global Sales & Partnerships. Achieved 300% of artwork supply targets and 140%
 net retention.
+
+<span data-from="2020" data-to="2021"></span>**Kaltura** — Customer Success Manager, Media & Telecom.
+Oversaw adoption, retention, and expansion across a portfolio of 40+ global
+broadcaster and publisher accounts on the Cloud TV product stack, including
+ESPN, CBS, PBS, WarnerMedia, The Weather Channel, and MotorTrend.
 
 <span data-from="2019" data-to="2020"></span>**[David Zwirner](https://www.davidzwirner.com)** — Sales & Client Relations.
 Supported directors and the sales team at one of the world's leading

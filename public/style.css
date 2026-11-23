@@ -300,15 +300,16 @@ body.agent {
   border: 0;
 }
 
-/* Experience timeline. One line in the empty left column, 30px off the
-   text, beside the roles. The hover target is 21px wide so the line is easy
-   to find; the line itself is the 1px ::before. Hovering shows the year at
-   the cursor to the left of the line. Built by /experience.js. */
+/* Experience timeline. A 1px line in the left column, 30px off the text,
+   with every year listed down its left side in grey (#767676, 4.54:1). The
+   bar is wide enough to cover the years, so hovering a year or the line
+   works; the year under the cursor goes black and larger. The line is the
+   ::before. Built by /experience.js. */
 
 #timeline {
   position: absolute;
-  left: 160px;
-  width: 21px;
+  left: 110px;
+  width: 71px;
   cursor: default;
 }
 
@@ -317,17 +318,22 @@ body.agent {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 10px;
+  right: 10px;
   width: 1px;
   background: #ccc;
 }
 
-#timeline-year {
+.tl-year {
   position: absolute;
-  right: 26px;
-  color: #000;
+  right: 20px;
+  color: #767676;
   line-height: 18px;
   white-space: nowrap;
+}
+
+.tl-year.on {
+  color: #000;
+  font-size: 17px;
 }
 
 /* Phones. The fixed columns above are wider than a phone screen, so they

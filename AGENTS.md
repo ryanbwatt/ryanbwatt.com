@@ -116,9 +116,10 @@ sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumb
 
 ## Experience timeline
 
-A 1px line in the empty left column beside the roles on `/experience`. Hover it
-and the year under the cursor shows; nothing else is drawn, and years only,
-never months. Built by `public/experience.js` (served raw). Each role paragraph
+A 1px line in the empty left column beside the roles on `/experience`, with
+every year listed down its left side in grey. Hover the bar and the year under
+the cursor goes black and larger. Years only, never months. A year shared by
+several roles is labelled on the shortest one (Artsy carries 2021). Built by `public/experience.js` (served raw). Each role paragraph
 starts with an empty marker carrying its years:
 
 ```html
