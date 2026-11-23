@@ -119,7 +119,10 @@ sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumb
 A 1px line in the empty left column beside the roles on `/experience`, with
 every year listed down its left side in grey. Hover the bar and the year under
 the cursor goes black and larger. Years only, never months. A year shared by
-several roles is labelled on the shortest one (Artsy carries 2021). Built by `public/experience.js` (served raw). Each role paragraph
+several roles is labelled on the shortest one (Artsy carries 2021). The role
+descriptions sit in grey (`#767676`, 4.54:1) and come up to normal colour when
+their year or the text is hovered — desktop with a mouse only; phones get the
+plain page. Built by `public/experience.js` (served raw). Each role paragraph
 starts with an empty marker carrying its years:
 
 ```html

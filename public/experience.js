@@ -9,7 +9,12 @@
    current role). A role runs from its own paragraph down to the next marker,
    and that stretch is split evenly between its years, latest at the top.
    Each year is labelled once, on the shortest role that covers it (Artsy
-   carries 2021); hovering any role in that year lights up that label. With
+   carries 2021); hovering any role in that year lights up that label.
+
+   The role descriptions sit in grey and come up to the normal colour when
+   their year or the description itself is hovered, so the reader is drawn
+   down the page one role at a time. The dimming is in style.css and only
+   applies on a wide screen with a mouse; phones get the plain page. With
    no JavaScript the markers are empty and nothing shows. */
 
 (function () {
@@ -19,6 +24,26 @@
   if (!marks.length) return;
 
   var now = new Date().getFullYear();
+  var content = document.getElementById("content");
+
+  // Each role owns its paragraph and any paragraphs under it up to the next
+  // role (Enterprise's awards). The last role owns only its own.
+  var groups = marks.map(function (m, i) {
+    var first = m.closest("p");
+    var stop = i + 1 < marks.length ? marks[i + 1].closest("p") : null;
+    var ps = [first];
+    if (stop) {
+      for (var el = first.nextElementSibling; el && el !== stop; el = el.nextElementSibling) {
+        if (el.tagName === "P") ps.push(el);
+      }
+    }
+    ps.forEach(function (p) {
+      p.classList.add("tl-role");
+      p.setAttribute("data-role", i);
+    });
+    return ps;
+  });
+  content.classList.add("tl-dim");
   var bar = document.createElement("div");
   bar.id = "timeline";
   document.body.appendChild(bar);
@@ -45,11 +70,11 @@
     bar.style.height = roles[roles.length - 1].bottom - origin + "px";
 
     bands = [];
-    roles.forEach(function (role) {
+    roles.forEach(function (role, r) {
       var n = role.to - role.from + 1;
       var h = (role.bottom - role.top) / n;
       for (var k = 0; k < n; k++) {
-        bands.push({ top: role.top + k * h, bottom: role.top + (k + 1) * h, year: role.to - k, span: n });
+        bands.push({ top: role.top + k * h, bottom: role.top + (k + 1) * h, year: role.to - k, span: n, role: r });
       }
     });
 
@@ -74,22 +99,47 @@
     });
   }
 
-  function light(year) {
-    var el = year ? labels[year] : null;
-    if (el === lit) return;
-    if (lit) lit.classList.remove("on");
-    if (el) el.classList.add("on");
-    lit = el;
+  var litRole = null;
+
+  function light(band) {
+    var el = band ? labels[band.year] : null;
+    if (el !== lit) {
+      if (lit) lit.classList.remove("on");
+      if (el) el.classList.add("on");
+      lit = el;
+    }
+    var role = band ? groups[band.role] : null;
+    if (role !== litRole) {
+      if (litRole) litRole.forEach(function (p) { p.classList.remove("lit"); });
+      if (role) role.forEach(function (p) { p.classList.add("lit"); });
+      litRole = role;
+    }
+  }
+
+  // The band under the cursor, optionally limited to one role's bands.
+  function bandAt(pageY, role) {
+    var hit = null;
+    for (var i = 0; i < bands.length; i++) {
+      var b = bands[i];
+      if (role != null && b.role !== role) continue;
+      hit = b;
+      if (pageY < b.bottom) break;
+    }
+    return hit;
   }
 
   bar.addEventListener("mousemove", function (e) {
-    for (var i = 0; i < bands.length; i++) {
-      if (e.pageY < bands[i].bottom) return light(bands[i].year);
-    }
-    light(bands[bands.length - 1].year);
+    light(bandAt(e.pageY));
+  });
+  bar.addEventListener("mouseleave", function () {
+    light(null);
   });
 
-  bar.addEventListener("mouseleave", function () {
+  content.addEventListener("mousemove", function (e) {
+    var p = e.target.closest ? e.target.closest("p.tl-role") : null;
+    light(p ? bandAt(e.pageY, parseInt(p.getAttribute("data-role"), 10)) : null);
+  });
+  content.addEventListener("mouseleave", function () {
     light(null);
   });
 
