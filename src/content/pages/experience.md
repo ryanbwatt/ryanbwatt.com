@@ -10,13 +10,13 @@ Own renewal and expansion for a portfolio of enterprise accounts. Part of
 Kaltura's AI Business Development team, bringing Kaltura's agentic products
 into existing accounts.
 
-<span data-from="2025" data-to="2026"></span>**[Revin](https://revin.ai)** — Head of Customer Success.
+<span data-from="2026" data-to="2026"></span>**[Revin](https://revin.ai)** — Head of Customer Success.
 Built Revin's customer success function as an AI-native operation from day
 one, including agentic workflows, AI-powered support automation, and the
 playbooks and SOPs behind them. Stood up and led the Forward Deployed
 Engineering team, growing it to six people.
 
-<span data-from="2022" data-to="2025"></span>**Kaltura** — Senior Customer Success Manager, Enterprise.
+<span data-from="2022" data-to="2026"></span>**Kaltura** — Senior Customer Success Manager, Enterprise.
 Owned AI product implementation and expansion for global enterprises,
 including J.P. Morgan Chase & Co., Vanguard, NVIDIA, ADP, and Liberty Mutual.
 Generated $2.5M+ in new ARR from 2023 to the first half of 2025.
@@ -38,7 +38,7 @@ Oversaw adoption, retention, and expansion across a portfolio of 40+ global
 broadcaster and publisher accounts on the Cloud TV product stack, including
 ESPN, CBS, PBS, WarnerMedia, The Weather Channel, and MotorTrend.
 
-<span data-from="2020" data-to="2020"></span>**[Artsy](https://www.artsy.net)** — Account Executive.
+<span data-from="2021" data-to="2022"></span>**[Artsy](https://www.artsy.net)** — Account Executive.
 Full-cycle sales and account management for small and mid-sized galleries on
 the world's largest online art marketplace, from prospecting and business
 development through onboarding and customer success. Reported to the VP of
@@ -50,7 +50,7 @@ Supported directors and the sales team at one of the world's leading
 contemporary art galleries, preparing private client viewing materials and art
 market research for collectors.
 
-<span data-from="2015" data-to="2019"></span>**Columbia University Center for Career Education** — Customer Service Team
+<span data-from="2016" data-to="2017"></span>**Columbia University Center for Career Education** — Customer Service Team
 Lead.
 Managed a high-volume frontline service team and ran employer and job-posting
 approvals on LionSHARE, Columbia's career platform, covering 67,000+ jobs and
