@@ -1,19 +1,17 @@
 ---
-title: Athletic Resume
+title: Athletics
 order: 7
-description: "Ryan Watt's athletic resume: marathon, half marathon and rowing results, each checked against the official record."
+description: "Ryan Watt's athletic record: marathon, half marathon and rowing results, each checked against the official record."
 ---
 
 Race results and personal bests, each linked to the official record.
 
 ## Personal bests
 
-| Distance | Time | Race |
-| --- | --- | --- |
-| Marathon | 2:41:17 | [Bank of America Chicago Marathon, 2022](https://chicago-history.r.mikatiming.com/2025/?content=detail&idp=9TGG963826E8F1&event=MAR_9TGG9638119&lang=EN_CAP) |
-| 30K | 2:14:25 | [Whistler Half Marathon 30K, 2022](https://startlinetiming.com/en/races/2022/whistlerhalf/event/30K) |
-| Half marathon | 1:20:29 | [NYRR Staten Island Half, 2019](https://results.nyrr.org/event/19SIH/result/4872) |
-| 4 miles | 23:05 | [NYRR Al Gordon 4M, 2022](https://results.nyrr.org/event/22ALG/result/3305) |
+| Distance | Time | Race | Place |
+| --- | --- | --- | --- |
+| Marathon | 2:41:17 | [Bank of America Chicago Marathon, 2022](https://chicago-history.r.mikatiming.com/2025/?content=detail&idp=9TGG963826E8F1&event=MAR_9TGG9638119&lang=EN_CAP) | 35th, M20–24 |
+| Half marathon | 1:20:29 | [NYRR Staten Island Half, 2019](https://results.nyrr.org/event/19SIH/result/4872) | 11th of 199, M20–24 |
 
 ## Results
 
