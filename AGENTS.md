@@ -114,6 +114,20 @@ sips -Z 1440 -s format jpeg -s formatOptions 80 in.jpg --out public/photos/pNN.j
 sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumbs/pNN.jpg
 ```
 
+## Experience timeline
+
+A 1px line in the empty left column beside the roles on `/experience`. Hover it
+and the year under the cursor shows; nothing else is drawn, and years only,
+never months. Built by `public/experience.js` (served raw). Each role paragraph
+starts with an empty marker carrying its years:
+
+```html
+<span data-from="2022" data-to="2025"></span>**Kaltura** — ...
+```
+
+Omit `data-to` for the current role. A role runs from its own paragraph down to
+the next marker. Hidden on phones, with `#left`.
+
 ## Commands
 
 | Command | Does |
