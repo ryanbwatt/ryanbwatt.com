@@ -347,19 +347,32 @@ body.agent {
    is a mouse and room for the timeline: on a phone nothing is dimmed. */
 
 @media (hover: hover) and (min-width: 721px) {
-  #content.tl-dim p.tl-role,
-  #content.tl-dim p.tl-role a {
+  #content.tl-dim .tl-role,
+  #content.tl-dim .tl-role a {
     color: #767676;
     transition: color 0.12s;
   }
 
-  #content.tl-dim p.tl-role.lit {
+  #content.tl-dim .tl-role.lit {
     color: #333;
   }
 
-  #content.tl-dim p.tl-role.lit a {
+  #content.tl-dim .tl-role.lit a {
     color: #0864c7;
   }
+}
+
+/* Experience "More". A native <details> under each role's one line, pulled
+   up against it. The triangle is the browser's own; only the link blue and
+   the pointer are set. */
+
+#content details {
+  margin: -13px 0 13px;
+}
+
+#content summary {
+  color: #0864c7;
+  cursor: pointer;
 }
 
 /* Phones. The fixed columns above are wider than a phone screen, so they

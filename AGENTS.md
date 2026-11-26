@@ -132,6 +132,11 @@ starts with an empty marker carrying its years:
 Omit `data-to` for the current role. A role runs from its own paragraph down to
 the next marker. Hidden on phones, with `#left`.
 
+Each role is one line (title plus one sentence) followed by a native
+`<details><summary>More</summary>` holding the full description. Leave blank
+lines inside it so the Markdown is parsed. The script counts the `<details>` as
+part of the role and re-measures when one opens.
+
 ## Workflows ledger
 
 The Time reclaimed table on `/workflows` is copied from a private log

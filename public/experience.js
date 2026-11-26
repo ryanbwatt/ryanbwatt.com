@@ -26,15 +26,15 @@
   var now = new Date().getFullYear();
   var content = document.getElementById("content");
 
-  // Each role owns its paragraph and any paragraphs under it up to the next
-  // role (Enterprise's awards). The last role owns only its own.
+  // Each role owns its paragraph and any paragraphs or <details> under it up
+  // to the next role (the "More" expanders). The last role owns only its own.
   var groups = marks.map(function (m, i) {
     var first = m.closest("p");
     var stop = i + 1 < marks.length ? marks[i + 1].closest("p") : null;
     var ps = [first];
     if (stop) {
       for (var el = first.nextElementSibling; el && el !== stop; el = el.nextElementSibling) {
-        if (el.tagName === "P") ps.push(el);
+        if (el.tagName === "P" || el.tagName === "DETAILS") ps.push(el);
       }
     }
     ps.forEach(function (p) {
@@ -136,7 +136,7 @@
   });
 
   content.addEventListener("mousemove", function (e) {
-    var p = e.target.closest ? e.target.closest("p.tl-role") : null;
+    var p = e.target.closest ? e.target.closest(".tl-role") : null;
     light(p ? bandAt(e.pageY, parseInt(p.getAttribute("data-role"), 10)) : null);
   });
   content.addEventListener("mouseleave", function () {
@@ -146,4 +146,6 @@
   measure();
   window.addEventListener("resize", measure);
   window.addEventListener("load", measure);
+  // Opening a role's "More" pushes everything below it down.
+  content.addEventListener("toggle", measure, true);
 })();
