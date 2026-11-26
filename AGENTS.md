@@ -137,9 +137,11 @@ The same few patterns on every page, so nothing reads as designed:
   rule-of-three lines, no jargon a friend wouldn't use.
 
 Facts kept in step with LinkedIn: technical owner of AI adoption at Kaltura
-(official title Senior Account Manager, Emerging Markets); J.P. Morgan Chase,
-NVIDIA, General Motors, PwC and the United Nations, strongest first; J.P.
-Morgan knowledge platform, 350K employees and contractors, KPI beaten by 7.3%;
+(official title Senior Account Manager, Emerging Markets); current customers
+AT&T, PwC, General Motors, Thomson Reuters and the United Nations (State Farm
+and Raytheon in the role's full description); earlier book J.P. Morgan Chase,
+Vanguard and NVIDIA, always in the past tense; J.P. Morgan knowledge platform,
+350K employees, KPI beaten by 7.3%; 2024 Top Performer is the full year (not H1);
 Top Performer three years running, $2.5M+ new ARR since 2023; Revin CS and
 Forward Deployed Engineering team scaled from 2 to 8 people; Kaltura Media &
 Telecom 50+ accounts; U.S. national champion (team) at Columbia.
