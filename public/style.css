@@ -116,6 +116,12 @@ body {
   margin-bottom: 13px;
 }
 
+/* A small logo inline with the text it names. */
+
+#content p img {
+  margin: 0 2px -3px 0;
+}
+
 /* Photos page. A single image, edge to edge, inset by a border the width of
    the nav column on every side. No text column, no left gutter. */
 
