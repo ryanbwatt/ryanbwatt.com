@@ -1,21 +1,24 @@
 ---
 title: Experience
 order: 2
-description: Ryan Watt's experience. Six years as technical owner of AI adoption at Kaltura for J.P. Morgan Chase, NVIDIA, General Motors, PwC and the United Nations, and Head of Customer Success at Revin.
+description: Ryan Watt's experience. Technical owner of AI adoption at Kaltura for customers including AT&T, PwC, General Motors, Thomson Reuters and the United Nations, and earlier J.P. Morgan Chase, Vanguard and NVIDIA. Head of Customer Success at Revin.
 ---
 
 Enterprise customer success and account management in AI and video. Six years
-at Kaltura as technical owner of AI adoption for customers including J.P.
-Morgan Chase, NVIDIA, General Motors, PwC and the United Nations. Top
-Performer three years running, with $2.5M+ in new ARR since 2023.
+at Kaltura as technical owner of AI adoption, today for customers including
+AT&T, PwC, General Motors, Thomson Reuters and the United Nations, and earlier
+for J.P. Morgan Chase, Vanguard and NVIDIA. Top Performer three years running,
+with $2.5M+ in new ARR since 2023.
 
 **[Kaltura](https://corp.kaltura.com).** Senior Account Manager, Emerging Markets, 2026–present.
-Technical owner of AI adoption for enterprise accounts including General Motors, State Farm and Raytheon, from first deployment through renewal.
+Technical owner of AI adoption for enterprise accounts including AT&T, PwC, General Motors, Thomson Reuters and the United Nations, from first deployment through renewal.
 
 <details><summary>More</summary>
 
 Own adoption, renewal and expansion for a portfolio of Fortune 500
-enterprise accounts, including General Motors, State Farm and Raytheon. Part of Kaltura's AI Business
+enterprise accounts across telecom, automotive, insurance, aerospace,
+professional services and the public sector, including AT&T, PwC, General
+Motors, Thomson Reuters, State Farm, Raytheon and the United Nations. Part of Kaltura's AI Business
 Development team, putting Kaltura's agentic products to work inside existing
 customers.
 
@@ -41,12 +44,12 @@ AI rollouts for J.P. Morgan Chase, NVIDIA, Vanguard and ADP, and $2.5M+ in new A
 Owned AI product implementation and expansion for global enterprises,
 including J.P. Morgan Chase & Co., Vanguard, NVIDIA, ADP and Liberty Mutual.
 Technical owner of adoption for J.P. Morgan's knowledge platform, used by
-350K employees and contractors: built the executive dashboards and beat the
+350K employees: built the executive dashboards and beat the
 target KPI by 7.3%. $2.5M+ in new ARR since 2023.
 
 - 2025 Top Net Booking Award, worldwide
 - H1 2025 Top Performer, worldwide: 120% of quota, $555K
-- H1 2024 Top Performer, North America: 161% of quota, $1.33M
+- 2024 Top Performer, North America: 161% of quota, $1.33M
 - 2023 Top Performer, North America: 199% of quota, $674K
 
 </details>
