@@ -47,7 +47,7 @@ Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 
 Current nav order is explicit, not alphabetical: About (1), Experience (2),
 Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Athletics (7,
-at `/athletics`), Writing (8, hidden until an essay is published; it stays last
+at `/athletics`), Workflows (7.5), Writing (8, hidden until an essay is published; it stays last
 when shown). About also carries the contact details, below the intro. The
 homepage renders the About page (no intro gate since Nov 2026), with About
 marked current in the nav. The "Ryan Watt" title is plain text, not a link.
