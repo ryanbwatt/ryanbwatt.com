@@ -9,7 +9,7 @@ Grow enterprise accounts and bring Kaltura's AI agents into them.
 
 <span data-from="2026" data-to="2026"></span>**[Revin](https://revin.ai)** — Head of Customer Success.
 Built customer success from zero, AI-first. Customers went from 30 to 100+,
-revenue 4x.
+revenue 4x, and the Forward Deployed Engineering team from 2 to 8.
 
 <span data-from="2022" data-to="2026"></span>**Kaltura** — Senior Customer Success Manager, Enterprise.
 AI rollouts for J.P. Morgan, Vanguard, NVIDIA and ADP. $2.5M+ in new revenue

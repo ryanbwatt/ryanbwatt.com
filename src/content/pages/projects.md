@@ -39,7 +39,7 @@ playbooks were run differently by each person.
 
 **Architecture.** Moved customer health tracking, onboarding milestones and
 the standard CS workflows into one command center, while growing the
-Forward Deployed Engineer team from 2 to 5.
+Forward Deployed Engineer team from 2 to 8.
 
 **Impact.** Customers grew from 30 to more than 100 and revenue four times
 over, with the same post-sales process for every account.
