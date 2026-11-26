@@ -5,6 +5,11 @@ nav: false
 description: Essays by Ryan Watt on enterprise AI adoption, technology and attention.
 ---
 
+**[Notes on Transformation](/transformation).**
+What I learned planning a small-business AI transformation practice: the
+companies already doing it, the model, how to be found in AI search, and how
+it became Gallery Assistant.
+
 **The Diffusion Gap: Why Enterprise AI Adoption Trails the Technology, and Who Closes It.**
 The distance between what AI tools can do and what large organizations
 actually use them for, and the opportunity for the people who sit between
