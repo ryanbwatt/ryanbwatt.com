@@ -403,6 +403,13 @@ body.agent {
   white-space: nowrap;
 }
 
+/* The Workflows ledger gets the same width as the results table, so five
+   columns fit without wrapping every cell. */
+
+#content #ledger {
+  width: 760px;
+}
+
 #content tr[hidden] {
   display: none;
 }
@@ -440,7 +447,8 @@ body.agent {
     padding-top: 0;
   }
 
-  #content #races {
+  #content #races,
+  #content #ledger {
     width: 100%;
   }
 

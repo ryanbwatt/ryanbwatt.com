@@ -1,6 +1,6 @@
 ---
 title: Athletics
-order: 7
+order: 8
 description: "Ryan Watt's athletic record: marathon, half marathon and rowing results, each checked against the official record."
 ---
 
