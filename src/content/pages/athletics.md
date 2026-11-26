@@ -1,6 +1,6 @@
 ---
 title: Athletics
-order: 7
+order: 8
 description: "Ryan Watt's athletic record: marathon, half marathon and rowing results, each checked against the official record."
 ---
 
@@ -34,7 +34,7 @@ Race results and personal bests, each linked to the official record.
     <tr data-sport="Running" data-year="2023">
       <td>17 Apr 2023</td>
       <td><a href="https://results.baa.org/2023/?content=detail&idp=9TGHS6FF17EDDD&lang=EN_CAP&event=R">Boston Marathon</a></td>
-      <td>Marathon</td><td>2:46:06</td><td>966th, M18–39</td>
+      <td>Marathon</td><td>2:46:06</td><td>—</td>
     </tr>
     <tr data-sport="Running" data-year="2022">
       <td>9 Oct 2022</td>

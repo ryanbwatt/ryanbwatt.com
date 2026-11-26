@@ -1,19 +1,16 @@
 ---
 title: Writing
-order: 8
-nav: false
-description: Essays by Ryan Watt on enterprise AI adoption, technology and attention.
+order: 9
+description: Essays Ryan Watt is working on, about enterprise AI adoption, technology and attention.
 ---
 
-**The Diffusion Gap: Why Enterprise AI Adoption Trails the Technology, and Who Closes It.**
-The distance between what AI tools can do and what large organizations
-actually use them for, and the opportunity for the people who sit between
-vendors and customers to close it. Forthcoming.
+**The Diffusion Gap.**
+Why big companies use so little of what AI can do, and who closes the gap.
+Status: outlining.
 
-**AI Addiction and the Illusion of Productivity.**
-On the hours I spend inside Perplexity and Claude, and why time with AI tools
-can feel like progress when it isn't. Forthcoming.
+**The AI Productivity Paradox.**
+Why hours with AI tools can feel like progress when they aren't.
+Status: researching.
 
 **More Connected, Less Social.**
-How more time on social media leaves less desire to be social in person, and
-why that is a problem. Forthcoming.
+More time on social media, less wish to see people. Status: drafting.

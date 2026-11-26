@@ -46,9 +46,9 @@ Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 (lower sorts first; otherwise alphabetical), `description` (meta only).
 
 Current nav order is explicit, not alphabetical: About (1), Experience (2),
-Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Athletics (7,
-at `/athletics`), Writing (8, hidden until an essay is published; it stays last
-when shown). About also carries the contact details, below the intro. The
+Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Workflows (7),
+Athletics (8, at `/athletics`), Writing (9, shown since Nov 2026;
+it stays last). About also carries the contact details, below the intro. The
 homepage renders the About page (no intro gate since Nov 2026), with About
 marked current in the nav. The "Ryan Watt" title is plain text, not a link.
 Colophon was removed. Interests was folded into About; Goals was removed.
@@ -114,23 +114,53 @@ sips -Z 1440 -s format jpeg -s formatOptions 80 in.jpg --out public/photos/pNN.j
 sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumbs/pNN.jpg
 ```
 
-## Experience timeline
+## Experience
 
-A 1px line in the empty left column beside the roles on `/experience`, with
-every year listed down its left side in grey. Hover the bar and the year under
-the cursor goes black and larger. Years only, never months. A year shared by
-several roles is labelled on the shortest one (Artsy carries 2021). The role
-descriptions sit in grey (`#767676`, 4.54:1) and come up to normal colour when
-their year or the text is hovered — desktop with a mouse only; phones get the
-plain page. Built by `public/experience.js` (served raw). Each role paragraph
-starts with an empty marker carrying its years:
+Each role is one paragraph in the house pattern, **Company.** title, years,
+then one sentence, followed by a native `<details><summary>More</summary>`
+holding the full description. Leave blank lines inside it so the Markdown is
+parsed. The timeline that used to sit in the left column was removed in Nov
+2026 (decision 16); the years are plain text in each role.
 
-```html
-<span data-from="2022" data-to="2025"></span>**Kaltura** — ...
+## How a page is written
+
+The same few patterns on every page, so nothing reads as designed:
+
+- **One type size.** Everything is 13px, headings included (bold, body size).
+  No larger or smaller text, no grey dimming, no hover effects on text.
+- **Bold only opens an item.** `**Name.** Then a plain sentence.` The name is a
+  link when there's somewhere to go. Never bold a phrase mid-sentence.
+- **Lists of links stay plain:** `[Title](url) — one plain sentence.`
+- **Headings (`##`) only to split a long page** into sections (Athletics,
+  Workflows). Short pages use bold-name items instead.
+- **Clear language.** Short sentences, concrete numbers, no slogans, no
+  rule-of-three lines, no jargon a friend wouldn't use.
+
+Facts kept in step with LinkedIn: technical owner of AI adoption at Kaltura
+(official title Senior Account Manager, Emerging Markets); J.P. Morgan Chase,
+NVIDIA, General Motors, PwC and the United Nations, strongest first; J.P.
+Morgan knowledge platform, 350K employees and contractors, KPI beaten by 7.3%;
+Top Performer three years running, $2.5M+ new ARR since 2023; Revin CS and
+Forward Deployed Engineering team scaled from 2 to 8 people; Kaltura Media &
+Telecom 50+ accounts; U.S. national champion (team) at Columbia.
+
+## Workflows ledger
+
+The Hours saved table on `/workflows` is copied from a private log
+(`time-saved.md` in the private-context repository) by hand, never at build
+time:
+
+```
+npm run ledger -- ~/path/to/time-saved.md --deny ~/path/to/ledger-deny.txt
 ```
 
-Omit `data-to` for the current role. A role runs from its own paragraph down to
-the next marker. Hidden on phones, with `#left`.
+`scripts/sync-ledger.mjs` replaces only what sits between the
+`<!-- ledger:start -->` and `<!-- ledger:end -->` markers. Only rows marked
+`Public: yes` are copied; a public row containing any term from the deny file
+(customer, client and collector names, kept in the private repository) stops
+the sync before anything is written. Review the diff before committing. The
+source table needs columns Task, Tools, Before, After, Runs/mo, Public; logic
+and tests are in `scripts/ledger.js` and `scripts/ledger.test.mjs`.
 
 ## Commands
 
@@ -138,7 +168,8 @@ the next marker. Hidden on phones, with `#left`.
 | --- | --- |
 | `npm run dev` | Dev server on :4321 |
 | `npm run verify` | Type check, tests, then production build |
-| `npm test` | Tests for the visit logging in `analytics/` |
+| `npm test` | Tests for the visit logging in `analytics/` and the ledger sync |
+| `npm run ledger -- <log>` | Copy public rows of the time log into `/workflows` |
 | `npm run build` | Static build to `dist/` |
 
 Run `npm run verify` before pushing.
