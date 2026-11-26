@@ -47,8 +47,8 @@ Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 
 Current nav order is explicit, not alphabetical: About (1), Experience (2),
 Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Workflows (7),
-Athletics (8, at `/athletics`), Writing (9, hidden until an essay is published;
-it stays last when shown). About also carries the contact details, below the intro. The
+Athletics (8, at `/athletics`), Writing (9, shown since Nov 2026;
+it stays last). About also carries the contact details, below the intro. The
 homepage renders the About page (no intro gate since Nov 2026), with About
 marked current in the nav. The "Ryan Watt" title is plain text, not a link.
 Colophon was removed. Interests was folded into About; Goals was removed.
