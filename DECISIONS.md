@@ -304,3 +304,18 @@ an essay is published.
 
 **Consequence.** The text pages and the homepage ship no script again; the
 Photos lightbox is the only JavaScript. Decision 10's gate no longer exists.
+
+## 15. The Workflows ledger is copied in, not fetched
+
+**Context.** `/workflows` shows hours saved per task. The source is a private
+log that also names customers and clients, in a private repository.
+
+**Decision.** A local script copies the rows marked public into the page
+between two markers, checked against a deny list of names, and the result is
+committed like any other edit. Cloudflare never sees the private log and the
+build never reaches another repository.
+
+**Consequence.** The page is only as current as the last sync, which suits a
+page revised in place (rule 1). The cost is a manual step, and anonymizing
+depends on the log's own Public column plus the deny list, not on anything
+clever.

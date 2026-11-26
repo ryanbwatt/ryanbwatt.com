@@ -46,9 +46,9 @@ Frontmatter: `title` (required), `nav` (`false` to publish unlisted), `order`
 (lower sorts first; otherwise alphabetical), `description` (meta only).
 
 Current nav order is explicit, not alphabetical: About (1), Experience (2),
-Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Athletics (7,
-at `/athletics`), Workflows (7.5), Writing (8, hidden until an essay is published; it stays last
-when shown). About also carries the contact details, below the intro. The
+Favorites (3), Photos (4), Contact (5, hidden), Projects (6), Workflows (7),
+Athletics (8, at `/athletics`), Writing (9, hidden until an essay is published;
+it stays last when shown). About also carries the contact details, below the intro. The
 homepage renders the About page (no intro gate since Nov 2026), with About
 marked current in the nav. The "Ryan Watt" title is plain text, not a link.
 Colophon was removed. Interests was folded into About; Goals was removed.
@@ -132,13 +132,32 @@ starts with an empty marker carrying its years:
 Omit `data-to` for the current role. A role runs from its own paragraph down to
 the next marker. Hidden on phones, with `#left`.
 
+## Workflows ledger
+
+The Time reclaimed table on `/workflows` is copied from a private log
+(`time-saved.md` in the private-context repository) by hand, never at build
+time:
+
+```
+npm run ledger -- ~/path/to/time-saved.md --deny ~/path/to/ledger-deny.txt
+```
+
+`scripts/sync-ledger.mjs` replaces only what sits between the
+`<!-- ledger:start -->` and `<!-- ledger:end -->` markers. Only rows marked
+`Public: yes` are copied; a public row containing any term from the deny file
+(customer, client and collector names, kept in the private repository) stops
+the sync before anything is written. Review the diff before committing. The
+source table needs columns Task, Tools, Before, After, Runs/mo, Public; logic
+and tests are in `scripts/ledger.js` and `scripts/ledger.test.mjs`.
+
 ## Commands
 
 | Command | Does |
 | --- | --- |
 | `npm run dev` | Dev server on :4321 |
 | `npm run verify` | Type check, tests, then production build |
-| `npm test` | Tests for the visit logging in `analytics/` |
+| `npm test` | Tests for the visit logging in `analytics/` and the ledger sync |
+| `npm run ledger -- <log>` | Copy public rows of the time log into `/workflows` |
 | `npm run build` | Static build to `dist/` |
 
 Run `npm run verify` before pushing.

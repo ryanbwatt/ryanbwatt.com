@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "node --test analytics/analytics.test.mjs",
+    "test": "node --test analytics/analytics.test.mjs scripts/ledger.test.mjs",
+    "ledger": "node scripts/sync-ledger.mjs",
     "verify": "npm run check && npm run test && npm run build",
     "astro": "astro"
   },
