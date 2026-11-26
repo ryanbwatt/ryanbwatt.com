@@ -114,34 +114,39 @@ sips -Z 1440 -s format jpeg -s formatOptions 80 in.jpg --out public/photos/pNN.j
 sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumbs/pNN.jpg
 ```
 
-## Experience timeline
+## Experience
 
-A 1px line in the empty left column beside the roles on `/experience`, with
-every year listed down its left side in grey. Hover the bar and the year under
-the cursor goes black and larger. Years only, never months. A year shared by
-several roles is labelled on the shortest one (Artsy carries 2022). The role
-descriptions sit in grey (`#767676`, 4.54:1) and come up to normal colour when
-their year or the text is hovered — desktop with a mouse only; phones get the
-plain page. Built by `public/experience.js` (served raw). Each role paragraph
-starts with an empty marker carrying its years:
+Each role is one paragraph in the house pattern, **Company.** title, years,
+then one sentence, followed by a native `<details><summary>More</summary>`
+holding the full description. Leave blank lines inside it so the Markdown is
+parsed. The timeline that used to sit in the left column was removed in Nov
+2026 (decision 16); the years are plain text in each role.
 
-```html
-<span data-from="2022" data-to="2025"></span>**Kaltura** — ...
-```
+## How a page is written
 
-Omit `data-to` for the current role. Each title line also ends with its years in
-plain text, `<span class="yrs">, 2022–2026</span>`, so crawlers and phones see
-them; CSS hides that span on desktop once the timeline draws. A role runs from its own paragraph down to
-the next marker. Hidden on phones, with `#left`.
+The same few patterns on every page, so nothing reads as designed:
 
-Each role is one line (title plus one sentence) followed by a native
-`<details><summary>More</summary>` holding the full description. Leave blank
-lines inside it so the Markdown is parsed. The script counts the `<details>` as
-part of the role and re-measures when one opens.
+- **One type size.** Everything is 13px, headings included (bold, body size).
+  No larger or smaller text, no grey dimming, no hover effects on text.
+- **Bold only opens an item.** `**Name.** Then a plain sentence.` The name is a
+  link when there's somewhere to go. Never bold a phrase mid-sentence.
+- **Lists of links stay plain:** `[Title](url) — one plain sentence.`
+- **Headings (`##`) only to split a long page** into sections (Athletics,
+  Workflows). Short pages use bold-name items instead.
+- **Clear language.** Short sentences, concrete numbers, no slogans, no
+  rule-of-three lines, no jargon a friend wouldn't use.
+
+Facts kept in step with LinkedIn: technical owner of AI adoption at Kaltura
+(official title Senior Account Manager, Emerging Markets); J.P. Morgan Chase,
+NVIDIA, General Motors, PwC and the United Nations, strongest first; J.P.
+Morgan knowledge platform, 350K employees and contractors, KPI beaten by 7.3%;
+Top Performer three years running, $2.5M+ new ARR since 2023; Revin CS and
+Forward Deployed Engineering team scaled from 2 to 8 people; Kaltura Media &
+Telecom 50+ accounts; U.S. national champion (team) at Columbia.
 
 ## Workflows ledger
 
-The Time reclaimed table on `/workflows` is copied from a private log
+The Hours saved table on `/workflows` is copied from a private log
 (`time-saved.md` in the private-context repository) by hand, never at build
 time:
 

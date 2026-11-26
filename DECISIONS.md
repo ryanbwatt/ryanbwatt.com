@@ -319,3 +319,18 @@ build never reaches another repository.
 page revised in place (rule 1). The cost is a manual step, and anonymizing
 depends on the log's own Public column plus the deny list, not on anything
 clever.
+
+## 16. One type size, one item pattern
+
+**Context.** Pages drifted from the reference: a timeline whose years grew on
+hover and dimmed the text around them, `##` headings at browser size beside
+bold labels, smaller monospace, and each page formatting its items its own way.
+
+**Decision.** Everything is 13px, headings included. Items open with a bold
+name and a period, then plain text, as on patrickcollison.com. The Experience
+timeline and its script are gone; years are plain text in each role.
+
+**Consequence.** Pages look like one person wrote them in one sitting, which is
+the point. The timeline's hover is lost; bring it back by reverting this
+decision's commit, not by adding new type sizes.
+

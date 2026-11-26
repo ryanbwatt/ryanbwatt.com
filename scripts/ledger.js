@@ -1,4 +1,4 @@
-// Time Reclaimed ledger: turns the private time-saved.md log into the HTML
+// Hours saved ledger: turns the private time-saved.md log into the HTML
 // table on /workflows. Pure functions only; scripts/sync-ledger.mjs does the
 // file reading and writing. Nothing here runs at build time or in the browser.
 //

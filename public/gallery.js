@@ -84,7 +84,7 @@
     show(index - 1);
   }
 
-  figures.forEach(function (fig, i) {
+  figures.forEach(function (_, i) {
     items[i].trigger.addEventListener("click", function (e) {
       e.preventDefault();
       open(i, items[i].trigger);
