@@ -352,13 +352,16 @@ body.agent {
   margin-top: 6px;
 }
 
-/* The results table runs past the 500px text column, at least to the
-   gallery's right edge (200 + 760), and no cell wraps: one race, one line. */
+/* The personal bests and results tables run past the 500px text column, at
+   least to the gallery's right edge (200 + 760), and no cell wraps: one race,
+   one line. */
 
+#content #pbs,
 #content #races {
   width: 760px;
 }
 
+#pbs td,
 #races td {
   white-space: nowrap;
 }
@@ -410,11 +413,13 @@ body.agent {
     padding-top: 0;
   }
 
+  #content #pbs,
   #content #races,
   #content #ledger {
     width: 100%;
   }
 
+  #pbs td:nth-child(3),
   #races td:nth-child(2),
   #races td:nth-child(3),
   #races td:nth-child(5) {
