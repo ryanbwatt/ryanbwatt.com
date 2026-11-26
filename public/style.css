@@ -479,10 +479,6 @@ body.agent {
   }
 }
 
-/* Plain-text years after each role title, for crawlers and phones. Hidden
-   where the timeline draws them instead (experience.js adds .tl-dim). */
-@media (min-width: 721px) {
-  #content.tl-dim .yrs {
-    display: none;
-  }
-}
+/* Plain-text years after each role title stay visible on every screen, next
+   to the timeline: roles overlap, so the timeline alone can't say which
+   years belong to which role. */

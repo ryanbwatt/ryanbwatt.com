@@ -5,15 +5,15 @@ description: Ryan Watt's experience — six years of enterprise account manageme
 ---
 
 Enterprise account management and customer success in AI and video. Six years
-at Kaltura, $2.5M+ in new revenue, four top-performer awards.
+at Kaltura, $2.5M+ in new revenue, four sales awards.
 
 <span data-from="2026"></span>**[Kaltura](https://corp.kaltura.com)** — Senior Account Manager, Emerging Markets<span class="yrs">, 2026–present</span>.
-Grow enterprise accounts, including General Motors, State Farm and Raytheon, and bring Kaltura's AI agents into them.
+Grow Fortune 500 enterprise accounts and bring Kaltura's AI agents into them.
 
 <details><summary>More</summary>
 
-Own renewal and expansion for a portfolio of enterprise accounts, including
-General Motors, State Farm and Raytheon. Part of Kaltura's AI Business
+Own renewal and expansion for a portfolio of Fortune 500 enterprise
+accounts. Part of Kaltura's AI Business
 Development team, putting Kaltura's agentic products to work inside existing
 customers.
 

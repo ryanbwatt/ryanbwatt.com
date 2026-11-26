@@ -1,24 +1,17 @@
 ---
 title: About
 order: 1
-description: Ryan Watt is an account manager by title and an advocate by nature, for artists, customers, and the people AI is supposed to help.
+description: Ryan Watt is an account manager at Kaltura, an art person and a former Division I rower.
 ---
 
 <img src="/ryan-watt.jpg" width="128" height="130" alt="Ryan Watt" />
 
-Account manager by title. Advocate by nature: for artists, for customers, and
-for the people AI is supposed to help.
+Account manager at Kaltura, art person, ex–Division I rower. I get AI to do
+my busywork so I can spend more time with customers and less time in
+spreadsheets.
 
-I help companies hand their busywork to AI, so their people get time back
-for the work they're good at.
+Say hi: [email](mailto:ryanbwatt@gmail.com)
 
-$2.5M+ in new revenue · 30 to 100+ customers at Revin · 24 hours a month
-handed to AI
-
-Rower. Runner. Art person. Brooklyn.
-
-Email: [ryanbwatt@gmail.com](mailto:ryanbwatt@gmail.com)
-
-Elsewhere: [LinkedIn](https://www.linkedin.com/in/ryanwattny/) ·
+[LinkedIn](https://www.linkedin.com/in/ryanwattny/) ·
 [Instagram](https://www.instagram.com/ryanwatt.ca/) ·
 [GitHub](https://github.com/ryanbwatt)
