@@ -36,8 +36,8 @@ test("a deny-listed term in a public row stops the sync", () => {
 test("hours a month = (before - after) x runs, sorted, with a total", () => {
   const html = render(select(parse(LOG)));
   // value story: (180-20)*2/60 = 5.3; pulse: (90-10)*4/60 = 5.3 -> both 5.3, total 10.7
-  assert.match(html, /<td>Total<\/td><td><\/td><td><\/td><td><\/td><td>10\.7<\/td>/);
-  assert.match(html, /<td>3 h<\/td><td>20 min<\/td>/);
+  assert.match(html, /<td>Total<\/td><td><\/td><td><\/td><td>10\.7<\/td>/);
+  assert.match(html, /<td>3 h → 20 min<\/td>/);
 });
 
 test("task text is escaped", () => {

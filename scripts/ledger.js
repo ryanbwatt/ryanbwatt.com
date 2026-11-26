@@ -103,17 +103,17 @@ export function render(rows) {
     .map(
       (r) =>
         `    <tr><td>${esc(r.task)}</td><td>${esc(r.tools)}</td>` +
-        `<td>${fmtMin(r.before)}</td><td>${fmtMin(r.after)}</td><td>${hoursSaved(r).toFixed(1)}</td></tr>`,
+        `<td>${fmtMin(r.before)} → ${fmtMin(r.after)}</td><td>${hoursSaved(r).toFixed(1)}</td></tr>`,
     )
     .join("\n");
   return [
     '<table id="ledger">',
     "  <thead>",
-    "    <tr><th>Task</th><th>Tools</th><th>Before</th><th>After</th><th>Hours a month</th></tr>",
+    "    <tr><th>Workflow</th><th>Stack / Skill</th><th>Before vs. after</th><th>Monthly hours saved</th></tr>",
     "  </thead>",
     "  <tbody>",
     body,
-    `    <tr><td>Total</td><td></td><td></td><td></td><td>${total.toFixed(1)}</td></tr>`,
+    `    <tr><td>Total</td><td></td><td></td><td>${total.toFixed(1)}</td></tr>`,
     "  </tbody>",
     "</table>",
   ].join("\n");

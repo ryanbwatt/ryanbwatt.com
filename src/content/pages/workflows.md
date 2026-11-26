@@ -8,37 +8,36 @@ The work I've handed to AI, what it gives back, what it runs on, and the
 prompts behind it. The numbers come from a log I keep as I go. Customer,
 client and collector names are taken out before anything reaches this page.
 
-## Time reclaimed
+## Time reclaimed ledger
 
 <!-- ledger:start -->
 <table id="ledger">
   <thead>
-    <tr><th>Task</th><th>Tools</th><th>Before</th><th>After</th><th>Hours a month</th></tr>
+    <tr><th>Workflow</th><th>Stack / Skill</th><th>Before vs. after</th><th>Monthly hours saved</th></tr>
   </thead>
   <tbody>
-    <tr><td>Enterprise QBR and value reporting</td><td>Databricks Genie, Claude Code</td><td>4 h a review</td><td>45 min</td><td>10</td></tr>
-    <tr><td>Personal task and finance triage</td><td>Perplexity, Todoist</td><td>3 h a week</td><td>1 h</td><td>8</td></tr>
-    <tr><td>Gallery press and cataloguing</td><td>Claude Team Skills</td><td>2 h a release</td><td>30 min</td><td>6</td></tr>
-    <tr><td>Total</td><td></td><td></td><td></td><td>24</td></tr>
+    <tr><td>Enterprise QBR telemetry assembly</td><td>Databricks Genie, Claude API</td><td>4 h → 45 min a review</td><td>10</td></tr>
+    <tr><td>Personal finance and task triage</td><td>Perplexity, Todoist</td><td>3 h → 1 h a week</td><td>8</td></tr>
+    <tr><td>Gallery exhibition press kits</td><td>Claude Team, <code>press-release</code> Skill</td><td>2 h → 30 min a show</td><td>6</td></tr>
+    <tr><td>Total</td><td></td><td></td><td>24</td></tr>
   </tbody>
 </table>
 <!-- ledger:end -->
 
 Before and after are my time per run, start to finish, including review.
-Hours a month is the time saved per run multiplied by how often it runs.
+Monthly hours saved is the time saved per run multiplied by how often it
+runs.
 
-## A $40 a month stack
+## My $40/month AI stack
 
 What I pay for myself. Employer workspaces are separate, paid for by the
 employer, and never share data with this stack.
 
-| Tool | A month | Used for |
-| --- | --- | --- |
-| Perplexity Pro | $20 | Research that has to cite a source: companies, markets, people |
-| Claude Pro | $20 | Thinking, drafting, and designing Skills |
-| Claude Code | included | Changing files, running scripts and scheduled jobs, committing |
-| GitHub | $0 | Every Skill, prompt, script and site, versioned |
-| Cloudflare Pages | $0 | This site and the prototypes, rebuilt on every push |
+| Job | Tool | A month | What it does |
+| --- | --- | --- | --- |
+| Research | Perplexity Pro | $20 | Anything that needs a current, cited source: companies, markets, people |
+| Drafting and Skills | Claude Pro | $20 | Thinking, first drafts, and writing the Skills that make a task repeatable |
+| Local execution | Claude Code, GitHub, Cloudflare Pages | $0 extra | Changes files and runs scripts and scheduled jobs; GitHub versions every Skill and site; Cloudflare deploys on every push |
 
 How a task gets routed:
 
