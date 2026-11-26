@@ -34,7 +34,7 @@
     var ps = [first];
     if (stop) {
       for (var el = first.nextElementSibling; el && el !== stop; el = el.nextElementSibling) {
-        if (el.tagName === "P" || el.tagName === "DETAILS") ps.push(el);
+        if (el.tagName === "P" || el.tagName === "UL" || el.tagName === "DETAILS") ps.push(el);
       }
     }
     ps.forEach(function (p) {

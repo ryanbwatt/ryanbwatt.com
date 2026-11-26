@@ -478,3 +478,11 @@ body.agent {
     left: 20px;
   }
 }
+
+/* Plain-text years after each role title, for crawlers and phones. Hidden
+   where the timeline draws them instead (experience.js adds .tl-dim). */
+@media (min-width: 721px) {
+  #content.tl-dim .yrs {
+    display: none;
+  }
+}
