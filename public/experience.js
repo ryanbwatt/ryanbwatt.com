@@ -34,7 +34,7 @@
     var ps = [first];
     if (stop) {
       for (var el = first.nextElementSibling; el && el !== stop; el = el.nextElementSibling) {
-        if (el.tagName === "P") ps.push(el);
+        if (el.tagName === "P" || el.tagName === "UL") ps.push(el);
       }
     }
     ps.forEach(function (p) {
@@ -136,7 +136,7 @@
   });
 
   content.addEventListener("mousemove", function (e) {
-    var p = e.target.closest ? e.target.closest("p.tl-role") : null;
+    var p = e.target.closest ? e.target.closest(".tl-role") : null;
     light(p ? bandAt(e.pageY, parseInt(p.getAttribute("data-role"), 10)) : null);
   });
   content.addEventListener("mouseleave", function () {

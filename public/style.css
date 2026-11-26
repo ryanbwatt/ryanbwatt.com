@@ -347,17 +347,17 @@ body.agent {
    is a mouse and room for the timeline: on a phone nothing is dimmed. */
 
 @media (hover: hover) and (min-width: 721px) {
-  #content.tl-dim p.tl-role,
-  #content.tl-dim p.tl-role a {
+  #content.tl-dim .tl-role,
+  #content.tl-dim .tl-role a {
     color: #767676;
     transition: color 0.12s;
   }
 
-  #content.tl-dim p.tl-role.lit {
+  #content.tl-dim .tl-role.lit {
     color: #333;
   }
 
-  #content.tl-dim p.tl-role.lit a {
+  #content.tl-dim .tl-role.lit a {
     color: #0864c7;
   }
 }
@@ -463,5 +463,13 @@ body.agent {
     right: 20px;
     bottom: 20px;
     left: 20px;
+  }
+}
+
+/* Plain-text years after each role title, for crawlers and phones. Hidden
+   where the timeline draws them instead (experience.js adds .tl-dim). */
+@media (min-width: 721px) {
+  #content.tl-dim .yrs {
+    display: none;
   }
 }

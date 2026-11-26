@@ -119,7 +119,7 @@ sips -Z 500  -s format jpeg -s formatOptions 80 in.jpg --out public/photos/thumb
 A 1px line in the empty left column beside the roles on `/experience`, with
 every year listed down its left side in grey. Hover the bar and the year under
 the cursor goes black and larger. Years only, never months. A year shared by
-several roles is labelled on the shortest one (Artsy carries 2021). The role
+several roles is labelled on the shortest one (Artsy carries 2022). The role
 descriptions sit in grey (`#767676`, 4.54:1) and come up to normal colour when
 their year or the text is hovered — desktop with a mouse only; phones get the
 plain page. Built by `public/experience.js` (served raw). Each role paragraph
@@ -129,7 +129,9 @@ starts with an empty marker carrying its years:
 <span data-from="2022" data-to="2025"></span>**Kaltura** — ...
 ```
 
-Omit `data-to` for the current role. A role runs from its own paragraph down to
+Omit `data-to` for the current role. Each title line also ends with its years in
+plain text, `<span class="yrs">, 2022–2026</span>`, so crawlers and phones see
+them; CSS hides that span on desktop once the timeline draws. A role runs from its own paragraph down to
 the next marker. Hidden on phones, with `#left`.
 
 ## Workflows ledger
