@@ -75,13 +75,16 @@ body {
   color: #0864c7;
 }
 
-/* Heading sizes are left at the browser default, which is the whole point:
-   they were never chosen. Only the spacing is set. */
+/* One type size on every page. A heading is the body size in bold, the same
+   as the bold name that opens an item ("**Name.** Text."), so a page never
+   gets larger or smaller text than 13px. */
 
 #content h1,
 #content h2,
 #content h3 {
   margin: 0;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 #content h2 {
@@ -103,9 +106,13 @@ body {
   color: #777;
 }
 
+#content pre,
+#content code {
+  font-size: 13px;
+}
+
 #content pre {
   overflow-x: auto;
-  font-size: 12px;
 }
 
 /* Markdown emits a bare <img> as a raw HTML block, so it gets no paragraph
@@ -306,62 +313,6 @@ body.agent {
   border: 0;
 }
 
-/* Experience timeline. A 1px line in the left column, 30px off the text,
-   with every year listed down its left side in grey (#767676, 4.54:1). The
-   bar is wide enough to cover the years, so hovering a year or the line
-   works; the year under the cursor goes black and larger. The line is the
-   ::before. Built by /experience.js. */
-
-#timeline {
-  position: absolute;
-  left: 110px;
-  width: 71px;
-  cursor: default;
-}
-
-#timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 10px;
-  width: 1px;
-  background: #ccc;
-}
-
-.tl-year {
-  position: absolute;
-  right: 20px;
-  color: #767676;
-  line-height: 18px;
-  white-space: nowrap;
-}
-
-.tl-year.on {
-  color: #000;
-  font-size: 17px;
-}
-
-/* The role descriptions sit in grey until their year or the text itself is
-   hovered, then come up to the normal colour and link blue. Only where there
-   is a mouse and room for the timeline: on a phone nothing is dimmed. */
-
-@media (hover: hover) and (min-width: 721px) {
-  #content.tl-dim .tl-role,
-  #content.tl-dim .tl-role a {
-    color: #767676;
-    transition: color 0.12s;
-  }
-
-  #content.tl-dim .tl-role.lit {
-    color: #333;
-  }
-
-  #content.tl-dim .tl-role.lit a {
-    color: #0864c7;
-  }
-}
-
 /* Experience "More". A native <details> under each role's one line, pulled
    up against it. The triangle is the browser's own; only the link blue and
    the pointer are set. */
@@ -374,10 +325,6 @@ body.agent {
   color: #0864c7;
   cursor: pointer;
 }
-
-/* Phones. The fixed columns above are wider than a phone screen, so they
-   stack. This is the one rule here that answers to a device the rest of the
-   layout predates — without it the site is unreadable on a phone. */
 
 /* Tables (Athletics). Left-aligned, no borders, no stripes: a column of
    text that happens to line up. */
@@ -432,6 +379,10 @@ body.agent {
   margin-right: 8px;
 }
 
+/* Phones. The fixed columns above are wider than a phone screen, so they
+   stack. This is the one rule here that answers to a device the rest of the
+   layout predates — without it the site is unreadable on a phone. */
+
 @media (max-width: 720px) {
   #menu {
     float: none;
@@ -440,8 +391,7 @@ body.agent {
     text-align: left;
   }
 
-  #left,
-  #timeline {
+  #left {
     display: none;
   }
 
@@ -478,7 +428,3 @@ body.agent {
     left: 20px;
   }
 }
-
-/* Plain-text years after each role title stay visible on every screen, next
-   to the timeline: roles overlap, so the timeline alone can't say which
-   years belong to which role. */

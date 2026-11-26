@@ -4,7 +4,7 @@ order: 3
 description: Things Ryan Watt has read or watched and kept.
 ---
 
-**Things I've read or watched and kept:**
+Things I've read or watched and kept.
 
 - [Third places are disappearing](https://theweek.com/culture-life/third-places-disappearing)
   — On the slow loss of the third place: the cafés, bars, and public rooms
