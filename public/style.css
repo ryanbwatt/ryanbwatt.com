@@ -362,6 +362,19 @@ body.agent {
   }
 }
 
+/* Experience "More". A native <details> under each role's one line, pulled
+   up against it. The triangle is the browser's own; only the link blue and
+   the pointer are set. */
+
+#content details {
+  margin: -13px 0 13px;
+}
+
+#content summary {
+  color: #0864c7;
+  cursor: pointer;
+}
+
 /* Phones. The fixed columns above are wider than a phone screen, so they
    stack. This is the one rule here that answers to a device the rest of the
    layout predates — without it the site is unreadable on a phone. */

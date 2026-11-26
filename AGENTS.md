@@ -134,6 +134,11 @@ plain text, `<span class="yrs">, 2022–2026</span>`, so crawlers and phones see
 them; CSS hides that span on desktop once the timeline draws. A role runs from its own paragraph down to
 the next marker. Hidden on phones, with `#left`.
 
+Each role is one line (title plus one sentence) followed by a native
+`<details><summary>More</summary>` holding the full description. Leave blank
+lines inside it so the Markdown is parsed. The script counts the `<details>` as
+part of the role and re-measures when one opens.
+
 ## Workflows ledger
 
 The Time reclaimed table on `/workflows` is copied from a private log
