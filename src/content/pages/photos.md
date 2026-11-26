@@ -1,6 +1,7 @@
 ---
 title: Photos
 order: 4
+description: Photos by Ryan Watt from Vancouver, Brooklyn, Greece and elsewhere.
 gallery: true
 ---
 

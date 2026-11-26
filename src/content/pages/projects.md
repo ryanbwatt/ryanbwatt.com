@@ -1,48 +1,43 @@
 ---
 title: Projects
 order: 6
-description: Three case studies in changing how customer and gallery work gets done with AI, and the things Ryan Watt is building.
+description: What Ryan Watt has built to make customer and gallery teams more productive with AI, and the things he is building on the side.
 ---
 
-## Monte Clark Gallery: AI transformation and Gallery Assistant
+## MCG: AI rollout and Gallery Assistant
 
-**Problem.** Press kits, artwork cataloguing and collector emails were each
-done by hand, by different people, from scratch every show.
+A two-person gallery wrote press kits, artwork records and collector emails by
+hand, from scratch for every show. I moved that work onto a shared Claude Team
+workspace with three reusable Skills (`press-release`, `artwork-catalog` and
+`collector-outreach`) and built
+[Gallery Assistant](https://gallery-assistant.pages.dev/), which now sits in
+the staff's daily work, sorting inquiries and drafting replies next to each
+collector's history. A press kit went from about 2 hours to 30 minutes, and
+everyone's output looks the same. The demo uses fictional data.
 
-**Architecture.** Moved gallery operations onto a separate Claude Team
-workspace with three shared Skills: `press-release`, `artwork-catalog` and
-`collector-outreach`. A custom
-[Gallery Assistant](https://gallery-assistant.pages.dev/) now sits in the
-staff's daily work, sorting inquiries and drafting replies next to the
-collector history. The demo uses fictional data.
+## An internal tool for account reviews
 
-**Impact.** The same quality of output from everyone on the team, and
-recurring exhibition prep cut from hours to minutes.
+I helped design and build an internal productivity tool for an enterprise
+account team. Preparing a quarterly business review used to mean a few hours
+of pulling usage data into spreadsheets for every account. Now it takes about
+45 minutes, mostly review. Where the time came from:
 
-## Kaltura: value realization with Databricks Genie
+- Usage data is pulled on a schedule, not by hand.
+- One template, so every review covers the same adoption milestones and
+  value delivered.
+- Each draft flags the health, risk and expansion signals worth raising, with
+  every number traced to its source.
+- Nothing reaches a customer until a person has checked it.
 
-**Problem.** Pulling platform usage and assembling executive QBRs was manual
-work for every enterprise financial services and L&D account.
+An anonymized version is
+[on GitHub](https://github.com/ryanbwatt/account-command-center).
 
-**Architecture.** Terminal-run Claude API reporting loops on top of
-Databricks Genie, Kaltura's in-house data assistant. The loops query
-platform usage, then write the executive ROI story from it. An anonymized
-version is [on GitHub](https://github.com/ryanbwatt/account-command-center).
+## Revin: one onboarding playbook
 
-**Impact.** Spreadsheet compilation replaced by repeatable Customer Value
-Realization (CVR) reports, with every number traced to its source.
-
-## Revin: CS operations in one command center
-
-**Problem.** During hypergrowth, onboarding had no fixed structure and
-playbooks were run differently by each person.
-
-**Architecture.** Moved customer health tracking, onboarding milestones and
-the standard CS workflows into one command center, while growing the
-Forward Deployed Engineer team from 2 to 8.
-
-**Impact.** Customers grew from 30 to more than 100 and revenue four times
-over, with the same post-sales process for every account.
+Revin grew from 30 to 100+ customers and four times the revenue while I ran
+customer success. Onboarding had been done differently by each person, so I
+put health tracking, onboarding milestones and the standard playbooks in one
+place, and grew the Forward Deployed Engineering team from 2 to 8.
 
 ## Other projects
 

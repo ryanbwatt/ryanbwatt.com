@@ -7,7 +7,7 @@ description: The work Ryan Watt has handed to AI, the hours it gives back, the $
 What I've handed to AI and the time it gives back. Names of customers,
 clients and collectors are left out.
 
-## Time reclaimed ledger
+## Hours saved
 
 <!-- ledger:start -->
 <table id="ledger">
@@ -15,7 +15,7 @@ clients and collectors are left out.
     <tr><th>Workflow</th><th>Stack / Skill</th><th>Before vs. after</th><th>Monthly hours saved</th></tr>
   </thead>
   <tbody>
-    <tr><td>Enterprise QBR telemetry assembly</td><td>Databricks Genie, Claude API</td><td>4 h → 45 min a review</td><td>10</td></tr>
+    <tr><td>Account review prep</td><td>Internal account-review tool</td><td>4 h → 45 min a review</td><td>10</td></tr>
     <tr><td>Personal finance and task triage</td><td>Perplexity, Todoist</td><td>3 h → 1 h a week</td><td>8</td></tr>
     <tr><td>Gallery exhibition press kits</td><td>Claude Team, <code>press-release</code> Skill</td><td>2 h → 30 min a show</td><td>6</td></tr>
     <tr><td>Total</td><td></td><td></td><td>24</td></tr>
@@ -55,8 +55,5 @@ task
                                            |
                                          Cloudflare Pages (deploy)
 </pre>
-
-Do each thing once. A prompt used twice becomes a Skill. A Skill used every
-week gets a schedule.
 
 The prompts behind this are [free to reuse](/prompts).
