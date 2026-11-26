@@ -1,13 +1,21 @@
 ---
 title: About
 order: 1
-description: Ryan Watt lives in Brooklyn, helps companies change how their work gets done with AI, and spends most of his free time running or looking at art.
+description: Ryan Watt is an account manager by title and an advocate by nature, for artists, customers, and the people AI is supposed to help.
 ---
 
 <img src="/ryan-watt.jpg" width="128" height="130" alt="Ryan Watt" />
 
-I live in Brooklyn, help companies change how their work gets done with AI, and
-spend most of my free time running or looking at art.
+Account manager by title. Advocate by nature: for artists, for customers, and
+for the people AI is supposed to help.
+
+I help companies hand their busywork to AI, so their people get time back
+for the work they're good at.
+
+$2.5M+ in new revenue · 30 to 100+ customers at Revin · 24 hours a month
+handed to AI
+
+Rower. Runner. Art person. Brooklyn.
 
 Email: [ryanbwatt@gmail.com](mailto:ryanbwatt@gmail.com)
 
